@@ -1,0 +1,3 @@
+Make sure you clone main branch, copy models from 0ther-main branch
+Rebuild everything from scratch.
+This is because the sq.dblie3 is corrupted and can't make migrations
