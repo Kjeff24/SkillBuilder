@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
@@ -19,10 +19,10 @@ def loginPage(request):
             user = authenticate(username=username, password=password)
             if user is not None and user.is_employer:
                 login(request, user)
-                return redirect('home')
+                return redirect('employer_home')
             elif user is not None and user.is_employee:
                 login(request, user)
-                return redirect('home')
+                return redirect('employee_home')
             else:
                 msg= 'invalid credentials'
         else:
@@ -32,19 +32,47 @@ def loginPage(request):
 
     return render(request, "myapp/login.html", context)
 
-def signupPage(request):
+# Employee signup
+def employeeSignupPage(request):
     msg = None
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = EmployeeSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             msg = 'User created'
-            return redirect('login.html')
+            return redirect('login')
         else:
             msg = 'form is not valid'
     else:
-        form = SignUpForm()
+        form = EmployeeSignUpForm()
 
+    # employers = User.objects.filter(is_employer=True)
     context = {'form': form, 'msg':msg}
 
-    return render(request, "myapp/signup.html", context)
+    return render(request, "myapp/employee_signup.html", context)
+
+
+def employerSignupPage(request):
+    msg = None
+    if request.method == 'POST':
+        form = EmployerSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            msg = 'User created'
+            return redirect('login')
+        else:
+            msg = 'form is not valid'
+    else:
+        form = EmployerSignUpForm()
+
+    # employers = User.objects.filter(is_employer=True)
+    context = {'form': form, 'msg':msg}
+
+    return render(request, "myapp/employer_signup.html", context)
+
+
+def employerHome(request):
+    return render(request, "myapp/employer_home.html")
+
+def employeeHome(request):
+    return render(request, "myapp/employee_home.html")
