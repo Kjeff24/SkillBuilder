@@ -1,0 +1,2 @@
+Successfully created signup and login for both employees and employers
+Next task is to create models for courses, quizzes, resources etc
