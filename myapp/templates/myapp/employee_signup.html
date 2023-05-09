@@ -63,11 +63,11 @@
                     <label for="password">confirm Password</label>
                       {{ form.password2 }}
                   </div>
-                  <div>{{form.is_employee.label_tag}} {{form.is_employee}}</div>
+                  <div>{{form.employer_select.label_tag}} {{form.employer_select}}</div>
                   <div class="">
-                    {{ form.employer.label_tag }}
+                    {{ form.is_employee.label_tag }}
 
-                    {{ form.employer }}
+                    {{ form.is_employee }}
                 </div>
                     <span class="text-error">{{ form.errors }}</span>
                   <input type="submit"  value="Register" class="btn btn-pill text-white btn-block btn-primary">

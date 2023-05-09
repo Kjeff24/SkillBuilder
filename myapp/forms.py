@@ -19,12 +19,14 @@ class LoginForm(forms.Form):
         )
     )
 
-employer_choices = [(user.username, user.username) for user in User.objects.filter(is_employer=True)]
 
 # Employee signup
 class EmployeeSignUpForm(UserCreationForm):
-    
-    employer = forms.ChoiceField(choices=employer_choices, widget=forms.Select(attrs={'class': 'my-employer-choice'}))
+    employer_select = forms.ModelChoiceField(queryset=User.objects.filter(is_employer=True), widget=forms.TextInput(
+            attrs={
+                "class": "select-employer"
+            }
+        ))
 
     username = forms.CharField(
         widget=forms.TextInput(
@@ -54,16 +56,17 @@ class EmployeeSignUpForm(UserCreationForm):
             }
         )
     )
+    is_employee = forms.BooleanField(required=True)
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',
-                  'is_employee', 'employer')
+                  'is_employee', 'employer_select')
     
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.my_employer = self.cleaned_data['employer']
+        user.my_employer = self.cleaned_data['employer_select']
         if commit:
             user.save()
         return user
@@ -100,6 +103,7 @@ class EmployerSignUpForm(UserCreationForm):
             }
         )
     )
+    is_employer = forms.BooleanField(required=True)
 
     class Meta:
         model = User
