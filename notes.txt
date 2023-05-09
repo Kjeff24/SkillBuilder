@@ -1,2 +1,4 @@
 Successfully created signup and login for both employees and employers
 Next task is to create models for courses, quizzes, resources etc
+At this moment, some courses, announcement, room, resourcse, message models have been created.
+The next task would be to create routes specifically for employees to view resource and announcements, posted by their respective employers
