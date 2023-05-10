@@ -20,8 +20,8 @@ class Course(models.Model):
     description = models.TextField(blank=True, null=True)
     instructor = models.ForeignKey(User, on_delete=models.CASCADE)
     course_participants = models.ManyToManyField(User, related_name='course_participants', blank=True)
-    start_date = models.DateField(auto_now_add=True)
-    end_date = models.DateField()
+    created = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -32,7 +32,7 @@ class Resource(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     youtubeLink = models.TextField(blank=True)
-    file = models.FileField(upload_to='resources/')
+    file = models.FileField(upload_to='resources/', blank=True)
 
     def __str__(self):
         return self.name
@@ -40,7 +40,7 @@ class Resource(models.Model):
 # Announcement model allows employers to add announcements based on course
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 

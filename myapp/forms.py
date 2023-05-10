@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, Course, Resource, Announcement, Room
+from django.forms import ModelForm
 
 # login form
 class LoginForm(forms.Form):
@@ -109,3 +110,29 @@ class EmployerSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1',
                   'password2', 'is_employer')
+
+# Course form 
+class CourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = '__all__'
+        exclude = ['course_participants', 'instructor']
+
+# Resource form
+class ResourceForm(ModelForm):
+    class Meta:
+        model = Resource
+        fields = ['name', 'course', 'description', 'youtubeLink', 'file']
+
+# Annoucement form class AnnouncementForm(forms.ModelForm):
+class AnnouncementForm(ModelForm):
+    class Meta:
+        model = Announcement
+        fields = ['title', 'content', 'course']
+
+# Room form
+class RoomForm(ModelForm):
+    class Meta:
+        model = Room
+        fields = '__all__'
+        exclude = ['room_host']

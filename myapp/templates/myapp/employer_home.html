@@ -8,5 +8,41 @@
 </head>
 <body>
     <h1>Employer home</h1>
+    <div>
+        <a href="{% url 'create-course' %}">Create Course</a>
+    </div>
+    <div>
+        <a href="{% url 'create-resource' %}">Create Resource</a>
+    </div>
+    <div>
+        <a href="{% url 'create-announcement' %}">Create Announcement</a>
+    </div>
+    <div>
+        <a href="{% url 'create-room' %}">Create Room</a>
+    </div>
+    <div class="display-course">
+        <h4>Courses</h4>
+        {% for course in courses %}
+        <p>{{course}}</p>
+        {% endfor %}
+    </div>
+    <div class="display-resource">
+        <h4>Resources</h4>
+        {% for resource in resources %}
+        <p>{{resource}}</p>
+        {% endfor %}
+    </div>
+    <div class="display-announcement">
+        <h4>Annoucements</h4>
+        {% for announcement in announcements %}
+        <p>{{announcement}}</p>
+        {% endfor %}
+    </div>
+    <div class="display-room">
+        <h4>Rooms</h4>
+        {% for room in rooms %}
+        <p>{{room}}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>
