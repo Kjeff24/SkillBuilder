@@ -9,16 +9,19 @@
 <body>
     <h1>Employer home</h1>
     <div>
-        <a href="{% url 'create-course' %}">Create Course</a>
+        <a href="{% url 'logout' %}">Logout</a>
     </div>
     <div>
-        <a href="{% url 'create-resource' %}">Create Resource</a>
+        <a href="{% url 'create-course' request.user %}">Create Course</a>
     </div>
     <div>
-        <a href="{% url 'create-announcement' %}">Create Announcement</a>
+        <a href="{% url 'create-resource' request.user %}">Create Resource</a>
     </div>
     <div>
-        <a href="{% url 'create-room' %}">Create Room</a>
+        <a href="{% url 'create-announcement' request.user %}">Create Announcement</a>
+    </div>
+    <div>
+        <a href="{% url 'create-room' request.user %}">Create Room</a>
     </div>
     <div class="display-course">
         <h4>Courses</h4>

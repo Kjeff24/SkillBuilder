@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm, CourseForm, AnnouncementForm, ResourceForm, RoomForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import User, Course, Announcement, Resource, Room
 from django.contrib import messages
 
@@ -22,10 +22,10 @@ def loginPage(request):
             user = authenticate(username=username, password=password)
             if user is not None and user.is_employer:
                 login(request, user)
-                return redirect('employer_home')
+                return redirect('employer-home', pk=request.user)
             elif user is not None and user.is_employee:
                 login(request, user)
-                return redirect('employee-home')
+                return redirect('employee-home', pk=request.user)
             else:
                 msg = 'invalid credentials'
         else:
@@ -35,9 +35,13 @@ def loginPage(request):
 
     return render(request, "myapp/login.html", context)
 
+# Logout User
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+
+
 # Employee signup
-
-
 def employeeSignupPage(request):
     msg = None
     if request.method == 'POST':
@@ -78,7 +82,7 @@ def employerSignupPage(request):
 # Employer home
 
 
-def employerHome(request):
+def employerHome(request, pk):
     user = request.user
     courses = Course.objects.filter(instructor=user)
 
@@ -90,20 +94,23 @@ def employerHome(request):
         'courses': courses,
         'resources': resources,
         'rooms': rooms,
-        'announcements': announcements,
+        'announcements': announcements
     }
     return render(request, "myapp/employer_home.html", context)
 
+
 # Employee home
-
-
-def employeeHome(request):
-    return render(request, "myapp/employee_home.html")
+def employeeHome(request, pk):
+    employer = request.user.my_employer
+    courses = Course.objects.filter(instructor__username=employer).distinct()
+    context = {'courses':courses}
+    print(employer)
+    return render(request, "myapp/employee_home.html", context)
 
 # Course form
 
 
-def createCourse(request):
+def createCourse(request, pk):
     form = CourseForm()
     if request.method == 'POST':
         Course.objects.create(
@@ -112,14 +119,14 @@ def createCourse(request):
             description=request.POST.get('description')
         )
         messages.success(request, 'Course created successfully.')
-        return redirect('create-course')
+        return redirect('create-course', pk=request.user)
 
     context = {'form': form}
 
     return render(request, "myapp/course_form.html", context)
 
 
-def createAnnoucement(request):
+def createAnnoucement(request, pk):
     form = AnnouncementForm()
     if request.method == 'POST':
         Announcement.objects.create(
@@ -134,7 +141,7 @@ def createAnnoucement(request):
     return render(request, "myapp/announcement_form.html", context)
 
 
-def createResource(request):
+def createResource(request, pk):
     form = ResourceForm()
 
     if request.method == 'POST':
@@ -146,13 +153,13 @@ def createResource(request):
             description=request.POST.get('description')
         )
         messages.success(request, 'Resources created successfully.')
-        return redirect('create-resource')
+        return redirect('create-resource', pk=request.user)
 
     context = {'form': form}
     return render(request, "myapp/resource_form.html", context)
 
 
-def createRoom(request):
+def createRoom(request, pk):
     form = RoomForm()
 
     if request.method == 'POST':
@@ -163,7 +170,7 @@ def createRoom(request):
             description=request.POST.get('description')
         )
         messages.success(request, 'Room created successfully.')
-        return redirect('create-room')
+        return redirect('create-room', pk=request.user)
 
     context = {'form': form}
     return render(request, "myapp/room_form.html", context)

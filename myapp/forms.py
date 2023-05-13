@@ -4,6 +4,8 @@ from .models import User, Course, Resource, Announcement, Room
 from django.forms import ModelForm
 
 # login form
+
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
@@ -23,11 +25,8 @@ class LoginForm(forms.Form):
 
 # Employee signup
 class EmployeeSignUpForm(UserCreationForm):
-    employer_select = forms.ModelChoiceField(queryset=User.objects.filter(is_employer=True), widget=forms.TextInput(
-            attrs={
-                "class": "select-employer"
-            }
-        ))
+    employer_select = forms.ModelChoiceField(
+        queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'your-widget-class'}))
 
     username = forms.CharField(
         widget=forms.TextInput(
@@ -63,7 +62,6 @@ class EmployeeSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',
                   'is_employee', 'employer_select')
-    
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -71,9 +69,8 @@ class EmployeeSignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
-        
 
-    
+
 # Employer Signup
 class EmployerSignUpForm(UserCreationForm):
     username = forms.CharField(
@@ -111,7 +108,9 @@ class EmployerSignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1',
                   'password2', 'is_employer')
 
-# Course form 
+# Course form
+
+
 class CourseForm(ModelForm):
     class Meta:
         model = Course
@@ -119,18 +118,24 @@ class CourseForm(ModelForm):
         exclude = ['course_participants', 'instructor']
 
 # Resource form
+
+
 class ResourceForm(ModelForm):
     class Meta:
         model = Resource
         fields = ['name', 'course', 'description', 'youtubeLink', 'file']
 
 # Annoucement form class AnnouncementForm(forms.ModelForm):
+
+
 class AnnouncementForm(ModelForm):
     class Meta:
         model = Announcement
         fields = ['title', 'content', 'course']
 
 # Room form
+
+
 class RoomForm(ModelForm):
     class Meta:
         model = Room
