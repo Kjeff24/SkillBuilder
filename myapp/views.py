@@ -102,7 +102,7 @@ def employeeHome(request, pk):
     resources = Resource.objects.filter(course__instructor=employer)
     announcements = Announcement.objects.filter(course__instructor=employer)
     rooms = Room.objects.filter(course__instructor=employer)
-    context = {'courses':courses, 'resources':resources, 'annoucements':announcements, 'rooms':rooms}
+    context = {'courses':courses, 'resources':resources, 'announcements':announcements, 'rooms':rooms}
     return render(request, "myapp/employee_home.html", context)
 
 # Course form
@@ -173,8 +173,9 @@ def coursePage(request, pk):
     course = Course.objects.get(id=pk)
     resources = Resource.objects.filter(course=course)
     announcements = Announcement.objects.filter(course=course)
+    print(announcements)
     rooms = Room.objects.filter(course=course)
-    context = {'course':course, 'resources':resources, 'annoucements':announcements, 'rooms':rooms}
+    context = {'course':course, 'resources':resources, 'announcements':announcements, 'rooms':rooms}
 
     return render(request, "myapp/course_page.html", context)
 
