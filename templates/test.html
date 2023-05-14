@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <body>
     {% if page == 'update' %}
-    <h1>Update Room form</h1>
+    <h1>Update Course form</h1>
     {% else %}
-    <h1>Create Room form</h1>
+    <h1>Create Course form</h1>
     {% endif %}
     <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+        {% csrf_token %} {{ form.as_p }}
         <button type="submit">
             {% if page == 'update' %} Update {% else %} Submit {% endif %}
         </button>
@@ -31,4 +22,3 @@
         {% endif %}
     </div>
 </body>
-</html>

@@ -177,3 +177,115 @@ def coursePage(request, pk):
     context = {'course':course, 'resources':resources, 'annoucements':announcements, 'rooms':rooms}
 
     return render(request, "myapp/course_page.html", context)
+
+
+# Update courses created by employer
+def updateCourse(request, pk):
+    course = Course.objects.get(id=pk)
+    form = CourseForm(instance=course)
+   
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Course updated successfully.')
+            return redirect('update-course', pk=pk)
+         
+    context = {'form': form, 'page':'update'}
+    return render(request, "myapp/course_form.html", context)
+
+
+# Update resources created by employer
+def updateResource(request, pk):
+    resource = Resource.objects.get(id=pk)
+    form = ResourceForm(instance=resource, user=request.user)
+
+    if request.method == 'POST':
+        form = ResourceForm(request.POST, instance=resource, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Resources updated successfully.')
+            return redirect('update-resource', pk=pk)
+        
+    context = {'form': form, 'page':'update'}
+    return render(request, "myapp/resource_form.html", context)
+
+
+# Update announcement created by employer
+def updateAnnouncement(request, pk): 
+    announcement = Announcement.objects.get(id=pk)
+    form = AnnouncementForm(instance=announcement, user=request.user)
+
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST, instance=announcement, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Announcement updated successfully.')
+            return redirect('update-announcement', pk=pk)
+        
+    context = {'form': form, 'page':'update'}
+    return render(request, "myapp/announcement_form.html", context)
+
+
+# Update room created by employer
+def updateRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room, user=request.user)
+
+    if request.method == 'POST':
+        form = RoomForm(request.POST, instance=room, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Room updated successfully.')
+            return redirect('update-room', pk=pk)
+            
+    
+    context = {'form': form, 'page':'update'}
+    return render(request, "myapp/room_form.html", context)
+
+# Delete course
+def deleteCourse(request, pk):
+    course = Course.objects.get(id=pk)
+
+    if request.method == 'POST':
+        course.delete()
+        messages.success(request, 'Course deleted successfully.')
+        return redirect('employer-home', pk=request.user)
+    
+    return render(request, 'myapp/delete.html', {'obj': course})
+
+
+# Delete announcement
+def deleteAnnouncement(request, pk):
+    announcement = Announcement.objects.get(id=pk)
+
+    if request.method == 'POST':
+        announcement.delete()
+        messages.success(request, 'Announcement deleted successfully.')
+        return redirect('employer-home', pk=request.user)
+    
+    return render(request, 'myapp/delete.html', {'obj': announcement})
+
+
+# Delete Resource
+def deleteResource(request, pk):
+    resource = Resource.objects.get(id=pk)
+
+    if request.method == 'POST':
+        resource.delete()
+        messages.success(request, 'Resource deleted successfully.')
+        return redirect('employer-home', pk=request.user)
+    
+    return render(request, 'myapp/delete.html', {'obj': resource})
+
+
+# Delete room
+def deleteRoom(request, pk):
+    room = Room.objects.get(id=pk)
+
+    if request.method == 'POST':
+        room.delete()
+        messages.success(request, 'Room deleted successfully.')
+        return redirect('employer-home', pk=request.user)
+    
+    return render(request, 'myapp/delete.html', {'obj': room})

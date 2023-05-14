@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="layout__body">
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            <div class="form__group">
+                <p>Are you sure you want to delete "{{obj}}"?</p>
+            </div>
+
+            <div class="for__group">
+                <input class="btn btn--main" type="submit" value="Confirm" />
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

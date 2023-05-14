@@ -7,18 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Create Annoucement form</h1>
+    {% if page == 'update' %}
+    <h1>Update Announcement form</h1>
+    {% else %}
+    <h1>Create Announcement form</h1>
+    {% endif %}
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">
+            {% if page == 'update' %} Update {% else %} Submit {% endif %}
+        </button>
     </form>
-    <div>{% if messages %}
+    <div>
+        {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                {{ message }}
+            </li>
             {% endfor %}
         </ul>
-    {% endif %}</div>
+        {% endif %}
+    </div>
 </body>
 </html>
