@@ -4,8 +4,6 @@ from .models import User, Course, Resource, Announcement, Room
 from django.forms import ModelForm
 
 # login form
-
-
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
@@ -25,6 +23,7 @@ class LoginForm(forms.Form):
 
 # Employee signup
 class EmployeeSignUpForm(UserCreationForm):
+    # Create a modelchoicefield to display only employers
     employer_select = forms.ModelChoiceField(
         queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'your-widget-class'}))
 
@@ -63,6 +62,7 @@ class EmployeeSignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',
                   'is_employee', 'employer_select')
 
+    # Based on the employer the user select, it it assigned to my_employer field in User model
     def save(self, commit=True):
         user = super().save(commit=False)
         user.my_employer = self.cleaned_data['employer_select']
@@ -121,6 +121,12 @@ class CourseForm(ModelForm):
 
 
 class ResourceForm(ModelForm):
+    # Shows only courses, created by the employer
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')  # Retrieve the 'user' argument from kwargs
+        super().__init__(*args, **kwargs)
+        self.fields['course'].queryset = Course.objects.filter(instructor=user)
+
     class Meta:
         model = Resource
         fields = ['name', 'course', 'description', 'youtubeLink', 'file']
@@ -129,15 +135,25 @@ class ResourceForm(ModelForm):
 
 
 class AnnouncementForm(ModelForm):
+    # Shows only courses, created by the employer
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')  # Retrieve the 'user' argument from kwargs
+        super().__init__(*args, **kwargs)
+        self.fields['course'].queryset = Course.objects.filter(instructor=user)
+
     class Meta:
         model = Announcement
         fields = ['title', 'content', 'course']
 
+
 # Room form
-
-
 class RoomForm(ModelForm):
+    # Shows only courses, created by the employer
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')  # Retrieve the 'user' argument from kwargs
+        super().__init__(*args, **kwargs)
+        self.fields['course'].queryset = Course.objects.filter(instructor=user)
+        
     class Meta:
         model = Room
-        fields = '__all__'
-        exclude = ['room_host']
+        fields = ['room_topic', 'course', 'room_description']

@@ -49,14 +49,13 @@ class Announcement(models.Model):
     
 # Room allows employees to chat
 class Room(models.Model):
-    room_host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     room_topic = models.CharField(max_length=200, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     room_description = models.TextField(null=True, blank=True)
     created  = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.content
+        return self.room_topic
     
 # Message allows host and participants to converse
 class Message(models.Model):

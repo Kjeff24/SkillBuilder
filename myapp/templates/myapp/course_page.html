@@ -7,12 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Employee home</h1>
-    <ul>
-        {% for course in courses %}
-        <li><a href="{% url 'course' course.id %}">{{ course }}</a></li>
-        {% endfor %}
-    </ul>
+    <h1>Course Page -- {{course}}</h1>
     <div>
         <h1>Resources</h1>
         {% for resource in resources %}

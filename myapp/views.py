@@ -5,8 +5,6 @@ from .models import User, Course, Announcement, Resource, Room
 from django.contrib import messages
 
 # Create your views here.
-
-
 def home(request):
 
     return render(request, "myapp/home.html")
@@ -35,6 +33,7 @@ def loginPage(request):
 
     return render(request, "myapp/login.html", context)
 
+
 # Logout User
 def logoutUser(request):
     logout(request)
@@ -59,9 +58,8 @@ def employeeSignupPage(request):
 
     return render(request, "myapp/employee_signup.html", context)
 
+
 # Employer Signup
-
-
 def employerSignupPage(request):
     msg = None
     if request.method == 'POST':
@@ -79,13 +77,11 @@ def employerSignupPage(request):
 
     return render(request, "myapp/employer_signup.html", context)
 
+
 # Employer home
-
-
 def employerHome(request, pk):
     user = request.user
     courses = Course.objects.filter(instructor=user)
-
     resources = Resource.objects.filter(course__in=courses)
     rooms = Room.objects.filter(course__in=courses)
     announcements = Announcement.objects.filter(course__in=courses)
@@ -98,18 +94,18 @@ def employerHome(request, pk):
     }
     return render(request, "myapp/employer_home.html", context)
 
-
 # Employee home
 def employeeHome(request, pk):
-    employer = request.user.my_employer
+    employee = request.user
+    employer = User.objects.get(username=employee.my_employer)
     courses = Course.objects.filter(instructor__username=employer).distinct()
-    context = {'courses':courses}
-    print(employer)
+    resources = Resource.objects.filter(course__instructor=employer)
+    announcements = Announcement.objects.filter(course__instructor=employer)
+    rooms = Room.objects.filter(course__instructor=employer)
+    context = {'courses':courses, 'resources':resources, 'annoucements':announcements, 'rooms':rooms}
     return render(request, "myapp/employee_home.html", context)
 
 # Course form
-
-
 def createCourse(request, pk):
     form = CourseForm()
     if request.method == 'POST':
@@ -125,52 +121,59 @@ def createCourse(request, pk):
 
     return render(request, "myapp/course_form.html", context)
 
-
+# Create Annoucement    
 def createAnnoucement(request, pk):
-    form = AnnouncementForm()
     if request.method == 'POST':
-        Announcement.objects.create(
-            title=request.POST.get('title'),
-            content=request.POST.get('content'),
-            course=request.POST.get('course')
-        )
-        messages.success(request, 'Announcement created successfully.')
-        return redirect('create-announcement')
+        form = AnnouncementForm(request.POST, user=request.user)
+        if form.is_valid():
+            announcement = form.save(commit=False)
+            announcement.save()
+            messages.success(request, 'Announcement created successfully.')
+            return redirect('create-announcement', pk=request.user)  # Redirect to the announcement list view
+    else:
+        form = AnnouncementForm(user=request.user)
 
     context = {'form': form}
     return render(request, "myapp/announcement_form.html", context)
 
-
+# Create Resource
 def createResource(request, pk):
-    form = ResourceForm()
-
     if request.method == 'POST':
-        Resource.objects.create(
-            file=request.POST.get('file'),
-            course=request.POST.get('course'),
-            youtubeLink=request.POST.get('youtubeLink'),
-            name=request.POST.get('name'),
-            description=request.POST.get('description')
-        )
-        messages.success(request, 'Resources created successfully.')
-        return redirect('create-resource', pk=request.user)
+        form = ResourceForm(request.POST, user=request.user)
+        if form.is_valid():
+            resource = form.save(commit=False)
+            resource.save()
+            messages.success(request, 'Resource created successfully.')
+            return redirect('create-resource', pk=request.user)  # Redirect to the announcement list view
+    else:
+        form = ResourceForm(user=request.user)
 
     context = {'form': form}
     return render(request, "myapp/resource_form.html", context)
 
-
+# Create room
 def createRoom(request, pk):
-    form = RoomForm()
-
     if request.method == 'POST':
-        Room.objects.create(
-            room_host=request.user,
-            room_topic=request.POST.get('room_topic'),
-            course=request.POST.get('course'),
-            description=request.POST.get('description')
-        )
-        messages.success(request, 'Room created successfully.')
-        return redirect('create-room', pk=request.user)
+        form = RoomForm(request.POST, user=request.user)
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.save()
+            messages.success(request, 'Room created successfully.')
+            return redirect('create-room', pk=request.user)  # Redirect to the announcement list view
+    else:
+        form = RoomForm(user=request.user)
 
     context = {'form': form}
     return render(request, "myapp/room_form.html", context)
+
+
+# Course page for employees
+def coursePage(request, pk):
+    # Get course by id and display resources, announcements, rooms based on the course
+    course = Course.objects.get(id=pk)
+    resources = Resource.objects.filter(course=course)
+    announcements = Announcement.objects.filter(course=course)
+    rooms = Room.objects.filter(course=course)
+    context = {'course':course, 'resources':resources, 'annoucements':announcements, 'rooms':rooms}
+
+    return render(request, "myapp/course_page.html", context)
