@@ -28,11 +28,15 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                      <h1>User Registration page</h1>
+                    {% if page == 'update' %}
+                    <h1>Update Registration page</h1>
+                    {% else %}
+                    <h1>User Registration page</h1>
+                    {% endif %}
                 </div>
                   <span class="mb-0 text-muted">
-                {% if msg %}
-                    {{ msg | safe }}
+                {% if page == 'update' %}
+                    Update user
                 {% else %}
                     Login page
                 {% endif %}
@@ -55,6 +59,8 @@
                     <label for="email">Email</label>
                       {{ form.email}}
                   </div>
+                  {% if page == 'update' %}
+                  {% else %}
                   <div class="form-group last mb-4">
                     <label for="password">Password</label>
                       {{ form.password1 }}
@@ -63,14 +69,51 @@
                     <label for="password">confirm Password</label>
                       {{ form.password2 }}
                   </div>
-                  <div>{{form.employer_select.label_tag}} {{form.employer_select}}</div>
+                  {% endif %}
+                  <!-- <div>{{form.employer_select.label_tag}} {{form.employer_select}}</div> -->
                   <div class="">
                     {{ form.is_employee.label_tag }}
-
                     {{ form.is_employee }}
+                  </div>
+                  {% if page == 'update' %}
+                  <div>
+                    <label for="">Employer</label>
+                    <select name="my_employer">
+                      <option value="{{request.user.my_employer}}">{{request.user.my_employer}}</option>
+                      {% for employer in employers %}
+                      <option value="{{employer}}">{{employer}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="">
+                    {{ form.bio.label_tag }}
+                    {{ form.bio }}
+                  </div>
+                  <div class="">
+                    {{ form.avatar.label_tag }}
+                    {{ form.avatar }}
+                  </div>
+                  {% endif %}
+                  <span class="text-error">{{ form.errors }}</span>
+                    
+                  <button type="submit">
+                    {% if page == 'update' %}
+                    Update
+                    {% else %}
+                    Submit
+                    {% endif %}
+                  </button>
+                  <div>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                            {{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
-                    <span class="text-error">{{ form.errors }}</span>
-                  <input type="submit"  value="Register" class="btn btn-pill text-white btn-block btn-primary">
                 </form>
               </div>
             </div>

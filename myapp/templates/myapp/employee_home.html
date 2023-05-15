@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Employee home</h1>
+    <a href="{% url 'update-user' request.user.id %}" >Update User</a>
     <ul>
         {% for course in courses %}
         <li><a href="{% url 'course' course.id %}">{{ course }}</a></li>

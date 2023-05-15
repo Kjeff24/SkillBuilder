@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm, CourseForm, AnnouncementForm, ResourceForm, RoomForm
+from .forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm, CourseForm, AnnouncementForm, ResourceForm, RoomForm, UserForm
 from django.contrib.auth import authenticate, login, logout
 from .models import User, Course, Announcement, Resource, Room
 from django.contrib import messages
@@ -243,6 +243,24 @@ def updateRoom(request, pk):
     
     context = {'form': form, 'page':'update'}
     return render(request, "myapp/room_form.html", context)
+
+# Update user
+def updateUser(request, pk):
+    employers = User.objects.all()
+    user = request.user 
+    form = UserForm(instance=user, user=request.user)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=user, user=request.user)
+        if form.is_valid():
+            form.instance.my_employer = request.POST.get('my_employer')  # Assign the selected value to my_employer
+            form.save()
+            messages.success(request, 'User updated successfully.')
+            return redirect('update-user', pk=user.id)
+
+    context = {'form':form, 'page':'update', 'employers':employers}
+
+    return render(request, "myapp/employee_signup.html", context)
 
 # Delete course
 def deleteCourse(request, pk):

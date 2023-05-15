@@ -109,17 +109,14 @@ class EmployerSignUpForm(UserCreationForm):
                   'password2', 'is_employer')
 
 # Course form
-
-
 class CourseForm(ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
         exclude = ['course_participants', 'instructor']
 
+
 # Resource form
-
-
 class ResourceForm(ModelForm):
     # Shows only courses, created by the employer
     def __init__(self, *args, **kwargs):
@@ -131,9 +128,8 @@ class ResourceForm(ModelForm):
         model = Resource
         fields = ['name', 'course', 'description', 'youtubeLink', 'file']
 
+
 # Annoucement form class AnnouncementForm(forms.ModelForm):
-
-
 class AnnouncementForm(ModelForm):
     # Shows only courses, created by the employer
     def __init__(self, *args, **kwargs):
@@ -157,3 +153,23 @@ class RoomForm(ModelForm):
     class Meta:
         model = Room
         fields = ['room_topic', 'course', 'room_description']
+
+
+class UserForm(ModelForm):
+    
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', 'bio', 'avatar']
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')  # Retrieve the 'user' argument from kwargs
+        super().__init__(*args, **kwargs)
+    
+    # Based on the employer the user select, it it assigned to my_employer field in User model
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.my_employer = self.cleaned_data['my_employer']
+    #     if commit:
+    #         user.save()
+    #     return user
