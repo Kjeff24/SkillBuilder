@@ -8,14 +8,15 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "form-control"
+                "class": "login-input"
             }
         )
     )
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "form-control"
+                "class": "login-input",
+                "id":"passwordField"
             }
         )
     )
@@ -25,33 +26,51 @@ class LoginForm(forms.Form):
 class EmployeeSignUpForm(UserCreationForm):
     # Create a modelchoicefield to display only employers
     employer_select = forms.ModelChoiceField(
-        queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'your-widget-class'}))
+        queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'input-text'}))
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
 
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text"
             }
         )
     )
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text",
+                "id":"passwordField1"
             }
         )
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text",
+                "id":"passwordField2"
             }
         )
     )
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text"
             }
         )
     )
@@ -73,31 +92,49 @@ class EmployeeSignUpForm(UserCreationForm):
 
 # Employer Signup
 class EmployerSignUpForm(UserCreationForm):
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text"
             }
         )
     )
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text",
+                "id":"passwordField1"
             }
         )
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text",
+                "id":"passwordField2"
             }
         )
     )
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={
-                "class": "form-control"
+                "class": "input-text"
             }
         )
     )

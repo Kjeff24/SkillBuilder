@@ -6,8 +6,13 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
-
     return render(request, "myapp/home.html")
+
+def about(request):
+    return render(request, "myapp/about.html")
+
+def contact(request):
+    return render(request, "myapp/contact.html")
 
 
 def loginPage(request):
@@ -46,8 +51,8 @@ def employeeSignupPage(request):
     if request.method == 'POST':
         form = EmployeeSignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            msg = 'User created'
+            form.save()
+            messages.success(request, 'Course created successfully.')
             return redirect('login')
         else:
             msg = 'form is not valid'
@@ -103,6 +108,8 @@ def employeeHome(request, pk):
     announcements = Announcement.objects.filter(course__instructor=employer)
     rooms = Room.objects.filter(course__instructor=employer)
     context = {'courses':courses, 'resources':resources, 'announcements':announcements, 'rooms':rooms}
+
+
     return render(request, "myapp/employee_home.html", context)
 
 # Course form
@@ -170,14 +177,40 @@ def createRoom(request, pk):
 # Course page for employees
 def coursePage(request, pk):
     # Get course by id and display resources, announcements, rooms based on the course
+    employee = request.user
+    employer = User.objects.get(username=employee.my_employer)
+    courses = Course.objects.filter(instructor__username=employer).distinct()
     course = Course.objects.get(id=pk)
     resources = Resource.objects.filter(course=course)
     announcements = Announcement.objects.filter(course=course)
-    print(announcements)
     rooms = Room.objects.filter(course=course)
-    context = {'course':course, 'resources':resources, 'announcements':announcements, 'rooms':rooms}
+    context = {'course':course, 'resources':resources, 'announcements':announcements, 'rooms':rooms, 'courses':courses}
 
     return render(request, "myapp/course_page.html", context)
+
+# resource page
+def resourcePage(request, pk):
+    employee = request.user
+    employer = User.objects.get(username=employee.my_employer)
+    courses = Course.objects.filter(instructor__username=employer).distinct()
+     # Retrieve the course based on the provided pk
+    course = Course.objects.get(id=pk)
+
+    # Retrieve the resources associated with the course
+    resources = Resource.objects.filter(course=course)
+
+    # Pass the course and resources to the template
+    context = {
+        'course': course,
+        'resources': resources,
+        'courses': courses
+    }
+
+    print(resources)
+
+    return render(request, "myapp/resource_page.html", context)
+
+
 
 
 # Update courses created by employer

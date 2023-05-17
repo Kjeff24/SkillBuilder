@@ -1,80 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
-    <!-- Style -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <title>Multiple user login</title>
-  </head>
-  <body>
-  <div class="content">
-    <div class="container">
-      <div class="row justify-content-center">
-        <!-- <div class="col-md-6 order-md-2">
-          <img src="images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
-        </div> -->
-        <div class="col-md-6 contents">
-          <div class="row justify-content-center">
-            <div class="col-md-12">
-              <div class="form-block">
-                  <div class="mb-4">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login Page</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="login-row">
+                <div class="login-splash">
+                    <div class="back-button">
+                        <img
+                            src="{% static 'assets/loginback.svg' %}"
+                            alt="Back"
+                            class="back-button"
+                        />
+                    </div>
+                    <div class="">
+                        <img
+                            src="{% static 'assets/loginbg.jpg' %}"
+                            alt="splash"
+                            class="login-bg-img"
+                        />
+                    </div>
                 </div>
-
-              <span class="mb-0 text-muted">
-                {% if msg %}
-                    {{ msg | safe }}
-                {% else %}
-                    Login page
-                {% endif %}
-              </span>
-                <form  method="post">
-                    {% csrf_token %}
-                  <div class="form-group first">
-                    <label for="username">Username</label>
-                      {{ form.username }}
-                  </div>
-                  <div class="form-group last mb-4">
-                    <label for="username">Password</label>
-                    {{ form.password }}
-                  </div>
-
-                  <div class="d-flex mb-5 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                      <input type="checkbox" checked="checked"/>
-                      <div class="control__indicator"></div>
-                    </label>
-                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
-                  </div>
-
-                  <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary">
-                </form>
-              </div>
+                <div class="login-form-container">
+                    <form method="POST" class="form">
+                        {% csrf_token %}
+                        <div class="login-form-title">
+                            <div class="login-back-button">
+                                <img
+                                    src="{% static 'assets/back.svg' %}"
+                                    alt="Back"
+                                    class="back-button"
+                                />
+                            </div>
+                            <p class="signup-text">
+                                {% if msg %} {{ msg | safe }} {% else %} LOGIN TO YOUR ACCOUNT{% endif %}
+                            </p>
+                            <p style="text-align: center">
+                                <span>Don't have an account?</span>
+                                <span class="signup-link"
+                                    ><a
+                                        href="http://"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        >Signup</a
+                                    ></span
+                                >
+                            </p>
+                        </div>
+                        <div class="login-form">
+                            <div class="login-input-field">
+                                <div class="input-field">
+                                    <label for="username" class="input-label"
+                                        >Username:</label
+                                    >
+                                    <!-- <input
+                                            type="text"
+                                            name="username"
+                                            class="login-input"
+                                        /> -->
+                                    {{ form.username }}
+                                </div>
+                                <div class="input-field">
+                                    <label for="password" class="input-label"
+                                        >Password:</label
+                                    >
+                                    <!-- <input
+                                            type="password"
+                                            name="Password"
+                                            class="login-input"
+                                        /> -->
+                                    <div
+                                        style="
+                                            display: flex;
+                                            flex-direction: column;
+                                        "
+                                    >
+                                        {{ form.password }}
+                                        <div style="margin-left: auto">
+                                            Show Password
+                                            <input
+                                                type="checkbox"
+                                                id="showPasswordToggle"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="login-btn">
+                                <button
+                                    type="submit"
+                                    class="login-account"
+                                >
+                                    Login
+                                </button>
+                                <div>
+                                    <p class="text-end">
+                                        <a href="" 
+                                            >Forgot your Password?</a
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-
         </div>
+        <script>
+            const passwordField = document.getElementById("passwordField");
+            const showPasswordToggle =
+                document.getElementById("showPasswordToggle");
 
-      </div>
-    </div>
-  </div>
-
-
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-  </body>
+            showPasswordToggle.addEventListener("change", function () {
+                if (showPasswordToggle.checked) {
+                    passwordField.type = "text";
+                } else {
+                    passwordField.type = "password";
+                }
+            });
+        </script>
+    </body>
 </html>

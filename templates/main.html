@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="{% static 'css/main.css' %}"
+        />
+    </head>
+    <body>
+        <div class="overview-container">
+            <!-- header container -->
+            {% include 'main_navbar.html' %}
+            <div class="main-content-container">
+                <!-- Side bar -->
+
+                <div class="side-bar">{% include 'main_side_bar.html' %}</div>
+                <!-- overview -->
+                <div class="content-page">
+                    <div class="content-page-row">
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            {% include 'main_footer.html' %}
+        </div>
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>

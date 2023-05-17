@@ -1,133 +1,276 @@
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
-    <!-- Style -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <title>Multiple user login</title>
-  </head>
-  <body>
-  <div class="content">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 contents">
-          <div class="row justify-content-center">
-            <div class="col-md-12">
-              <div class="form-block">
-                  <div class="mb-4">
-                    {% if page == 'update' %}
-                    <h1>Update Registration page</h1>
-                    {% else %}
-                    <h1>User Registration page</h1>
-                    {% endif %}
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <title>Signup</title>
+    </head>
+    <body>
+        <div class="signup-container">
+            <div class="signup-row">
+                <div class="splash-screen">
+                    <img
+                        src="{% static 'assets/back.svg' %}"
+                        alt="Back"
+                        class="back-button"
+                    />
+                    <p class="splash-heading">
+                        <!-- Welcome to our employee training program! -->
+                    </p>
+                    <div class="">
+                        <p class="splash-body"></p>
+                        <div class="imageContainer">
+                            <img src="" alt="splash" class="splash-img" />
+                        </div>
+                    </div>
                 </div>
-                  <span class="mb-0 text-muted">
-                {% if page == 'update' %}
-                    Update user
-                {% else %}
-                    Login page
-                {% endif %}
-              </span>
-                <form  method="post">
-                    {% csrf_token %}
-                  <div class="form-group first">
-                    <label for="username">First Name</label>
-                      {{ form.first_name }}
-                  </div>
-                  <div class="form-group first">
-                    <label for="username">Last Name</label>
-                      {{ form.last_name }}
-                  </div>
-                  <div class="form-group first">
-                    <label for="username">Username</label>
-                      {{ form.username }}
-                  </div>
-                  <div class="form-group first">
-                    <label for="email">Email</label>
-                      {{ form.email}}
-                  </div>
-                  {% if page == 'update' %}
-                  {% else %}
-                  <div class="form-group last mb-4">
-                    <label for="password">Password</label>
-                      {{ form.password1 }}
-                  </div>
-                  <div class="form-group last mb-4">
-                    <label for="password">confirm Password</label>
-                      {{ form.password2 }}
-                  </div>
-                  {% endif %}
-                  <!-- <div>{{form.employer_select.label_tag}} {{form.employer_select}}</div> -->
-                  <div class="">
-                    {{ form.is_employee.label_tag }}
-                    {{ form.is_employee }}
-                  </div>
-                  {% if page == 'update' %}
-                  <div>
-                    <label for="">Employer</label>
-                    <select name="my_employer">
-                      <option value="{{request.user.my_employer}}">{{request.user.my_employer}}</option>
-                      {% for employer in employers %}
-                      <option value="{{employer}}">{{employer}}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                  <div class="">
-                    {{ form.bio.label_tag }}
-                    {{ form.bio }}
-                  </div>
-                  <div class="">
-                    {{ form.avatar.label_tag }}
-                    {{ form.avatar }}
-                  </div>
-                  {% endif %}
-                  <span class="text-error">{{ form.errors }}</span>
-                    
-                  <button type="submit">
-                    {% if page == 'update' %}
-                    Update
-                    {% else %}
-                    Submit
-                    {% endif %}
-                  </button>
-                  <div>
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-                            {{ message }}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
+                <div class="form-container">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-container-mini">
+                            <div class="form-title">
+                                {% if page == 'update' %}
+                                <p
+                                    class=""
+                                    style="font-size: 20px; font-weight: 700"
+                                >
+                                    Update User Registration 
+                                </p>
+                                {% else %}
+                                <p
+                                    class=""
+                                    style="font-size: 20px; font-weight: 700"
+                                >
+                                    Sign Up As Employee
+                                </p>
+                                <p class="">
+                                    <span>Already have an account?</span>
+                                    <span class="login-text"
+                                        ><a
+                                            href="{% url 'login' %}"
+                                            >Login</a
+                                        ></span
+                                    >
+                                </p>
+                                {% endif %}
+                            </div>
+                            <div class="form-input-row">
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >First Name</label
+                                    >
+                                    <!-- <input
+                                        type="text"
+                                        name="first name"
+                                        class="input-text"
+                                    /> -->
+                                    {{ form.first_name}}
+                                </div>
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Last Name</label
+                                    >
+                                    {{ form.last_name}}
+                                </div>
+                            </div>
+                            <div class="form-input-row">
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Username</label
+                                    >
+                                    {{ form.username }}
+                                </div>
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Email</label
+                                    >
+                                    {{ form.email}}
+                                </div>
+                            </div>
+                            <div class="form-input-row">
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Employer</label
+                                    >
+                                    {% if page == 'update' %}
+                                    <select name="my_employer">
+                                        <option
+                                            value="{{request.user.my_employer}}"
+                                        >
+                                            {{request.user.my_employer}}
+                                        </option>
+                                        {% for employer in employers %}
+                                        <option value="{{employer}}">
+                                            {{employer}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    {% else %} {{form.employer_select}} 
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-input-row">
+                                {% if page == 'update' %}
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Bio</label
+                                    >
+                                    {{ form.bio }}
+                                </div>
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Avatar</label
+                                    >
+                                    {{ form.avatar }}
+                                </div>
+                                {% else %}
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Is Employee {{ form.is_employee }}
+                                    </label>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if page != 'update' %}
+                            <div class="form-input-row">
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Password</label
+                                    >
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="input-field">
+                                    <label for="input" class="input-label"
+                                        >Confirm Password</label
+                                    >
+                                    {{ form.password2 }}
+                                </div>
+                            </div>
+                            <div style="margin-right: auto">
+                                Show Password
+                                <input
+                                    type="checkbox"
+                                    id="showPasswordToggle"
+                                />
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                    {{ message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <div class="button-submit">
+                            <button type="submit" class="create-account">
+                                {% if page == 'update' %} Update {% else %}
+                                Create Account {% endif %}
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
+        <script>
+            const passwordField1 = document.getElementById("passwordField1");
+            const passwordField2 = document.getElementById("passwordField2");
+            const showPasswordToggle =
+                document.getElementById("showPasswordToggle");
 
-      </div>
-    </div>
-  </div>
+            showPasswordToggle.addEventListener("change", function () {
+                if (showPasswordToggle.checked) {
+                    passwordField2.type = "text";
+                    passwordField1.type = "text";
+                } else {
+                    passwordField1.type = "password";
+                    passwordField2.type = "password";
+                }
+            });
 
+            // Splash Screen slid show starts here
+            const messages = [
+                {
+                    title: "Welcome to our employee training program!",
+                    message:
+                        "Get ready to dive into a world of knowledge and growth as we help you level up your skills and prepare you for success.",
+                    image: "{% static 'assets/splash1.jpg' %}",
+                },
+                {
+                    title: "Stay up-to-date",
+                    message:
+                        "Our training program is tailored to meet the needs of employees at all levels of the organization, from entry-level to senior management.",
+                    image: "{% static 'assets/splash2.jpg' %}",
+                },
+                {
+                    title: "Learn something new",
+                    message:
+                        "Our interactive training modules are designed to be engaging and practical, allowing you to apply your learning in real-world situations.",
+                    image: "{% static 'assets/splash3.jpg' %}",
+                },
+                {
+                    title: "The perfect Employee",
+                    message:
+                        "We're committed to your success and believe that investing in employee training is critical to the growth and success of our organization.",
+                    image: "{% static 'assets/splash4.jpg' %}",
+                },
+            ];
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-  </body>
+            const titleElement = document.querySelector(".splash-heading");
+            const messageElement = document.querySelector(".splash-body");
+            const imageElement = document.querySelector(".splash-img");
+
+            let currentMessageIndex = 0;
+
+            window.addEventListener("DOMContentLoaded", function () {
+                showSplash(currentMessageIndex);
+            });
+
+            function showSplash(messageIndex) {
+                // update the message
+                titleElement.textContent = messages[messageIndex].title;
+                messageElement.textContent = messages[messageIndex].message;
+                imageElement.src = messages[messageIndex].image;
+            }
+
+            function addClassAnimate() {
+                titleElement.classList.add("show");
+                messageElement.classList.add("show");
+                imageElement.classList.add("show");
+            }
+
+            function removeClassAnimate() {
+                titleElement.classList.remove("show");
+                messageElement.classList.remove("show");
+                imageElement.classList.remove("show");
+            }
+
+            function animateDiv() {
+                addClassAnimate();
+                showSplash(currentMessageIndex);
+                currentMessageIndex =
+                    (currentMessageIndex + 1) % messages.length;
+                setTimeout(function () {
+                    removeClassAnimate();
+                }, 1000);
+            }
+
+            setInterval(animateDiv, 8000);
+
+            // Splash screen slideshow ends here
+        </script>
+    </body>
 </html>

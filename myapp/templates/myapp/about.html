@@ -1,0 +1,130 @@
+{% extends 'front_page.html' %} {% load static %} {% block content %}
+<div class="home-content">
+    <div class="content-heading">
+        <h1 class="content-title">
+            SkillBuilder is one of the world&#39;s largest employee training
+            platform
+        </h1>
+        <p class="content-paragraph">
+            We leverage open-source software to deliver a highly effective,
+            customized, and engaging learning experience.
+        </p>
+    </div>
+    <div class="content-1 about-content-1">
+        <p></p>
+        <div class="content-col-5">
+            <h1 class="title-heading">
+                With our extensive experience, we are confident that we can be
+                your ideal eLearning partner.
+            </h1>
+            <p class="title-info-1">
+                At Skillbuilder, we are on a mission to empower employers to
+                improve our world with open source employee training software.
+                With hundreds of millions of users around the globe and
+                translated into over 5 languages, SkillBuilder gives you the
+                freedom to create online teaching and training solutions that
+                best meet your learners&#39; needs.
+            </p>
+        </div>
+        <div class="content-col-7">
+            <div>
+                <img
+                    src="{% static 'assets/about-bg-1.jpg' %}"
+                    alt="splash"
+                    class="home-bg-1"
+                />
+            </div>
+        </div>
+    </div>
+    <div class="content-3">
+        <h1 class="title-3">About Us</h1>
+        <div class="about-card-container">
+            <div class="about-card">
+                <h3 class="about-title">Our History</h3>
+                <p class="about-info">
+                    SkillBuilder was born from a desire to give educators a way
+                    to create quality education experiences over the internet.
+                    From its humble beginnings in 2023, SkillBuilder has
+                    constantly evolved through our commitment to pedagogy, open
+                    source philosophy, and a collaborative global community of
+                    like-minded educators and technologists.
+                </p>
+            </div>
+            <div class="about-card">
+                <h3 class="about-title">Our Values</h3>
+                <p class="about-info">
+                    From sharing educational resources and debating new ideas to
+                    fixing bugs and updating documentation, our community is
+                    here to support you throughout your online learning
+                    journey.From sharing educational resources and debating new
+                    ideas to fixing bugs and updating documentation, our
+                    community is here to support you throughout your online
+                    learning journey.
+                </p>
+            </div>
+            <div class="about-card">
+                <h3 class="about-title">Our Awards</h3>
+                <p class="about-info">
+                    Our awards recognise the hard work and dedication of our
+                    team and the Moodle community in continually evolving and
+                    improving Moodle.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="content-2">
+        <div class="content-2-title">
+            <h1 class="size-5 title-2">
+                Building better learning experiences with SkillBuilder
+            </h1>
+            <p class="title-info-2">
+                Read inspiring stories from around the world on how SkillBuilder
+                is being used to manage online learning and improve learner
+                outcomes.
+            </p>
+            <div class="card-container">
+                <div class="card-img">
+                    <img
+                        src="{% static 'assets/card-img-1.jpg' %}"
+                        alt="splash"
+                        class="card-img"
+                    />
+                </div>
+                <div class="card-img">
+                    <img
+                        src="{% static 'assets/card-img-2.jpg' %}"
+                        alt="splash"
+                        class="card-img"
+                    />
+                </div>
+                <div class="card-img">
+                    <img
+                        src="{% static 'assets/card-img-3.jpg' %}"
+                        alt="splash"
+                        class="card-img"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-4">
+        <div class="contact-bg">
+            <div class="contact-info">
+                <div>
+                    <h1 class="contact-info-heading">
+                        Open LMS provides world-class LMS solutions that empower
+                        organizations to meet education and workplace learning
+                        needs. Get in touch to find out more.
+                    </h1>
+                </div>
+                <div class="get-in-touch">
+                    <a class="" href="{% url 'contact' %}">
+                        Get In Touch With Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'front_page_footer.html' %}
+</div>
+{% endblock %}

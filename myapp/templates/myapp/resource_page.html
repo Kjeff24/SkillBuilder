@@ -1,0 +1,9 @@
+{% extends 'main.html' %} {% load static %} | {% block content %}
+<h1>Course Page -- {{course}}</h1>
+<div>
+    <h1>Resources</h1>
+    {% for resource in resources %}
+    <p>{{resource.course}}--{{resource}}</p>
+    {% endfor %}
+</div>
+{% endblock %}

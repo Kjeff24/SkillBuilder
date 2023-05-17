@@ -1,0 +1,62 @@
+{% load static %}
+<div class="header-container">
+    <header class="header">
+        <div class="logo">SkillBuilder</div>
+        <div class="icon-btn">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-links-all">
+            {% with request.resolver_match.url_name as url_name %}
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}" class="{% if url_name == 'home' %} active {% endif %}">Home</a>
+                </li>
+                <li>     
+                    <a href="{% url 'about' %}" class="{% if url_name == 'about' %} active {% endif %}">
+                        About Us
+                     </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}" class="{% if url_name == 'contact' %} active {% endif %}">
+                        Contact Us
+                     </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer-signup' %}" class="{% if url_name == 'employer-signup' %} active {% endif %}" >
+                        Signup as Employer
+                     </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee-signup' %}" class="{% if url_name == 'employee-signup' %} active {% endif %}" >
+                        Signup as Employee
+                     </a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}" class="{% if url_name == 'login' %} active {% endif %}">
+                        login
+                     </a>
+                </li>
+                <li>
+                    <div class="user-ico-li">
+                        <img
+                            src="{{request.user.avatar.url}}"
+                            alt="Back"
+                            
+                        />
+                    </div>
+                </li>
+            </ul>
+            {% endwith %}
+        </nav>
+        <div class="user-ico">
+            <img
+                src="{% static 'assets/user-icon.svg' %}"
+                alt="Back"
+            />
+        </div>
+    </header>
+    
+
+</div>

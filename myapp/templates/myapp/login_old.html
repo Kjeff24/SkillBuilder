@@ -23,14 +23,17 @@
   <div class="content">
     <div class="container">
       <div class="row justify-content-center">
+        <!-- <div class="col-md-6 order-md-2">
+          <img src="images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
+        </div> -->
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                      <h1>User Registration page</h1>
                 </div>
-                  <span class="mb-0 text-muted">
+
+              <span class="mb-0 text-muted">
                 {% if msg %}
                     {{ msg | safe }}
                 {% else %}
@@ -43,41 +46,25 @@
                     <label for="username">Username</label>
                       {{ form.username }}
                   </div>
-                  <div class="form-group first">
-                    <label for="email">Email</label>
-                      {{ form.email}}
-                  </div>
                   <div class="form-group last mb-4">
-                    <label for="password">Password</label>
-                      {{ form.password1 }}
+                    <label for="username">Password</label>
+                    {{ form.password }}
                   </div>
-                  <div class="form-group last mb-4">
-                    <label for="password">confirm Password</label>
-                      {{ form.password2 }}
-                  </div>
+
                   <div class="d-flex mb-5 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Admin</span>
-                        {{ form.is_employer }}
+                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                      <input type="checkbox" checked="checked"/>
                       <div class="control__indicator"></div>
                     </label>
+                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                   </div>
-                  <div class="d-flex mb-5 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">customer</span>
-                        {{ form.is_employee }}
-                      <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                  {% for employer in employers  %}
-                    <p>
-                      {{employer}}
-                    </p>
-                  {% endfor %}
-                    <span class="text-error">{{ form.errors }}</span>
-                  <input type="submit"  value="Register" class="btn btn-pill text-white btn-block btn-primary">
+
+                  <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary">
                 </form>
               </div>
             </div>
           </div>
+
         </div>
 
       </div>
