@@ -327,7 +327,7 @@ body {
     }
 
 /* Styling the avatar  */
-received-chats-img {
+.received-chats-img {
     /* display: inline-block; */
     width: 50px;
     float: left;
@@ -393,6 +393,97 @@ received-chats-img {
     float: right;
     margin-right: 1rem;
 }
+
+
+/* Resource page starts */
+.resource-header{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.underline{
+    width: 100%;
+    height: 2px;
+    background-color: #000000;
+    margin-bottom: 10px;
+}
+
+.d-resources{
+    display: flex;
+    justify-content: space-between;
+    background-color: #72131e;
+    color: white;
+    padding: 10px;
+}
+
+.d-resources a{
+    color: white;
+}
+
+.d-resources a:hover{
+    color: #72131e;
+    background-color: white;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 5px;
+}
+
+.view{
+    cursor: pointer;
+}
+
+.view-details{
+    display: none;
+}
+
+.view-details.active{
+    display: block;
+}
+
+.view-details-header h4{
+    margin-top: 10px;
+}
+
+
+th{
+    text-align: left;
+}
+
+th,
+td {
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+
+.video-embed{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  
+/* Resource page ends */
+
+
+/* Announcement page starts here */
+.announcement-table{
+    border-collapse: collapse;
+    border: none;
+}
+
+.announcement-header:first-child{
+    background: #72131e;
+    color: white;
+}
+
+.announcement-view:hover{
+    color: #72131e;
+}
+
+/* Announcement page end here */
+
 @media only screen and (max-device-width: 850px) {
     *,
     .time {

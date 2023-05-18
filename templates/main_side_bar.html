@@ -19,7 +19,7 @@
         </div>
         <div class="side-bar-title">Progress</div>
     </a>
-    <a href="#" class="side-bar-content-row">
+    <a href="{% url 'announcement' course.id %}" class="side-bar-content-row">
         <div class="link-icon">
             <img
                 src="{% static 'assets/bell.svg' %}"
@@ -49,7 +49,7 @@
         </div>
         <div class="side-bar-title">Quiz</div>
     </a>
-    <a href="#" class="side-bar-content-row">
+    <a href="{% url 'chat-room' course.id %}" class="side-bar-content-row">
         <div class="link-icon">
             <img
                 src="{% static 'assets/message.svg' %}"

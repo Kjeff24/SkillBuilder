@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 # Create your models here.
 
@@ -28,11 +29,13 @@ class Course(models.Model):
     
 # Resources model allows employers to add resources based on course
 class Resource(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=30)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    description = models.TextField(blank=True)
+    description = models.TextField(max_length=50, blank=True)
     youtubeLink = models.TextField(blank=True)
     file = models.FileField(upload_to='resources/', blank=True)
+    created  = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -43,6 +46,8 @@ class Announcement(models.Model):
     content = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
+    created  = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -53,6 +58,7 @@ class Room(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     room_description = models.TextField(null=True, blank=True)
     created  = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.room_topic

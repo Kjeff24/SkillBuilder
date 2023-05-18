@@ -1,9 +1,79 @@
 {% extends 'main.html' %} {% load static %} | {% block content %}
-<h1>Course Page -- {{course}}</h1>
 <div>
     <h1>Resources</h1>
+    <div class="resource-header">
+        <p>Name</p>
+        <p>Details</p>
+    </div>
+    <div class="underline"></div>
     {% for resource in resources %}
-    <p>{{resource.course}}--{{resource}}</p>
+    <div>
+        <div class="d-resources">
+            <p>
+                {{resource.name}}
+                <a href="{{resource.file.url}}"
+                    ><img
+                        src="{% static 'assets/download.svg' %}"
+                        alt="download"
+                /></a>
+            </p>
+
+            <a class="view">View</a>
+        </div>
+        <div class="view-details">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Created By</th>
+                    <th>Creation Time</th>
+                    <th>Last Modified Time</th>
+                </tr>
+                <tr>
+                    <td>
+                        {% if resource.name %}
+                        {{resource.name}}
+                        {% else %}
+                        N/A
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if resource.description %}
+                        <p>{{resource.description}}</p>
+                        {% else %}
+                        <p>N/A</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if course.instructor %}
+                        <p>{{course.instructor}}</p>
+                        {% else %}
+                        <p>N/A</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if resource.created|timesince %}
+                        <p>{{resource.created|timesince}}</p>
+                        {% else %}
+                        <p>N/A</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if resource.updated|timesince %}
+                        <p>{{resource.updated|timesince}}</p>
+                        {% else %}
+                        <p>N/A</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {% if resource.youtubeLink %}
+        <div class="video-embed">{{resource.youtubeLink|safe}}</div>
+        {% endif %}
+    </div>
+
+    <hr />
     {% endfor %}
 </div>
 {% endblock %}

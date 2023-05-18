@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Page Title</title>
+        <title>Employee Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,14 +29,25 @@
                 <div class="side-bar">{% include 'main_side_bar.html' %}</div>
                 <!-- overview -->
                 <div class="content-page">
-                    <div class="content-page-row">
-                        {% block content %} {% endblock %}
-                    </div>
+                    {% block content %} {% endblock %}
                 </div>
             </div>
             <!-- footer -->
             {% include 'main_footer.html' %}
         </div>
         <script src="{% static 'js/main.js' %}"></script>
+        <script>
+            
+            // Display detailes in view
+
+            const view = document.querySelectorAll(".view");
+            const viewDetails = document.querySelectorAll(".view-details");
+
+            view.forEach((link, index) => {
+                link.addEventListener("click", function () {
+                    viewDetails[index].classList.toggle("active");
+                });
+            });
+        </script>
     </body>
 </html>

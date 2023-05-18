@@ -146,7 +146,7 @@ def createAnnoucement(request, pk):
 # Create Resource
 def createResource(request, pk):
     if request.method == 'POST':
-        form = ResourceForm(request.POST, user=request.user)
+        form = ResourceForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             resource = form.save(commit=False)
             resource.save()
@@ -193,11 +193,12 @@ def resourcePage(request, pk):
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)
     courses = Course.objects.filter(instructor__username=employer).distinct()
+
      # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk)
 
     # Retrieve the resources associated with the course
-    resources = Resource.objects.filter(course=course)
+    resources = Resource.objects.filter(course=course).order_by('-updated')
 
     # Pass the course and resources to the template
     context = {
@@ -206,10 +207,48 @@ def resourcePage(request, pk):
         'courses': courses
     }
 
-    print(resources)
-
     return render(request, "myapp/resource_page.html", context)
 
+# announcement page
+def announcementPage(request, pk):
+    employee = request.user
+    employer = User.objects.get(username=employee.my_employer)
+    courses = Course.objects.filter(instructor__username=employer).distinct()
+
+    # Retrieve the course based on the provided pk
+    course = Course.objects.get(id=pk)
+
+    # Retrieve the announcements associated with the course
+    announcements = Announcement.objects.filter(course=course).order_by('-updated')
+
+    context = {
+        'course': course,
+        'announcements': announcements,
+        'courses': courses
+    }
+
+    return render(request, "myapp/announcement_page.html", context)
+
+
+# room page
+def chatRoomPage(request, pk):
+    employee = request.user
+    employer = User.objects.get(username=employee.my_employer)
+    courses = Course.objects.filter(instructor__username=employer).distinct()
+
+    # Retrieve the course based on the provided pk
+    course = Course.objects.get(id=pk)
+
+    # Retrieve the announcements associated with the course
+    rooms = Room.objects.filter(course=course)
+
+    context = {
+        'course': course,
+        'rooms': rooms,
+        'courses': courses
+    }
+
+    return render(request, "myapp/chat_room_page.html", context)
 
 
 
@@ -235,7 +274,7 @@ def updateResource(request, pk):
     form = ResourceForm(instance=resource, user=request.user)
 
     if request.method == 'POST':
-        form = ResourceForm(request.POST, instance=resource, user=request.user)
+        form = ResourceForm(request.POST, request.FILES, instance=resource, user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Resources updated successfully.')
