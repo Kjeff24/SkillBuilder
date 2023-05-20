@@ -1,0 +1,10 @@
+{% extends 'main.html' %} {% load static %} | {% block content %}
+<div>
+    <h1>Rooms</h1>
+    {% for room in rooms %}
+    <p> <a href="{% url 'chat-room' pk2=course.id pk=room.id %}">Room{{room.id}}</a></p>
+    <p>{{room.room_description}}</p>
+    <hr />
+    {% endfor %}
+</div>
+{% endblock %}

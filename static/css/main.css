@@ -36,7 +36,6 @@ body {
     user-select: none;
 }
 
-
 .nav-links-all ul {
     display: flex;
     user-select: none;
@@ -75,7 +74,6 @@ body {
     display: flex;
     user-select: none;
 }
-
 
 .main-content {
     user-select: none;
@@ -188,7 +186,7 @@ body {
     height: 80%;
 }
 
-.msgimg{
+.msgimg {
     width: 50px;
     border-style: none;
     border-radius: 100%;
@@ -212,25 +210,23 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: white;
- 
 }
 /* Styling the inbox */
 .chat-page {
-    background-image: url("../assets/about-bg-2.jpg");
-    
-    background-size: cover;
-    background-position: center;
     min-height: 100vh;
     padding: 0 0 50px 0;
 }
 
 .msg-inbox {
+    background-image: url("../assets/bg-chat.png");
+    background-position: center;
+    background-color: #72131e;
     border: 1px solid #72131e;
     overflow: hidden;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); */
 }
-
 
 .chats {
     padding: 30px 15px 0 25px;
@@ -247,84 +243,106 @@ body {
 }
 
 .msg-page::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #72131e 0%, #4d0d0d 100%);
+    background-color:rgb(58, 14, 14);
     border-radius: 6px;
 }
 
 /* Styling the msg-bottom container */
- .msg-bottom {
-        border-top: 1px solid #ccc;
-        position: relative;
-        height: 11%;
-        background-color: #72131e;
-    }
+.msg-bottom {
+    border-top: 1px solid #ffffff;
+    position: relative;
+    height: 11%;
+    background-color: #72131e;
+}
+
+.image-button {
+    width: 20px;
+}
 /* Styling the input field */
-    .input-group {
-        /* float: right; */
-        /* margin-top: 13px;
+.input-group {
+    /* float: right; */
+    /* margin-top: 13px;
         margin-right: 20px; */
-        padding: 10px;
-        margin: 10px auto 10px auto;
-        outline: none !important;
-        border-radius: 20px;
-        width: 61% !important;
-        /* background-color: #fff; */
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-    }
-    
-    .input-group>.form-control {
-        position: relative;
-        flex: 1 1 auto;
-        width: 1%;
-        margin-bottom: 0;
-    }
-    
-    .form-control {
-        border: none !important;
-        border-radius: 20px !important;
-        display: block;
-        height: calc(2.25rem + 2px);
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
-    
-    .input-group-text {
-        background: transparent !important;
-        border: none !important;
-        display: flex;
-        align-items: center;
-        padding: 0.375rem 0.75rem;
-        margin-bottom: 0;
-        font-size: 1.5rem;
-        font-weight: b;
-        line-height: 1.5;
-        color: #495057;
-        text-align: center;
-        white-space: nowrap;
-        background-color: #e9ecef;
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-        font-weight: bold !important;
-        cursor: pointer;
-    }
-    
-    input:focus {
-        outline: none;
-        border: none !important;
-        box-shadow: none !important;
-    }
-    
-    .send-icon {
-        font-weight: bold !important;
-    }
+    padding: 10px;
+    margin: 10px auto 10px auto;
+    outline: none !important;
+    border-radius: 20px;
+    width: 61% !important;
+    /* background-color: #fff; */
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.input-group > .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+
+.form-control {
+    border-radius: 20px !important;
+    display: block;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.type-message {
+    border: none !important;
+}
+
+.input-text-icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+textarea{
+    border: none;
+    resize: none;
+}
+
+textarea:focus{
+    outline: none;
+    border: none;
+}
+/* .input-group-text {
+    background: transparent !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    font-weight: b;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-weight: bold !important;
+    cursor: pointer;
+} */
+
+input:focus {
+    outline: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.send-icon {
+    font-weight: bold !important;
+}
 
 /* Styling the avatar  */
 .received-chats-img {
@@ -335,12 +353,12 @@ body {
 
 .received-msg {
     display: inline-block;
-    padding: 0 0 0 10px;
+    /* padding: 0 0 0 5px; */
     vertical-align: top;
-    width: 92%;
+    width: 70%;
 }
 .received-msg-inbox {
-    width: 57%;
+    max-width: 46%;
 }
 
 .received-msg-inbox p {
@@ -350,16 +368,16 @@ body {
     font-size: 14px;
     margin-left: 1rem;
     padding: 1rem;
-    width: 100%;
+    /* width: 100%; */
     box-shadow: rgb(0 0 0 / 25%) 0px 5px 5px 2px;
 }
-    p {
+p {
     overflow-wrap: break-word;
 }
 
 /* Styling the msg-sent time  */
 .time {
-    color: #777;
+    color: #919090;
     display: block;
     font-size: 12px;
     margin: 8px 0 0;
@@ -375,16 +393,15 @@ body {
     color: #fff;
     border-radius: 10px;
     font-size: 14px;
-    color: #fff;
     padding: 5px 10px 5px 12px;
-    width: 100%;
+    /* width: 100%; */
     padding: 1rem;
     box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
 }
 .outgoing-chats-msg {
-        float: right;
-        width: 46%;
-    }
+    float: right;
+    max-width: 46%;
+}
 
 /* Styling the avatar */
 .outgoing-chats-img {
@@ -394,23 +411,22 @@ body {
     margin-right: 1rem;
 }
 
-
 /* Resource page starts */
-.resource-header{
+.resource-header {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
     font-weight: bold;
 }
 
-.underline{
+.underline {
     width: 100%;
     height: 2px;
     background-color: #000000;
     margin-bottom: 10px;
 }
 
-.d-resources{
+.d-resources {
     display: flex;
     justify-content: space-between;
     background-color: #72131e;
@@ -418,11 +434,11 @@ body {
     padding: 10px;
 }
 
-.d-resources a{
+.d-resources a {
     color: white;
 }
 
-.d-resources a:hover{
+.d-resources a:hover {
     color: #72131e;
     background-color: white;
     padding-left: 2px;
@@ -430,24 +446,23 @@ body {
     border-radius: 5px;
 }
 
-.view{
+.view {
     cursor: pointer;
 }
 
-.view-details{
+.view-details {
     display: none;
 }
 
-.view-details.active{
+.view-details.active {
     display: block;
 }
 
-.view-details-header h4{
+.view-details-header h4 {
     margin-top: 10px;
 }
 
-
-th{
+th {
     text-align: left;
 }
 
@@ -457,28 +472,27 @@ td {
     padding-right: 20px;
 }
 
-.video-embed{
+.video-embed {
     display: flex;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-  
+
 /* Resource page ends */
 
-
 /* Announcement page starts here */
-.announcement-table{
+.announcement-table {
     border-collapse: collapse;
     border: none;
 }
 
-.announcement-header:first-child{
+.announcement-header:first-child {
     background: #72131e;
     color: white;
 }
 
-.announcement-view:hover{
+.announcement-view:hover {
     color: #72131e;
 }
 
@@ -527,7 +541,6 @@ td {
         font-size: 28px;
     }
 }
-
 
 /* chat content page ends here  */
 
@@ -609,14 +622,14 @@ td {
     }
 
     .nav-links-all.active {
-    overflow-y: auto;
+        overflow-y: auto;
         min-height: 250px;
     }
     .nav-links-all.active::-webkit-scrollbar {
         background-color: rgb(255, 255, 255, 0);
         width: 10px;
     }
-    
+
     .nav-links-all.active::-webkit-scrollbar-thumb {
         background: #fff;
         border-radius: 6px;

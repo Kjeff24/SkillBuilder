@@ -1,14 +1,17 @@
 {% extends 'main.html' %} {% load static %} | {% block content %}
 <div>
     <h1>Announcements</h1>
-    {% for announcement in announcements %}
+    {% if announcements %}
+    
     <table class="announcement-table">
         <tr class="announcement-header">
             <th>Subject</th>
             <th>Saved By</th>
             <th>Creation Time</th>
             <th>Last Modified Time</th>
+            
         </tr>
+        {% for announcement in announcements %}
         <tr>
             <td class="view announcement-view"> <a>
                 {% if announcement.title %}
@@ -40,14 +43,21 @@
                 {% endif %}
             </td>
         </tr>
+        <tr>
+            <td colspan="4">
+                <div class="view-details">
+                    <h4>Message: </h4>
+                    <br>
+                    <p>{{announcement.content}}</p>
+                    <hr>
+                </div>
+                <br>
+            </tr>
+            </td>
+        {% endfor %}
     </table>
-    <div class="view-details">
-        <h4>Message: </h4>
-        <br>
-        <p>{{announcement.content}}</p>
-    </div>
-    <br>
-    {% endfor %}
-    <div></div>
+    {% else %}
+    <p>Annoucement not available</p>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'main.html' %} {% load static %} | {% block content %}
 <div>
     <h1>Resources</h1>
+    {% if resources %}
     <div class="resource-header">
         <p>Name</p>
         <p>Details</p>
@@ -31,10 +32,7 @@
                 </tr>
                 <tr>
                     <td>
-                        {% if resource.name %}
-                        {{resource.name}}
-                        {% else %}
-                        N/A
+                        {% if resource.name %} {{resource.name}} {% else %} N/A
                         {% endif %}
                     </td>
                     <td>
@@ -72,8 +70,10 @@
         <div class="video-embed">{{resource.youtubeLink|safe}}</div>
         {% endif %}
     </div>
-
     <hr />
-    {% endfor %}
+    {% endfor %} 
+    {% else %}
+    <p>No resources available</p>
+    {% endif %}
 </div>
 {% endblock %}

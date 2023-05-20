@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm, CourseForm, AnnouncementForm, ResourceForm, RoomForm, UserForm
 from django.contrib.auth import authenticate, login, logout
-from .models import User, Course, Announcement, Resource, Room
+from .models import User, Course, Announcement, Resource, Room, Message
 from django.contrib import messages
 
 # Create your views here.
@@ -199,7 +199,7 @@ def resourcePage(request, pk):
 
     # Retrieve the resources associated with the course
     resources = Resource.objects.filter(course=course).order_by('-updated')
-
+    
     # Pass the course and resources to the template
     context = {
         'course': course,
@@ -231,7 +231,7 @@ def announcementPage(request, pk):
 
 
 # room page
-def chatRoomPage(request, pk):
+def roomPage(request, pk):
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)
     courses = Course.objects.filter(instructor__username=employer).distinct()
@@ -245,12 +245,47 @@ def chatRoomPage(request, pk):
     context = {
         'course': course,
         'rooms': rooms,
-        'courses': courses
+        'courses': courses,
     }
 
-    return render(request, "myapp/chat_room_page.html", context)
+    return render(request, "myapp/room_page.html", context)
 
 
+
+# Employee Chat room
+def chatRoom(request,pk2,pk):
+    employee = request.user
+    employer = User.objects.get(username=employee.my_employer)
+    courses = Course.objects.filter(instructor__username=employer).distinct()
+    # Retrieve the course based on the provided pk
+    course = Course.objects.get(id=pk2)
+
+    
+
+    # We find the room based on the room_id
+    room = Room.objects.get(id=pk)
+
+    # We get all messages from a specific room
+    room_messages = room.message_set.all().order_by('-created')
+        
+    # We get all participants in the specific room
+
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user=request.user,
+            room=room,
+            body=request.POST.get('body')
+        )
+        return redirect('chat-room', pk2=course.id, pk=room.id)
+    
+    context = {
+        'room': room,
+        'room_messages': room_messages,
+        'courses': courses,
+        'course': course
+    }
+    
+    return render(request, "myapp/chat_room.html", context)
 
 # Update courses created by employer
 def updateCourse(request, pk):
@@ -380,3 +415,6 @@ def deleteRoom(request, pk):
         return redirect('employer-home', pk=request.user)
     
     return render(request, 'myapp/delete.html', {'obj': room})
+
+
+        
