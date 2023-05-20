@@ -260,8 +260,6 @@ def chatRoom(request,pk2,pk):
     # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk2)
 
-    
-
     # We find the room based on the room_id
     room = Room.objects.get(id=pk)
 
@@ -282,7 +280,8 @@ def chatRoom(request,pk2,pk):
         'room': room,
         'room_messages': room_messages,
         'courses': courses,
-        'course': course
+        'course': course,
+        'page': 'chat-room'
     }
     
     return render(request, "myapp/chat_room.html", context)

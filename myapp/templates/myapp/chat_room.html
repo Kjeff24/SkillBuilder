@@ -4,12 +4,6 @@
         <!-- msg-header section starts -->
         <div class="msg-header">
             <h1 class="msg-course-title">{{course.name}} -- {{room}}</h1>
-            <!-- <div class="container1">
-                <img src="user1.png" class="msgimg" />
-                <div class="msg-course-title">
-                    <p>User name</p>
-                </div>
-            </div> -->
         </div>
         <!-- msg-header section ends -->
 
@@ -65,7 +59,7 @@
                 </div>
 
                 <!-- msg-bottom section -->
-                <form action="" method="POST">
+                <form action="" method="POST" id="message">
                     {% csrf_token %}
                     <div class="msg-bottom">
                         <div class="input-group">
@@ -73,7 +67,7 @@
                                 <div class="input-text-icon">
                                     <textarea
                                         name="body"
-                                        id=""
+                                        id="msg"
                                         cols="50"
                                         rows="auto"
                                         placeholder="Write message..."
