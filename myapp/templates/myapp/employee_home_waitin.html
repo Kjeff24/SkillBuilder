@@ -190,56 +190,9 @@
                             </div>
                         </div>
                         <div class="col-2">
+                            <h1>Enrollment Now Open: Register for Our Exclusive Training Program</h1>
                             <div class="col-2-content">
-                                <h2>
-                                    Enrollment Now Open: Register for Our Exclusive
-                                    Training Program
-                                </h2>
-                                <p>
-                                    Join our community of learners by enrolling
-                                    in our dynamic and engaging training
-                                    program.
-                                </p>
-                                <div class="enroll">
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <div class="enroll-form-group">
-                                            <label for="course-select"
-                                                >Choose Course:
-                                            </label>
-                                            <select
-                                                name="course"
-                                                id="course-select"
-                                            >
-                                                {% for course in courses %}
-                                                <option value="{{course}}">
-                                                    {{course}}
-                                                </option>
-                                                {% endfor %}
-                                            </select>
-                                            <br>
-                                            <button type="submit" class="enroll-btn">
-                                                Submit
-                                            </button>
-                                            <div>
-                                                {% if messages %}
-                                                <ul class="messages">
-                                                    {% for message in messages %}
-                                                    <li
-                                                        {% if message.tags %}
-                                                        class="{{ message.tags }}"
-                                                        {% endif %}
-                                                    >
-                                                        {{ message }}
-                                                    </li>
-                                                    {% endfor %}
-                                                </ul>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </form>
-                                    
-                                </div>
+                                <p>Join our community of learners by enrolling in our dynamic and engaging training program.</p>
                             </div>
                         </div>
                     </div>

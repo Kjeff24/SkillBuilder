@@ -17,12 +17,12 @@
                         >Home</a
                     >
                 </li>
-                {% for course in courses %}
+                {% for enrollment in enrollments %}
                 <li>
                     <a
-                        href="{% url 'course' course.id %}"
+                        href="{% url 'course' enrollment.course.id %}"
                     >
-                        {{course.name}}
+                        {{enrollment.course}}
                     </a>
                 </li>
                 {% endfor %}

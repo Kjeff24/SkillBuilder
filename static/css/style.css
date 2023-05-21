@@ -81,6 +81,38 @@ body {
     max-height: 100vh;
 }
 
+.update-info{
+    width: 484px;
+    margin: auto;
+}
+
+.update-img{
+    
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.update-bio, .update-select{
+    width: 340px;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
+.update-bio:hover, .update-select:hover{
+    background-color: #72131e;
+    color:white;
+}
+
+.update-bio:hover, .update-select:hover {
+    background-color:#72131e;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    transition: background-color 0.5s ease;
+}
+
+
 .splash-screen {
     color: white;
     width: 484px;
@@ -680,7 +712,7 @@ select{
         
     }
     .input-text,
-    #select-text {
+    #select-text, .update-bio, .update-select {
         width: 300px;
         height: 50px;
     }
@@ -736,7 +768,7 @@ select{
 
 @media (max-width: 1036px) {
     .input-text,
-    #select-text {
+    #select-text, .update-bio, .update-select {
         width: 270px;
     }
     .home-bg-1 {
@@ -977,7 +1009,7 @@ select{
         gap: 0px;
     }
     .input-text,
-    #select-text {
+    #select-text, .update-bio, .update-select {
         width: 400px;
         height: 60px;
     }
@@ -1002,7 +1034,7 @@ select{
         margin-top: 10px;
     }
     .input-text,
-    #select-text {
+    #select-text, .update-bio, .update-select {
         width: 300px;
         height: 60px;
     }

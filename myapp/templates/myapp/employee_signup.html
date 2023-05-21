@@ -17,6 +17,15 @@
     <body>
         <div class="signup-container">
             <div class="signup-row">
+                {% if page == 'update' %}
+                <div class="update-info">
+                    <img
+                        src="{% static 'assets/updatebg.jpg' %}"
+                        alt="Back"
+                        class="update-img"
+                    />
+                </div>
+                {% else %}
                 <div class="splash-screen">
                     <img
                         src="{% static 'assets/back.svg' %}"
@@ -33,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="form-container">
                     <form method="POST">
                         {% csrf_token %}
@@ -43,7 +53,7 @@
                                     class=""
                                     style="font-size: 20px; font-weight: 700"
                                 >
-                                    Update User Registration 
+                                    Update User Registration
                                 </p>
                                 {% else %}
                                 <p
@@ -55,8 +65,7 @@
                                 <p class="">
                                     <span>Already have an account?</span>
                                     <span class="login-text"
-                                        ><a
-                                            href="{% url 'login' %}"
+                                        ><a href="{% url 'login' %}"
                                             >Login</a
                                         ></span
                                     >
@@ -102,7 +111,10 @@
                                         >Employer</label
                                     >
                                     {% if page == 'update' %}
-                                    <select name="my_employer">
+                                    <select
+                                        name="my_employer"
+                                        class="update-select"
+                                    >
                                         <option
                                             value="{{request.user.my_employer}}"
                                         >
@@ -118,8 +130,8 @@
                                     {% endif %}
                                 </div>
                             </div>
+                            {% if page == 'update' %}
                             <div class="form-input-row">
-                                {% if page == 'update' %}
                                 <div class="input-field">
                                     <label for="input" class="input-label"
                                         >Bio</label
@@ -132,14 +144,16 @@
                                     >
                                     {{ form.avatar }}
                                 </div>
-                                {% else %}
+                            </div>
+                            {% else %}
+                            <div class="form-input-row">
                                 <div class="input-field">
                                     <label for="input" class="input-label"
                                         >Is Employee {{ form.is_employee }}
                                     </label>
                                 </div>
-                                {% endif %}
                             </div>
+                            {% endif %}
                             {% if page != 'update' %}
                             <div class="form-input-row">
                                 <div class="input-field">
@@ -168,7 +182,11 @@
                             {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
-                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                <li
+                                    {% if message.tagsn %}
+                                    class="{{ message.tags }}"
+                                    {% endif %}
+                                >
                                     {{ message }}
                                 </li>
                                 {% endfor %}

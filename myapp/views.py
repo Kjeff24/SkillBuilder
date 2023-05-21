@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm, CourseForm, AnnouncementForm, ResourceForm, RoomForm, UserForm
 from django.contrib.auth import authenticate, login, logout
-from .models import User, Course, Announcement, Resource, Room, Message
+from .models import User, Course, Announcement, Resource, Room, Message, Participants, Enrollment
 from django.contrib import messages
 
 # Create your views here.
@@ -99,18 +99,51 @@ def employerHome(request, pk):
     }
     return render(request, "myapp/employer_home.html", context)
 
+
 # Employee home
 def employeeHome(request, pk):
+    # Render the enrollment form with a list of available courses
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)
     courses = Course.objects.filter(instructor__username=employer).distinct()
-    resources = Resource.objects.filter(course__instructor=employer)
-    announcements = Announcement.objects.filter(course__instructor=employer)
-    rooms = Room.objects.filter(course__instructor=employer)
-    context = {'courses':courses, 'resources':resources, 'announcements':announcements, 'rooms':rooms}
+    enrollments = Enrollment.objects.filter(participants__user=employee)
+
+    context = {'courses': courses, 'enrollments':enrollments}
 
 
+    if request.method == 'POST':
+        course_selected = request.POST.get('course')
+
+        course = Course.objects.get(name=course_selected)
+        user = User.objects.get(username=request.user.username)
+
+        # Check if the course exists in the enrollment
+        enrollment = Enrollment.objects.filter(course=course).first()
+
+        if enrollment:
+            # Check if the user exists in the participants
+            participant = Participants.objects.filter(user=user).first()
+
+            if participant:
+                messages.success(request, 'You have already enrolled.')
+                return render(request, "myapp/employee_home.html", context)
+            else:
+                # Create a new participant
+                participant = Participants.objects.create(user=user)
+                enrollment.participants.add(participant)
+                messages.success(request, 'Enrollment successfully.')
+                return render(request, "myapp/employee_home.html", context)
+        else:
+            # Create a new enrollment and participant
+            enrollment = Enrollment.objects.create(course=course)
+            participant = Participants.objects.create(user=user)
+            enrollment.participants.add(participant)
+
+            messages.success(request, 'Enrollment successfully.')
+            return render(request, "myapp/employee_home.html", context)
+    
     return render(request, "myapp/employee_home.html", context)
+
 
 # Course form
 def createCourse(request, pk):
@@ -127,6 +160,7 @@ def createCourse(request, pk):
     context = {'form': form}
 
     return render(request, "myapp/course_form.html", context)
+
 
 # Create Annoucement    
 def createAnnoucement(request, pk):
@@ -178,21 +212,29 @@ def createRoom(request, pk):
 def coursePage(request, pk):
     # Get course by id and display resources, announcements, rooms based on the course
     employee = request.user
-    employer = User.objects.get(username=employee.my_employer)
-    courses = Course.objects.filter(instructor__username=employer).distinct()
     course = Course.objects.get(id=pk)
     resources = Resource.objects.filter(course=course)
     announcements = Announcement.objects.filter(course=course)
     rooms = Room.objects.filter(course=course)
-    context = {'course':course, 'resources':resources, 'announcements':announcements, 'rooms':rooms, 'courses':courses}
+
+    enrollments = Enrollment.objects.filter(participants__user=employee)
+
+    context = {
+        'course':course, 
+        'resources':resources, 
+        'announcements':announcements, 
+        'rooms':rooms, 
+        'enrollments': enrollments
+        }
 
     return render(request, "myapp/course_page.html", context)
+
 
 # resource page
 def resourcePage(request, pk):
     employee = request.user
-    employer = User.objects.get(username=employee.my_employer)
-    courses = Course.objects.filter(instructor__username=employer).distinct()
+
+    enrollments = Enrollment.objects.filter(participants__user=employee)
 
      # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk)
@@ -204,7 +246,7 @@ def resourcePage(request, pk):
     context = {
         'course': course,
         'resources': resources,
-        'courses': courses
+        'enrollments': enrollments
     }
 
     return render(request, "myapp/resource_page.html", context)
@@ -212,8 +254,8 @@ def resourcePage(request, pk):
 # announcement page
 def announcementPage(request, pk):
     employee = request.user
-    employer = User.objects.get(username=employee.my_employer)
-    courses = Course.objects.filter(instructor__username=employer).distinct()
+
+    enrollments = Enrollment.objects.filter(participants__user=employee)
 
     # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk)
@@ -224,7 +266,7 @@ def announcementPage(request, pk):
     context = {
         'course': course,
         'announcements': announcements,
-        'courses': courses
+        'enrollments': enrollments
     }
 
     return render(request, "myapp/announcement_page.html", context)
@@ -233,8 +275,8 @@ def announcementPage(request, pk):
 # room page
 def roomPage(request, pk):
     employee = request.user
-    employer = User.objects.get(username=employee.my_employer)
-    courses = Course.objects.filter(instructor__username=employer).distinct()
+
+    enrollments = Enrollment.objects.filter(participants__user=employee)
 
     # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk)
@@ -245,18 +287,18 @@ def roomPage(request, pk):
     context = {
         'course': course,
         'rooms': rooms,
-        'courses': courses,
+        'enrollments': enrollments,
     }
 
     return render(request, "myapp/room_page.html", context)
 
 
-
 # Employee Chat room
 def chatRoom(request,pk2,pk):
     employee = request.user
-    employer = User.objects.get(username=employee.my_employer)
-    courses = Course.objects.filter(instructor__username=employer).distinct()
+
+    enrollments = Enrollment.objects.filter(participants__user=employee)
+
     # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk2)
 
@@ -279,7 +321,7 @@ def chatRoom(request,pk2,pk):
     context = {
         'room': room,
         'room_messages': room_messages,
-        'courses': courses,
+        'enrollments': enrollments,
         'course': course,
         'page': 'chat-room'
     }
@@ -352,7 +394,7 @@ def updateRoom(request, pk):
 
 # Update user
 def updateUser(request, pk):
-    employers = User.objects.all()
+    employers = User.objects.filter(is_employer=True)
     user = request.user 
     form = UserForm(instance=user, user=request.user)
 

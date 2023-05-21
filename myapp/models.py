@@ -20,13 +20,32 @@ class Course(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     instructor = models.ForeignKey(User, on_delete=models.CASCADE)
-    course_participants = models.ManyToManyField(User, related_name='course_participants', blank=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name
+
+
+# Course Participants
+class Participants(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+
+    def __str__(self):
+        return str(self.user)
+
+
+
+# Enrollment into a course
+class Enrollment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    date_enrolled = models.DateTimeField(auto_now_add=True)
+    participants = models.ManyToManyField(Participants, related_name='participants', blank=True)
     
+    def __str__(self):
+        return str(self.course)
+
+
 # Resources model allows employers to add resources based on course
 class Resource(models.Model):
     name = models.CharField(max_length=30)

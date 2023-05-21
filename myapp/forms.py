@@ -193,7 +193,48 @@ class RoomForm(ModelForm):
 
 
 class UserForm(ModelForm):
-    
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
+    email = forms.CharField(
+        widget=forms.EmailInput(
+            attrs={
+                "class": "input-text"
+            }
+        )
+    )
+
+    bio = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "class": "update-bio",
+                'rows': 2
+            }
+        )
+    )
+
+    avatar = forms.ImageField(widget=forms.ClearableFileInput(attrs={'accept': 'image/*'}))
 
     class Meta:
         model = User
