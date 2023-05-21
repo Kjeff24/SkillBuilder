@@ -91,11 +91,14 @@ def employerHome(request, pk):
     rooms = Room.objects.filter(course__in=courses)
     announcements = Announcement.objects.filter(course__in=courses)
 
+    participants = Participants.objects.filter(course__in=courses)
+
     context = {
         'courses': courses,
         'resources': resources,
         'rooms': rooms,
-        'announcements': announcements
+        'announcements': announcements,
+        'participants': participants
     }
     return render(request, "myapp/employer_home.html", context)
 
@@ -129,14 +132,14 @@ def employeeHome(request, pk):
                 return render(request, "myapp/employee_home.html", context)
             else:
                 # Create a new participant
-                participant = Participants.objects.create(user=user)
+                participant = Participants.objects.create(user=user, course=course)
                 enrollment.participants.add(participant)
                 messages.success(request, 'Enrollment successfully.')
                 return render(request, "myapp/employee_home.html", context)
         else:
             # Create a new enrollment and participant
             enrollment = Enrollment.objects.create(course=course)
-            participant = Participants.objects.create(user=user)
+            participant = Participants.objects.create(user=user, course=course)
             enrollment.participants.add(participant)
 
             messages.success(request, 'Enrollment successfully.')
@@ -332,6 +335,7 @@ def chatRoom(request,pk2,pk):
 def updateCourse(request, pk):
     course = Course.objects.get(id=pk)
     form = CourseForm(instance=course)
+    participants = Participants.objects.filter(course=course)
    
     if request.method == 'POST':
         form = CourseForm(request.POST, instance=course)
@@ -340,7 +344,7 @@ def updateCourse(request, pk):
             messages.success(request, 'Course updated successfully.')
             return redirect('update-course', pk=pk)
          
-    context = {'form': form, 'page':'update'}
+    context = {'form': form, 'page':'update', 'participants':participants}
     return render(request, "myapp/course_form.html", context)
 
 

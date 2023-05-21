@@ -9,6 +9,13 @@
     <body>
         {% if page == 'update' %}
         <h1>Update Course form</h1>
+        <h5>Users in </h5>
+        <select name="" id="">
+
+            {% for participant in participants %}
+            <option>{{participant}}</option>
+            {% endfor %}
+        </select>
         {% else %}
         <h1>Create Course form</h1>
         {% endif %}

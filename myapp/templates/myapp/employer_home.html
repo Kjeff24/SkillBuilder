@@ -39,6 +39,15 @@
                 {% endfor %}
             </ul>
         </div>
+        <div class="display-users-course">
+            <h4>Users</h4>
+            <ul>
+                {% for participant in participants %}
+                <li>{{participant}} -- {{participant.course}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         <div class="display-resource">
             <h4>Resources</h4>
             <ul>

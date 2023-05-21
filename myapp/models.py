@@ -29,7 +29,8 @@ class Course(models.Model):
 
 # Course Participants
 class Participants(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE) 
 
     def __str__(self):
         return str(self.user)
@@ -40,7 +41,7 @@ class Participants(models.Model):
 class Enrollment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date_enrolled = models.DateTimeField(auto_now_add=True)
-    participants = models.ManyToManyField(Participants, related_name='participants', blank=True)
+    participants = models.ManyToManyField(Participants, related_name='enrollments', blank=True)
     
     def __str__(self):
         return str(self.course)
