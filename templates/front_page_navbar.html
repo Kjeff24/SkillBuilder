@@ -52,11 +52,10 @@
         </nav>
         <div class="user-ico">
             <img
-                src="{% static 'assets/user-icon.svg' %}"
+                src="{{ request.user.avatar.url }}"
                 alt="Back"
+                style="width: 30px; border-radius: 50%;"
             />
         </div>
     </header>
-    
-
 </div>
