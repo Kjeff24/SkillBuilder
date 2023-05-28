@@ -43,7 +43,7 @@ def employeeSignupPage(request):
             messages.success(request, 'Course created successfully.')
             return redirect('login')
         else:
-            msg = 'form is not valid'
+            msg = "Password don't match or username or email already exist"
     else:
         form = EmployeeSignUpForm()
 
@@ -62,7 +62,7 @@ def employerSignupPage(request):
             msg = 'User created'
             return redirect('login')
         else:
-            msg = 'form is not valid'
+            msg = "Password don't match or username or email already exist"
     else:
         form = EmployerSignUpForm()
 

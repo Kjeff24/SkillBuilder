@@ -11,9 +11,8 @@ html {
     scroll-behavior: smooth;
 }
 
-
 body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
 }
 
 /* Navbar Starts Here  */
@@ -73,365 +72,6 @@ body {
 }
 
 /* Navbar Ends Here  */
-
-/* Signup Starts Here */
-
-.signup-container {
-    margin: 30px;
-    max-height: 100vh;
-}
-
-.update-info{
-    width: 484px;
-    margin: auto;
-}
-
-.update-img{
-    
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-}
-
-.update-bio, .update-select{
-    width: 340px;
-    height: 50px;
-    border-radius: 10px;
-    padding-left: 20px;
-}
-
-.update-bio:hover, .update-select:hover{
-    background-color: #72131e;
-    color:white;
-}
-
-.update-bio:hover, .update-select:hover {
-    background-color:#72131e;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-    transition: background-color 0.5s ease;
-}
-
-
-.splash-screen {
-    color: white;
-    width: 484px;
-    height: 600px;
-    background: linear-gradient(180deg, #72131e 0%, #871e2a 100%);
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 30px;
-}
-
-.splash-heading,
-.login-text,
-.create-account,
-.login-account,
-.signup-btn {
-    font-weight: 700;
-}
-
-.signup-text {
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-    text-align: center;
-}
-
-.form-title {
-    margin:auto;
-    text-align: center;    
-}
-
-.splash-heading {
-    font-size: 25px;
-    line-height: 36px;
-    margin-top: 40px;
-    text-align: center;
-}
-
-.splash-body {
-    font-size: 16px;
-    letter-spacing: 0.56px;
-    text-align: center;
-}
-
-.splash-heading.show {
-    animation-duration: 1s;
-    animation-name: slideInLeft;
-}
-
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-.splash-body.show {
-    animation-duration: 1s;
-    animation-name: slideInDelay;
-}
-
-@keyframes slideInDelay {
-    from {
-        transform: translateX(-150%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-.splash-img {
-    border-radius: 20px;
-    width: 342px;
-    margin-top: 40px;
-    max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-.splash-img.show {
-    animation-duration: 1.2s;
-    animation-name: delayLittle;
-}
-
-@keyframes delayLittle {
-    from {
-        transform: translateX(-200%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-.form-container {
-    margin: auto;
-    flex: 0 0 auto;
-  width: 58.333333%;
-  max-width: 58.333333%;
-}
-
-.form-container-mini{
-    display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: auto;
-}
-
-.form-input-row {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 20px;
-}
-
-.form-input-d{
-    display: flex;
-    flex-direction: column;
-}
-
-.login-text a {
-    color: #72131e;
-}
-
-.login-text:hover {
-    font-size: 17px;
-}
-
-.input-label {
-    line-height: 30px;
-}
-
-.input-text,
-select{
-    width: 340px;
-    height: 50px;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    padding-left: 10px;
-    transition: all 0.2s ease-in-out;
-}
-
-.input-text:hover {
-    background-color: #72131e;
-    color:white;
-}
-
-.input-text:focus {
-    background-color:#72131e;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-    transition: background-color 0.5s ease;
-}
-
-/* .input-text::selection{
-    
-    color:#000000;
-} */
-
-/* #select-text:hover {
-    background-color: #72131e;
-    color: white;
-} */
-
-/* select:focus {
-    background-color: linear-gradient(45deg, #72131e 0%, #b91b2d 100%);
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    transition: background-color 0.5s ease;
-} */
-
-.button-submit {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-}
-
-.create-account {
-    background: linear-gradient(180deg, #72131e 0%, #871e2a 100%);
-    border: 1px solid #000000;
-    border-radius: 10px;
-    width: 231px;
-    height: 60px;
-    color: white;
-    transition: transform 0.2s ease-out;
-}
-
-.create-account:hover {
-    transform: scale(1.03);
-}
-
-/* Signup Ends Here */
-
-/* Login Starts here */
-
-.login-container {
-    padding: 10px;
-    max-height: 100vh;
-}
-
-.login-row, .signup-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-.login-splash{
-    flex: 0 0 41.66667%;
-  max-width: 41.66667%;
-  padding: 15px;
-}
-
-.back-button{
-    margin-top: 0.75rem;
-}
-
-.login-bg-img{
-    max-width: 100%;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding:  10px;
-}
-
-.login-form-container {
-    background: linear-gradient(180deg, #9c1525 0%, #4b0c14 100%);
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 30px;
-    margin: auto;
-    max-width: 500px;
-    width: 58.33333%;
-    height: 520px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.login-input-field{
-    padding: 10px;
-}
-
-.signup-link a {
-    color: #ffffff;
-}
-
-.signup-link a:hover {
-    font-size: 17px;
-}
-
-.input-field {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.login-input {
-    width: 550px;
-    height: 60px;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    padding-left: 20px;
-}
-
-.login-input:hover {
-    background-color: #530e16;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-}
-
-.login-input:focus {
-    background-color: #72131e;
-    color: white;
-    transition: background-color 0.5s ease;
-}
-
-.login-btn {
-    display: flex; 
-    flex-direction: column;
-}
-
-.login-account {
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    width: 231px;
-    height: 60px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #72131e;
-    color: white;
-}
-
-.login-account:hover {
-    background-color: #530e16;
-    transform: scale(1.02);
-}
-
-.login-back-button {
-    display: none;
-    
-}
-
-.text-end{
-    margin-top: 0.5rem;
-    text-align: center;
-}
-
-.text-end a{
-    color: white;
-    text-align: center;
-}
-
-/* login ends here  */
 
 /* home page starts here  */
 .home-content {
@@ -617,7 +257,7 @@ select{
     border-radius: 30px;
 }
 
-.get-in-touch a{
+.get-in-touch a {
     /* width: 411px; */
     margin-top: 50px;
     height: 82px;
@@ -667,7 +307,9 @@ select{
     font-size: 18px;
 }
 
-.contact-input:hover,.contact-select:hover, .message-area:hover {
+.contact-input:hover,
+.contact-select:hover,
+.message-area:hover {
     background-color: #530e16;
     color: rgb(255, 255, 255);
     font-size: 16px;
@@ -685,7 +327,7 @@ select{
     padding: 10px;
 }
 
-.contact-submit{
+.contact-submit {
     display: flex;
     justify-content: center;
 }
@@ -707,25 +349,6 @@ select{
 /* Media Queries */
 
 @media screen and (max-width: 1276px) {
-    .signup-text {
-        font-size:22px;
-        
-    }
-    .input-text,
-    #select-text, .update-bio, .update-select {
-        width: 300px;
-        height: 50px;
-    }
-    .splash-screen {
-        width: 400px;
-    }
-    .form-input-row {
-        gap: 20px;
-    }
-    .login-input {
-        width: 350px;
-    }
-
     .home-bg-1 {
         width: 546px;
     }
@@ -739,18 +362,6 @@ select{
 }
 
 @media (max-width: 1086px) {
-    .splash-screen {
-        width: 350px;
-    }
-    .splash-heading {
-        font-size: 20px;
-    }
-    .splash-body {
-        font-size: 14px;
-    }
-    .splash-img {
-        width: 210px;
-    }
     .home-bg-1 {
         width: 446px;
     }
@@ -767,10 +378,6 @@ select{
 }
 
 @media (max-width: 1036px) {
-    .input-text,
-    #select-text, .update-bio, .update-select {
-        width: 270px;
-    }
     .home-bg-1 {
         width: 400px;
     }
@@ -784,18 +391,13 @@ select{
 }
 
 @media (max-width: 963px) {
-    .splash-screen {
-        width: 250px;
-    }
+ 
     .form-input-row {
         gap: 10px;
     }
     .form-container {
         max-width: 100%;
         margin: auto 20px;
-    }
-    .login-input {
-        width: 360px;
     }
     .title-1 {
         font-size: 18px;
@@ -826,10 +428,7 @@ select{
 }
 
 @media only screen and (max-width: 900px) {
-    /* .header {
-        position: absolute;
-    } */
-
+ 
     .icon-btn {
         display: block;
         cursor: pointer;
@@ -943,14 +542,6 @@ select{
 }
 
 @media (max-width: 768px) {
-    .splash-screen {
-        width: 100%;
-    }
-
-    .splash-img {
-        width: 350px;
-        height: auto;
-    }
     .form-container {
         width: 100%;
         margin-top: 20px;
@@ -964,19 +555,6 @@ select{
     .form-input-row {
         gap: 50px;
     }
-    .login-splash {
-        display: none;
-    }
-    .login-form-container {
-        width: 100%;
-    }
-    .login-input {
-        width: 460px;
-    }
-    .login-back-button {
-        display: block;
-        margin-bottom: 20px;
-    }
     .title-1,
     .title-2 {
         font-size: 18px;
@@ -988,56 +566,21 @@ select{
 }
 
 @media (max-width: 576px) {
-    .splash-screen {
-        color: white;
-        width: 200x;
-        height: auto;
-    }
-    .splash-img {
-        width: 150px;
-        height: auto;
-        margin-top: 10px;
-    }
-    .splash-heading {
-        margin: 0;
-    }
-    .splash-body {
-        margin: 0;
-    }
     .form-input-row {
         flex-direction: column;
         gap: 0px;
     }
     .input-text,
-    #select-text, .update-bio, .update-select {
+    #select-text,
+    .update-bio,
+    .update-select {
         width: 400px;
         height: 60px;
-    }
-    .login-input {
-        width: 300px;
-        height: 50px;
-    }
-    .login-account {
-        width: 150px;
     }
 }
 
 @media (max-width: 430px) {
-    .splash-screen {
-        color: white;
-        width: 150x;
-        height: auto;
-    }
-    .splash-img {
-        width: 150px;
-        height: auto;
-        margin-top: 10px;
-    }
-    .input-text,
-    #select-text, .update-bio, .update-select {
-        width: 300px;
-        height: 60px;
-    }
+
     .title-info-2 {
         width: 300px;
     }

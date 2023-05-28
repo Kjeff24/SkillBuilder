@@ -29,6 +29,7 @@ def employeeHome(request, pk):
     # Render the enrollment form with a list of available courses
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)
+    # print(employer)
     courses = Course.objects.filter(instructor__username=employer).distinct()
     enrollments = Enrollment.objects.filter(participants__user=employee)
 

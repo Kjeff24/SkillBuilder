@@ -87,7 +87,7 @@ class UserForm(ModelForm):
     bio = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                "class": "update-bio",
+                "class": "update-bio input-text",
                 'rows': 2
             }
         )

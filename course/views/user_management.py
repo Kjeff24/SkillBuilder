@@ -5,14 +5,14 @@ from course.forms import UserForm
 
 # Update user
 def updateUser(request, pk):
-    employers = User.objects.filter(is_employer=True)
+    employers = User.objects.filter(is_employer=True).distinct()
     user = request.user 
     form = UserForm(instance=user, user=request.user)
 
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES, instance=user, user=request.user)
         if form.is_valid():
-            form.instance.my_employer = request.POST.get('my_employer')  # Assign the selected value to my_employer
+            form.instance.my_employer = request.POST.get('my_employer')
             form.save()
             messages.success(request, 'User updated successfully.')
             return redirect('update-user', pk=user.id)

@@ -7,7 +7,10 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "login-input"
+                "class": "login-input",
+                "id":"username",
+                "autocomplete":"username",
+                "placeholder": "Enter your username",
             }
         )
     )
@@ -15,7 +18,9 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 "class": "login-input",
-                "id":"passwordField"
+                "id":"passwordField",
+                "autocomplete":"password",
+                "placeholder": "Enter your password",
             }
         )
     )
@@ -30,7 +35,8 @@ class EmployeeSignUpForm(UserCreationForm):
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"first_name",
             }
         )
     )
@@ -38,7 +44,8 @@ class EmployeeSignUpForm(UserCreationForm):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"last_name",
             }
         )
     )
@@ -46,7 +53,8 @@ class EmployeeSignUpForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"username",
             }
         )
     )
@@ -69,7 +77,8 @@ class EmployeeSignUpForm(UserCreationForm):
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"email",
             }
         )
     )
@@ -94,7 +103,8 @@ class EmployerSignUpForm(UserCreationForm):
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"first_name",
             }
         )
     )
@@ -102,7 +112,8 @@ class EmployerSignUpForm(UserCreationForm):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"last_name",
             }
         )
     )
@@ -110,7 +121,8 @@ class EmployerSignUpForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"username",
             }
         )
     )
@@ -133,7 +145,8 @@ class EmployerSignUpForm(UserCreationForm):
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={
-                "class": "input-text"
+                "class": "input-text",
+                "autocomplete":"email",
             }
         )
     )
