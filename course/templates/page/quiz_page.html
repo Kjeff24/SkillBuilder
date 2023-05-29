@@ -1,0 +1,12 @@
+{% extends 'main.html' %} {% load static %} | {% block content %}
+<div>
+    <h1>Quiz</h1>
+    <hr>
+    <br>
+    <h3>
+        <a href="{% url 'quizes:main-view' pk2=course.id %}" target="_blank"> Quiz Page</a>
+    </h3>
+    <br>
+    <h3>Grade book</h3>
+</div>
+{% endblock %}

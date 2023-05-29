@@ -39,7 +39,7 @@
         </div>
         <div class="side-bar-title">Resources</div>
     </a>
-    <a href="#" class="side-bar-content-row">
+    <a href="{% url 'quiz-page' pk=course.id %}" class="side-bar-content-row">
         <div class="link-icon">
             <img
                 src="{% static 'assets/quiz.svg' %}"

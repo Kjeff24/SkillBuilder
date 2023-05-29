@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'myapp.apps.MyappConfig',
     'course.apps.CourseConfig',
+    'quiz.apps.QuizConfig',
 ]
 
 AUTH_USER_MODEL  = 'myapp.User'
