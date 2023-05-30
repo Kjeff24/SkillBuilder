@@ -31,7 +31,7 @@ def employeeHome(request, pk):
     employer = User.objects.get(username=employee.my_employer)
     # print(employer)
     courses = Course.objects.filter(instructor__username=employer).distinct()
-    enrollments = Enrollment.objects.filter(participants__user=employee)
+    enrollments = Enrollment.objects.filter(members__user=employee)
 
     context = {'courses': courses, 'enrollments':enrollments}
 
@@ -55,14 +55,14 @@ def employeeHome(request, pk):
             else:
                 # Create a new participant
                 participant = Participants.objects.create(user=user, course=course)
-                enrollment.participants.add(participant)
+                enrollment.members.add(participant)
                 messages.success(request, 'Enrollment successfully.')
                 return render(request, "usersPage/employee_home.html", context)
         else:
             # Create a new enrollment and participant
             enrollment = Enrollment.objects.create(course=course)
             participant = Participants.objects.create(user=user, course=course)
-            enrollment.participants.add(participant)
+            enrollment.members.add(participant)
 
             messages.success(request, 'Enrollment successfully.')
             return render(request, "usersPage/employee_home.html", context)

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer
-from .models import Quiz
+from .models import Question, Answer, Quiz, Result
 
 
 # Display answers in tabular format in question
@@ -15,3 +14,4 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Quiz)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer)
+admin.site.register(Result)

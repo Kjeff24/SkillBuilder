@@ -7,19 +7,26 @@ const resultBox = document.getElementById('result-box')
 const timerBox = document.getElementById('timer-box')
 
 
+let timer; // Variable to hold the interval ID of the timer
+let timerState = false; // Variable to track the state of the timer
+let requiredTime // Time to be taken to complete the quiz
+let minutes 
+let seconds
+let completionTime // Time user took to complete the quiz
+
 const activateTimer = (time) => {
     if (time.toString().length < 2) {
         timerBox.innerHTML = `<b>0${time}:00</b>`
-    } else {
+    } else { 
         timerBox.innerHTML = `<b>${time}:00</b>`
     }
 
-    let minutes = time - 1
-    let seconds = 60
+    minutes = time - 1
+    seconds = 60
     let displaySeconds
     let displayMinutes
 
-    const timer = setInterval(()=>{
+    timer = setInterval(()=>{
         seconds --
         if (seconds < 0) {
             seconds = 59
@@ -46,6 +53,8 @@ const activateTimer = (time) => {
 
         timerBox.innerHTML = `<b>${displayMinutes}:${displaySeconds}</b>`
     }, 1000)
+
+    timerState = true;
 }
 
 $.ajax({
@@ -71,7 +80,8 @@ $.ajax({
                 })
             }
         });
-        activateTimer(response.time)
+        requiredTime = response.time
+        activateTimer(requiredTime)
         
     },
     error: function(error){
@@ -83,9 +93,16 @@ const quizForm = document.getElementById('quiz-form')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
 const sendData = () => {
+    const minutesTaken = requiredTime - minutes - 1; // Subtract 1 to account for the final minute
+    const secondsTaken = 60 - seconds;
+    console.log(`${minutesTaken}:${secondsTaken}`)
+    completionTime = (minutesTaken + secondsTaken/60).toFixed(2)
+    console.log(completionTime)
+
     const elements = [...document.getElementsByClassName('ans')]
     const data = {}
     data['csrfmiddlewaretoken'] = csrf[0].value
+    data['completionTime'] = completionTime
     elements.forEach(el=>{
         if (el.checked) {
             data[el.name] = el.value
@@ -95,15 +112,17 @@ const sendData = () => {
             }
         }
     })
+    
 
     $.ajax({
         type: 'POST',
         url: `${url}save/`,
         data: data,
         success: function(response){
+
             const results = response.results
             console.log(results)
-            quizForm.classList.add('not-visible')
+            quizForm.classList.add('d-none')
 
             scoreBox.innerHTML = `${response.passed ? 'Congratulations! ' : 'Ups..:( '}Your result is ${response.score.toFixed(2)}%`
 
@@ -135,7 +154,9 @@ const sendData = () => {
                 }
                 resultBox.append(resDiv)
             })
+            
         },
+
         error: function(error){
             console.log(error)
         }
@@ -144,6 +165,10 @@ const sendData = () => {
 
 quizForm.addEventListener('submit', e=>{
     e.preventDefault()
-
-    sendData()
+    if (timerState) {
+        clearInterval(timer); // Stop the timer
+        timerState = false; // Set the timer state to inactive
+    }
+    sendData();
+    
 })

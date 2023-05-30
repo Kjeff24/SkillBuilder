@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Resource, Announcement, Message, Room, Participants, Enrollment
+from .models import Course, Resource, Announcement, Message, Room, Enrollment, Participants
 
 # Register your models here.
 admin.site.register(Course)

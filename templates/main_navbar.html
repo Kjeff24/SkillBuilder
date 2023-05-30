@@ -17,7 +17,9 @@
                         >Home</a
                     >
                 </li>
+                {% if enrollments %}
                 {% for enrollment in enrollments %}
+                
                 <li>
                     <a
                         href="{% url 'course' enrollment.course.id %}"
@@ -26,6 +28,7 @@
                     </a>
                 </li>
                 {% endfor %}
+                {% endif %}
                 <li>
                     <div class="user-ico-li">
                         <a

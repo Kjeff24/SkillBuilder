@@ -10,7 +10,7 @@ def coursePage(request, pk):
     announcements = Announcement.objects.filter(course=course)
     rooms = Room.objects.filter(course=course)
 
-    enrollments = Enrollment.objects.filter(participants__user=employee)
+    enrollments = Enrollment.objects.filter(members__user=employee)
 
     context = {
         'course':course, 

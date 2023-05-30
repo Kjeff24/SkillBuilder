@@ -23,12 +23,11 @@ class Participants(models.Model):
         return str(self.user)
 
 
-
 # Enrollment into a course
 class Enrollment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date_enrolled = models.DateTimeField(auto_now_add=True)
-    participants = models.ManyToManyField(Participants, related_name='enrollments', blank=True)
+    members = models.ManyToManyField(Participants, related_name='enrollments', blank=True)
     
     def __str__(self):
         return str(self.course)

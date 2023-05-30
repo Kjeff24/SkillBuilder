@@ -5,7 +5,7 @@ from course.models import Course, Enrollment
 def quizPage(request, pk):
     employee = request.user
 
-    enrollments = Enrollment.objects.filter(participants__user=employee)
+    enrollments = Enrollment.objects.filter(members__user=employee)
     course = Course.objects.get(id=pk)
     context = {
         "course":course, 

@@ -5,7 +5,7 @@ from course.models import Enrollment, Course, Resource
 def resourcePage(request, pk):
     employee = request.user
 
-    enrollments = Enrollment.objects.filter(participants__user=employee)
+    enrollments = Enrollment.objects.filter(members__user=employee)
 
      # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk)
