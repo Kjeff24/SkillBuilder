@@ -56,9 +56,10 @@ class Answer(models.Model):
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.FloatField()
-    completion_time = models.FloatField(default=0)
+    score = models.FloatField(null=True)
+    completion_time = models.FloatField(null=True)
     created = models.DateTimeField(auto_now_add=True)
+    started = models.BooleanField(default=False)  # Track whether the quiz has started
     
     def __str__(self):
         return self.user.username

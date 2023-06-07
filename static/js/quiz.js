@@ -14,6 +14,7 @@ let minutes
 let seconds
 let completionTime // Time user took to complete the quiz
 
+// Quiz timer and also sends data to backend when timer reaches zero
 const activateTimer = (time) => {
     if (time.toString().length < 2) {
         timerBox.innerHTML = `<b>0${time}:00</b>`
@@ -57,6 +58,7 @@ const activateTimer = (time) => {
     timerState = true;
 }
 
+// get quizzes and answers
 $.ajax({
     type: 'GET',
     url: `${url}data`,
@@ -92,6 +94,8 @@ $.ajax({
 const quizForm = document.getElementById('quiz-form')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
+// sends a POST request returns scores and completion time
+// Display questions with their right answers and wrong answers chosen by user
 const sendData = () => {
     const minutesTaken = requiredTime - minutes - 1; // Subtract 1 to account for the final minute
     const secondsTaken = 60 - seconds;
@@ -163,6 +167,7 @@ const sendData = () => {
     })
 }
 
+// call the sendData() function when the form is being submitted
 quizForm.addEventListener('submit', e=>{
     e.preventDefault()
     if (timerState) {
@@ -172,3 +177,5 @@ quizForm.addEventListener('submit', e=>{
     sendData();
     
 })
+
+

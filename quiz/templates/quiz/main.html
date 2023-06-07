@@ -24,7 +24,7 @@ home
       <div class="modal-body" id="modal-body-confirm"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">no</button>
-        <button type="button" id="start-button" class="btn btn-success">yes</button>
+        <button type="button" id="start-button" data-dismiss="modal" class="btn btn-success">yes</button>
       </div>
     </div>
   </div>
@@ -32,8 +32,8 @@ home
 
 <div class="h1">Quiz List</div>
 <hr>
-{% if object_list %}
-{% for obj in object_list %}
+{% if quizzes %}
+{% for obj in quizzes %}
     <button
         class="btn btn-link modal-button"
         data-pk="{{obj.pk}}"
