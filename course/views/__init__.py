@@ -9,3 +9,4 @@ from .room_page import *
 from .chat_room import *
 from .user_management import *
 from .quiz_page import *
+from .profile_page import *

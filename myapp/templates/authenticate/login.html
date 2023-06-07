@@ -18,9 +18,13 @@
         </div>
         <form method="POST" class="form">
             {% csrf_token %}
-            <h3>
-                {% if msg %} {{ msg | safe }} {% else %} LOGIN TO YOUR ACCOUNT{% endif %}
-            </h3>
+            {% if messages %}
+                {% for message in messages %}
+                <h3 class="ui {{message.tags}} message">
+                {{message}}
+                </h3>
+                {% endfor %}
+            {% endif %}
             <p style="text-align: center">
                 <span>Don't have an account? Signup as</span>
                 <span class="signup-link"
@@ -48,6 +52,12 @@
             <button>Log In</button>
             <p class="go-home">
                 <a href="{% url 'home'%}">Go home</a>
+                <br>
+                <a
+                    class="small text-muted"
+                    href="{% url 'password_reset' %}"
+                    >Forgot password?</a
+                >
             </p>
         </form>
         <script>

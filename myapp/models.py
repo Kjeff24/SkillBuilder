@@ -8,6 +8,7 @@ from django.utils import timezone
 class User(AbstractUser):
     is_employer = models.BooleanField("Is employer",default=False)
     is_employee = models.BooleanField("Is employee", default=False)
+    is_email_verified = models.BooleanField(default=False)
     my_employer = models.CharField(max_length=200, null=True, blank=True)
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=30, blank=False, null=False)
