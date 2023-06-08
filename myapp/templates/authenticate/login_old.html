@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+        <!--Stylesheet-->
+        <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    </head>
+    <body>
+        <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                <h3 class="ui {{message.tags}} message">
+                {{message}}
+                </h3>
+                {% endfor %}
+            {% endif %}
+            <p style="text-align: center">
+                <span>Don't have an account? Signup as</span>
+                <span class="signup-link"
+                    ><a href="{% url 'employee-signup' %}">Employee</a></span
+                >
+                or
+                <span class="signup-link"
+                    ><a href="{% url 'employer-signup' %}">Employer</a></span
+                >
+            </p>
+            <label for="username" class="login-label">Username</label>
+            {{ form.username }}
+            <label for="password" login-label>Password</label>
+            {{ form.password }} 
+            <div style="display:flex; justify-content: flex-end; margin: 10px;">
+                Show Password
+                <label class="container">
+                    <input type="checkbox" id="showPasswordToggle">
+                    <div class="checkmark">
+                        
+                    </div>
+                </label>
+                <!-- <input type="checkbox" id="showPasswordToggle" /> -->
+            </div>
+            <button>Log In</button>
+            <p class="go-home">
+                <a href="{% url 'home'%}">Go home</a>
+                <br>
+                <a
+                    class="small text-muted"
+                    href="{% url 'password_reset' %}"
+                    >Forgot password?</a
+                >
+            </p>
+        </form>
+        <script>
+            const passwordField = document.getElementById("passwordField");
+            const showPasswordToggle =
+                document.getElementById("showPasswordToggle");
+
+            if (typeof passwordField.type === "undefined") {
+                // Feature detection failed, fallback behavior
+                showPasswordToggle.style.display = "none";
+            } else {
+                showPasswordToggle.addEventListener("change", function () {
+                    if (passwordField.type === "password") {
+                        passwordField.type = "text";
+                    } else {
+                        passwordField.type = "password";
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

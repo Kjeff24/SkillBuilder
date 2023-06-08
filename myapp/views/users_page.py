@@ -1,30 +1,12 @@
 from django.shortcuts import render
-from myapp.models import User
-from course.models import Course, Announcement, Resource, Room, Participants, Enrollment
 from django.contrib import messages
-
-
-# Employer home
-def employerHome(request, pk):
-    user = request.user
-    courses = Course.objects.filter(instructor=user)
-    resources = Resource.objects.filter(course__in=courses)
-    rooms = Room.objects.filter(course__in=courses)
-    announcements = Announcement.objects.filter(course__in=courses)
-
-    participants = Participants.objects.filter(course__in=courses)
-
-    context = {
-        'courses': courses,
-        'resources': resources,
-        'rooms': rooms,
-        'announcements': announcements,
-        'participants': participants
-    }
-    return render(request, "usersPage/employer_home.html", context)
+from django.contrib.auth.decorators import login_required
+from myapp.models import User
+from course.models import Course, Participants, Enrollment
 
 
 # Employee home
+@login_required(login_url='login')
 def employeeHome(request, pk):
     # Render the enrollment form with a list of available courses
     employee = request.user

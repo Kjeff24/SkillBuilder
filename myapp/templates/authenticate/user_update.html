@@ -20,7 +20,7 @@
                   <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
       
-                        <p class="text-center fs-2 fs-5 fw-bold mb-3 signup-heading">Sign Up As Employee</p>
+                        <p class="text-center fs-2 fs-5 fw-bold mb-3 signup-heading">Update User Information</p>
                         {% if messages %}
                         {% for message in messages %}
                             <p class="ui {{message.tags}} message text-center fs-6 fw-bold signup-heading">
@@ -59,67 +59,42 @@
                             </div>
 
                             <div class="d-flex flex-row align-items-center mb-3 justify-content-center input-container">
-                                <i class="fas fa-envelope fa-2x me-1 fa-fw icon-logo"></i>
+                                <i class="fas fa-file-alt fa-2x me-1 fa-fw icon-logo"></i>
                                 <div class="form-floating flex-fill">
                                     <!-- input  -->
-                                    {{ form.email}}
-                                    <label for="floatingInput">Email</label>
+                                    {{ form.bio}}
+                                    <label for="floatingInput">Bio</label>
                                 </div>
                             </div>
 
-                            <div class="d-flex flex-row align-items-center mb-3 justify-content-center input-container">
-                                <i class="fas fa-users fa-2x me-1 fa-fw icon-logo"></i>
+                            <div class="d-flex flex-row align-items-center mb-3 gap-3 justify-content-center input-container">
+                                <div class="">
+                                    <img
+                                        src="{{request.user.avatar.url}}"
+                                        alt="user"
+                                        class="image-icon"
+                                        style="
+                                            width: 30px;
+                                            border-radius: 50%;
+                                        "
+                                    />
+                                </div>
                                 <div class="form-floating flex-fill">
                                     <!-- input  -->
-                                    {{ form.employer_select}}
-                                    <label for="floatingInput">Employers</label>
+                                    {{ form.avatar}}
                                 </div>
                             </div>
-
-                            <div class="d-flex flex-row align-items-center mb-3 justify-content-center input-container">
-                                <i class="fas fa-lock fa-2x me-1 fa-fw icon-logo"></i>
-                                <div class="form-floating flex-fill">
-                                    <!-- input  -->
-                                    {{ form.password1}}
-                                    <label for="floatingInput">Password</label>
-                                </div>
-                            </div>
-
-                            <div class="d-flex flex-row align-items-center mb-3 justify-content-center input-container">
-                                <i class="fas fa-key fa-2x me-1 fa-fw icon-logo"></i>
-                                <div class="form-floating flex-fill">
-                                    <!-- input  -->
-                                    {{ form.password2}}
-                                    <label for="floatingInput">Confirm Password</label>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end check mb-4">
-                                <label>
-                                    <input type="checkbox" id="showPasswordToggle" />
-                                    <!-- <div class="checkmark"></div> -->
-                                </label>
-                                <span>Show Password</span>
-                            </div>
-                            <div class="d-flex flex-row align-items-center mb-3 justify-content-center input-container">
-                                <div class="flex-fill">
-                                    {{form.is_employee}}
-                                    <label class="">Is Employer</label>
-                                </div>
-                            </div>
-        
+                            
                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                            <button type="submit" class="btn btn-register btn-lg">Register</button>
+                            <button type="submit" class="btn btn-register btn-lg">Update</button>
                             </div>
-                            <p class="text-center">
-                                Already have an acount ? <a href="{% url 'login' %}" class="login-employee">Login</a>
-                            </p>
-        
+                            <p class="text-center"><a href="{% url 'employee-home' request.user %}" class="login-employee">Go home</a></p>
                         </form>
                     </div>
-                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2" style="user-select:none">
+                    <!-- <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2" style="user-select:none">
                       <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                         class="img-fluid" alt="Sample image">  
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>

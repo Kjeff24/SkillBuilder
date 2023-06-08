@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from myapp.models import User
-from course.forms import UserForm
+from myapp.forms import UserForm
 
 # Update user
+@login_required(login_url='login')
 def updateUser(request, pk):
     employers = User.objects.filter(is_employer=True).distinct()
     user = request.user 
@@ -19,4 +21,4 @@ def updateUser(request, pk):
 
     context = {'form':form, 'page':'update', 'employers':employers}
 
-    return render(request, "authenticate/employee_signup.html", context)
+    return render(request, "authenticate/user_update.html", context)

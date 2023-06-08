@@ -32,9 +32,13 @@ INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
     'course.apps.CourseConfig',
     'quiz.apps.QuizConfig',
+    'employerAdmin.apps.EmployeradminConfig',
 ]
 
 AUTH_USER_MODEL  = 'myapp.User'
+
+
+LOGIN_REDIRECT_URL = '/employer_admin/'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

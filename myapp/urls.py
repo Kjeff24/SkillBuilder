@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
-from .views import authentication_page, front_page, users_page
+from .views import authentication_page, front_page, users_page, user_management
 
 urlpatterns = [
     path('', front_page.home, name='home'),
@@ -12,7 +12,7 @@ urlpatterns = [
     path('employer_signup/', authentication_page.employerSignupPage, name='employer-signup'),
     path('activate-user/<uidb64>/<token>', authentication_page.activate_user, name='activate'),
     path('employee_home/<str:pk>/', users_page.employeeHome, name='employee-home'),
-    path('employer_home/<str:pk>/', users_page.employerHome, name='employer-home'),
+    path('update_user/<str:pk>/', user_management.updateUser, name='update-user'),
     
     path(
         'reset_password/', 

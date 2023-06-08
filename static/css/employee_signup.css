@@ -1,220 +1,34 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    box-sizing: border-box;
+#id_is_employee{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-
-.signup-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #72131e;
-    height: 100vh;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 750px;
-    backdrop-filter: blur(10px);
-    /* background-color: #ffffffab; */
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.13);
-    padding: 20px 50px;
-    border-radius: 20px;
-    position: relative;
-    box-shadow:  35px 35px 70px #2e080c,
-             -35px -35px 70px #b61e30;
-}
-
-.title {
-    font-size: 28px;
-    color: #ffffff;
-    font-weight: 600;
-    letter-spacing: -1px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-}
-
-.title::before,
-.title::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0px;
-    background-color: #ffffff;
-}
-
-.title::before {
-    width: 18px;
-    height: 18px;
-    background-color: #ffffff;
-}
-
-.title::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-}
-
-.message,
-.signin,
-.employee_signup {
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-}
-
-.signin {
-    text-align: center;
-}
-
-.signin a, .employee_signup a, .signin a {
-    color: #ffffff;
-}
-
-.signin a:hover, .employee_signup a:hover {
-    text-decoration: underline #ffffff;
-}
-
-.signup-row{
-    user-select: none;
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.form label {
-    position: relative;
-}
-
-.update-select{
-    width: 300px;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-}
-
-.form label .input-text {
-    width: 300px;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-}
-
-.form label .input-text + span,
-.update-select + span {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-}
-
-.form label .input-text:placeholder-shown + span,
-.update-select:placeholder-shown + span{
-    top: 15px;
-    font-size: 0.9em;
-}
-
-.form label .input-text:focus + span,
-.form label .input-text:valid + span,
-.update-select:focus + span,
-.update-select:valid + span{
-    top: 30px;
-    font-size: 0.7em;
-    font-weight: 600;
-}
-
-.form label .input-text:valid + span,
-.update-select:valid + span{
+.signup-heading, .icon-logo{
     color: #72131e;
 }
 
-.submit {
-    border: none;
-    outline: none;
-    background-color: #72131e;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    transform: 0.3s ease;
-    margin: auto;
-    padding: 10px 50px;
-}
-
-.submit:hover {
-    background-color: #881825;
-}
-
-.employee_signup{
-    text-align: center;
-}
-
-
-@keyframes pulse {
-    from {
-        transform: scale(0.9);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(1.8);
-        opacity: 0;
-    }
-}
-
-
-/* Checkbox starts here  */
-.container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-    display: none;
-  }
-  
-  .container {
-    --size: 18px;
-    width: var(--size);
-    display: block;
-    margin-left: 5px;
-    height: var(--size);
-    background-color: #ffffff;
-    border-radius: 100%;
-    cursor: pointer;
-    padding: 5px;
-    box-shadow: 1.5px 1.5px 2px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
-  }
-  
-  .container .checkmark {
+.input-container, .check{
     user-select: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: 1.5px 1.5px 2px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
-    transition: all ease 0.3s;
+}
 
-  }
-  
-  
-  .container input:checked + .checkmark {
-    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
-  }
-  
+.btn-register{
+    background-color: #72131e;
+    color: white;
+}
 
-  /* checkbox ends here */
+.btn-register:hover{
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+}
+
+.login-employee{
+    color: #72131e;
+    text-decoration: none;
+}
+
+.login-employee:hover{
+    color: black;
+    text-decoration: underline;
+}

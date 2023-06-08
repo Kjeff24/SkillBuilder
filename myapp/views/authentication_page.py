@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str 
 from django.conf import settings
-from myapp.tokens import account_activation_token
-from myapp.forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm
-from django.contrib import messages
 from django.core.mail import EmailMessage
+from myapp.tokens import account_activation_token
 from myapp.models import User
+from myapp.forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm
 
 
 def loginPage(request):
@@ -77,11 +78,14 @@ def employerSignupPage(request):
     if request.method == 'POST':
         form = EmployerSignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.is_staff = True  # Assign staff status
+            user.is_superuser = True  # Assign superuser status
+            user.save()
             send_activation_email(user, request)
             messages.add_message(request, messages.SUCCESS,
                                          'We sent you an email to verify your account')
-            return redirect('login')
+            return redirect('employer_admin')
         else:
             for field, errors in form.errors.items():
                 for error in errors:

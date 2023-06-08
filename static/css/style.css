@@ -56,13 +56,11 @@ body {
 }
 
 .nav-links-all ul li a:hover {
-    background-color: #72131e;
-    color: #ffffff;
-    font-weight: bold;
+    text-decoration: underline;
+    color: #00a7f8;
 }
 
 .nav-links-all ul li a.active {
-    background-color: white;
     color: #00a7f8;
     font-weight: bold;
 }
@@ -504,17 +502,6 @@ body {
     .nav-links-all ul li a {
         margin: 5px 0;
         color: white;
-    }
-    .nav-links-all ul li a:focus {
-        background-color: white;
-        color: #72131e;
-    }
-    .nav-links-all ul li a:hover {
-        background-color: white;
-        color: #72131e;
-    }
-    .nav-links-all ul li a.active {
-        color: #72131e;
     }
     .nav-ico {
         margin-top: 20px;

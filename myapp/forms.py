@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
 from .models import User
 
 # login form
@@ -7,7 +8,7 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "login-input",
+                "class": "form-control",
                 "id":"username",
                 "autocomplete":"username",
                 "placeholder": "Enter your username",
@@ -17,7 +18,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "login-input",
+                "class": "form-control",
                 "id":"passwordField",
                 "autocomplete":"password",
                 "placeholder": "Enter your password",
@@ -30,12 +31,12 @@ class LoginForm(forms.Form):
 class EmployeeSignUpForm(UserCreationForm):
     # Create a modelchoicefield to display only employers
     employer_select = forms.ModelChoiceField(
-        queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'input-text'}))
+        queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'form-select'}))
 
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"first_name",
             }
         )
@@ -44,7 +45,7 @@ class EmployeeSignUpForm(UserCreationForm):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"last_name",
             }
         )
@@ -53,7 +54,7 @@ class EmployeeSignUpForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"username",
             }
         )
@@ -61,7 +62,7 @@ class EmployeeSignUpForm(UserCreationForm):
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "id":"passwordField1"
             }
         )
@@ -69,7 +70,7 @@ class EmployeeSignUpForm(UserCreationForm):
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "id":"passwordField2"
             }
         )
@@ -77,7 +78,7 @@ class EmployeeSignUpForm(UserCreationForm):
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"email",
             }
         )
@@ -103,8 +104,9 @@ class EmployerSignUpForm(UserCreationForm):
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"first_name",
+                'id': 'floatingfirst_name',
             }
         )
     )
@@ -112,7 +114,7 @@ class EmployerSignUpForm(UserCreationForm):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"last_name",
             }
         )
@@ -121,7 +123,7 @@ class EmployerSignUpForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"username",
             }
         )
@@ -129,7 +131,7 @@ class EmployerSignUpForm(UserCreationForm):
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "id":"passwordField1"
             }
         )
@@ -137,7 +139,7 @@ class EmployerSignUpForm(UserCreationForm):
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "id":"passwordField2"
             }
         )
@@ -145,7 +147,7 @@ class EmployerSignUpForm(UserCreationForm):
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={
-                "class": "input-text",
+                "class": "form-control",
                 "autocomplete":"email",
             }
         )
@@ -156,4 +158,49 @@ class EmployerSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1',
                   'password2', 'is_employer')
-        
+
+
+# User Form
+class UserForm(ModelForm):
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control"
+            }
+        )
+    )
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control"
+            }
+        )
+    )
+
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control"
+            }
+        )
+    )
+
+    bio = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control",
+                'rows': 2
+            }
+        )
+    )
+
+    avatar = forms.ImageField(widget=forms.ClearableFileInput(attrs={'accept': 'image/*'}))
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'bio', 'avatar']
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')  # Retrieve the 'user' argument from kwargs
+        super().__init__(*args, **kwargs)      
