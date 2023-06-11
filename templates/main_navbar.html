@@ -13,18 +13,19 @@
                 <li>
                     <a
                         href="{% url 'employee-home' request.user %}"
-                        class="nav-links {% if request.resolver_match.view_name == 'home' %} active {% endif %}"
+                        class="nav-links {% if request.resolver_match.view_name == 'employee-home' %} active {% endif %}"
                         >Home</a
                     >
                 </li>
-                {% if enrollments %}
-                {% for enrollment in enrollments %}
+                {% if courses %}
+                {% for course in courses %}
                 
                 <li>
                     <a
-                        href="{% url 'course' enrollment.course.id %}"
+                    class="{% if course.id|stringformat:'s' == request.resolver_match.kwargs.pk %}active{% endif %}"
+                        href="{% url 'course' course.id %}"
                     >
-                        {{enrollment.course}}
+                        {{course}}
                     </a>
                 </li>
                 {% endfor %}

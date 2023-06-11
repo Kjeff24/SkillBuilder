@@ -85,7 +85,7 @@ def employerSignupPage(request):
             send_activation_email(user, request)
             messages.add_message(request, messages.SUCCESS,
                                          'We sent you an email to verify your account')
-            return redirect('employer_admin')
+            return redirect('employer_admin:login')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -139,6 +139,8 @@ def activate_user(request, uidb64, token):
 
         messages.add_message(request, messages.SUCCESS,
                              'Email verified, you can now login')
-        return redirect(reverse('login'))
+        if user.is_employee:
+            return redirect(reverse('login'))
+        return redirect(reverse('employer_admin:login'))
 
     return render(request, 'authenticate/activate-failed.html', {"user": user})

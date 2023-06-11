@@ -1,5 +1,7 @@
 {% load static %}
-    <a href="#" class="side-bar-content-row active">
+
+{% with request.resolver_match.url_name as url_name %}
+    <a href="#" class="side-bar-content-row {% if url_name == 'overview' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/overview.svg' %}"
@@ -9,7 +11,7 @@
         </div>
         <div class="side-bar-title">Overview</div>
     </a>
-    <a href="" class="side-bar-content-row">
+    <a href="" class="side-bar-content-row {% if url_name == 'progress' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/progress.svg' %}"
@@ -19,7 +21,9 @@
         </div>
         <div class="side-bar-title">Progress</div>
     </a>
-    <a href="{% url 'announcement' course.id %}" class="side-bar-content-row">
+    <a 
+        href="{% url 'announcement' course.id %} " 
+        class="side-bar-content-row {% if url_name == 'announcement' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/bell.svg' %}"
@@ -29,7 +33,9 @@
         </div>
         <div class="side-bar-title">Annoucement</div>
     </a>
-    <a href="{% url 'resource' course.id %}" class="side-bar-content-row">
+    <a 
+        href="{% url 'resource' course.id %}" 
+        class="side-bar-content-row {% if url_name == 'resource' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/archive.svg' %}"
@@ -39,7 +45,9 @@
         </div>
         <div class="side-bar-title">Resources</div>
     </a>
-    <a href="{% url 'quiz-page' pk=course.id %}" class="side-bar-content-row">
+    <a 
+        href="{% url 'quiz-page' pk=course.id %}" 
+        class="side-bar-content-row {% if url_name == 'quiz-page' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/quiz.svg' %}"
@@ -49,7 +57,9 @@
         </div>
         <div class="side-bar-title">Quiz</div>
     </a>
-    <a href="{% url 'room-page' course.id %}" class="side-bar-content-row">
+    <a 
+        href="{% url 'room-page' course.id %}" 
+        class="side-bar-content-row {% if url_name == 'room-page' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/message.svg' %}"
@@ -59,7 +69,7 @@
         </div>
         <div class="side-bar-title">Chat Room</div>
     </a>
-    <a href="#" class="side-bar-content-row">
+    <a href="#" class="side-bar-content-row ">
         <div class="link-icon">
             <img
                 src="{% static 'assets/account.svg' %}"
@@ -69,3 +79,4 @@
         </div>
         <div class="side-bar-title">Account</div>
     </a>
+{% endwith %}

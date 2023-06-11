@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-from course.models import Enrollment, Course, Room, Message
+from django.shortcuts import render, redirect, get_object_or_404
+from course.models import Course, Room, Message
 
 # Employee Chat room
 def chatRoom(request,pk2,pk):
     employee = request.user
 
-    enrollments = Enrollment.objects.filter(members__user=employee)
+    courses = Course.objects.filter(participants__user=employee)
 
     # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk2)
@@ -29,7 +29,7 @@ def chatRoom(request,pk2,pk):
     context = {
         'room': room,
         'room_messages': room_messages,
-        'enrollments': enrollments,
+        'courses': courses,
         'course': course,
         'page': 'chat-room'
     }

@@ -2,13 +2,16 @@ from django.contrib import admin
 from django.contrib.admin import register
 from employerAdmin.employer_admin import employer_admin_site
 from quiz.models import Quiz, Question, Answer, Result
-from course.models import Course, Participants, Enrollment, Resource, Announcement, Room 
+from course.models import *
 
 
+class ParticipantsInline(admin.TabularInline):
+    model = Participants
 
 
 @register(Course, site=employer_admin_site)
 class CourseAdmin(admin.ModelAdmin):
+    inlines = [ParticipantsInline]
     # Customize the fields displayed in the admin list view for courses
     list_display = ('name', 'instructor', 'created', 'updated')
     
@@ -24,19 +27,6 @@ class CourseAdmin(admin.ModelAdmin):
 class ParticipantsAdmin(admin.ModelAdmin):
     # Customize the fields displayed in the admin list view for participants
     list_display = ('user', 'course')
-    
-    def get_queryset(self, request):
-        # Filter queryset to show only the courses created by the logged-in employer
-        qs = super().get_queryset(request)
-        if request.user.is_employer:
-            return qs
-        else:
-            return qs.filter(instructor=request.user)
-
-@register(Enrollment, site=employer_admin_site)
-class EnrollmentAdmin(admin.ModelAdmin):
-    # Customize the fields displayed in the admin list view for enrollments
-    list_display = ('course', 'date_enrolled')
     
     def get_queryset(self, request):
         # Filter queryset to show only the courses created by the logged-in employer

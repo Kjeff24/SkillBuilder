@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.http import JsonResponse
 from .models import Quiz, Question, Answer, Result
-from course.models import Course
+from course.models import Course, Participants
 from django.contrib import messages
 from django.http import Http404
 from django.db.models import Subquery
 
 
 def quiz_list_view(request, pk2):
+    employee = request.user
     course = Course.objects.get(id=pk2)
-    quizzes = Quiz.objects.filter(course=course)
+    courses = Course.objects.filter(participants__user=employee)
+    quizzes = Quiz.objects.filter(course__in=courses)
     
     # Exclude quizzes that already exist in the Result model for the current user
     user_results = Result.objects.filter(user=request.user)

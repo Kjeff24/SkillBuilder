@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from myapp.models import User
-from course.models import Course, Participants, Enrollment
+from course.models import Course, Participants
 
 
 # Employee home
@@ -12,10 +12,13 @@ def employeeHome(request, pk):
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)
     # print(employer)
-    courses = Course.objects.filter(instructor__username=employer).distinct()
-    enrollments = Enrollment.objects.filter(members__user=employee)
+    employer_courses = Course.objects.filter(instructor__username=employer).distinct()
+    
+    # get all courses, enrolled by user
+    participants = Participants.objects.filter(user=employee)
+    courses = [participant.course for participant in participants]
 
-    context = {'courses': courses, 'enrollments':enrollments}
+    context = {'courses': courses, 'employer_courses':employer_courses}
 
 
     if request.method == 'POST':
@@ -25,7 +28,7 @@ def employeeHome(request, pk):
         user = User.objects.get(username=request.user.username)
 
         # Check if the course exists in the enrollment
-        enrollment = Enrollment.objects.filter(course=course).first()
+        enrollment = Participants.objects.filter(course=course).first()
 
         if enrollment:
             # Check if the user exists in the participants
@@ -37,14 +40,10 @@ def employeeHome(request, pk):
             else:
                 # Create a new participant
                 participant = Participants.objects.create(user=user, course=course)
-                enrollment.members.add(participant)
                 messages.success(request, 'Enrollment successfully.')
                 return render(request, "usersPage/employee_home.html", context)
         else:
-            # Create a new enrollment and participant
-            enrollment = Enrollment.objects.create(course=course)
             participant = Participants.objects.create(user=user, course=course)
-            enrollment.members.add(participant)
 
             messages.success(request, 'Enrollment successfully.')
             return render(request, "usersPage/employee_home.html", context)

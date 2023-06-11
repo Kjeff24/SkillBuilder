@@ -4,11 +4,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import custom_404
 from employerAdmin.employer_admin import employer_admin_site
+from django.conf.urls import handler404
 
 # NB exclude admin when hosting app
 
+
+
 urlpatterns = [
-    # path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
     path('employer_admin/', employer_admin_site.urls),
     path("", include("myapp.urls")),
     path("", include("course.urls")),

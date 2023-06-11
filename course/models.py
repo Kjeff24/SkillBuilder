@@ -14,34 +14,33 @@ class Course(models.Model):
         return self.name
 
 
-# Course Participants
-class Participants(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE) 
-
-    def __str__(self):
-        return str(self.user)
-
-
-# Enrollment into a course
-class Enrollment(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    date_enrolled = models.DateTimeField(auto_now_add=True)
-    members = models.ManyToManyField(Participants, related_name='enrollments', blank=True)
-    
-    def __str__(self):
-        return str(self.course)
-
-
 # Resources model allows employers to add resources based on course
 class Resource(models.Model):
+    FILE_TYPES = (
+        ('pdf', 'PDF'),
+        ('image', 'Image'),
+        ('audio', 'Audio'),
+        ('video', 'Video'),
+    )
+    
     name = models.CharField(max_length=30)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     description = models.TextField(max_length=50, blank=True)
+    file_type = models.CharField(max_length=10, choices=FILE_TYPES, default="null")
     youtubeLink = models.TextField(blank=True)
     file = models.FileField(upload_to='resources/', blank=True)
     created  = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    user_download_count = models.PositiveIntegerField(default=0)
+    user_email_sent = models.PositiveIntegerField(default=0)
+
+    def download_count(self):
+        self.user_download_count += 1
+        self.save()
+
+    def email_count(self):
+        self.user_email_sent += 1
+        self.save()
 
     def __str__(self):
         return self.name
@@ -82,3 +81,26 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
+    
+    
+# Course Participants
+class Participants(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE) 
+    room =  models.ForeignKey(Room, on_delete=models.SET_NULL, null=True) 
+    user_download_count = models.PositiveIntegerField(default=0)
+    user_email_sent = models.PositiveIntegerField(default=0)
+
+    def download_count(self):
+        self.user_download_count += 1
+        self.save()
+
+    def email_count(self):
+        self.user_email_sent += 1
+        self.save()
+        
+    def has_course(self):
+        return self.course is not None
+        
+    def __str__(self):
+        return str(self.user)
