@@ -1,5 +1,9 @@
 from django.db import models
 from myapp.models import User
+from event.models import Event
+from datetime import timedelta
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 # Create your models here.
 # Course model allows employers to create course
@@ -56,6 +60,25 @@ class Announcement(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        # Call the parent class's save() method
+        super().save(*args, **kwargs)
+
+        # Create an event for the announcement
+        event = Event.objects.create(
+            name=self.title,
+            course=self.course,
+            start=self.date,
+            end=self.date + timedelta(hours=24)  # Adjust the end time as needed
+        )
+        event.save()
+        
+@receiver(post_delete, sender=Announcement)
+def delete_associated_event(sender, instance, **kwargs):
+    event = Event.objects.filter(name=instance.title).first()
+    if event:
+        event.delete()
     
 # Room allows employees to chat
 class Room(models.Model):

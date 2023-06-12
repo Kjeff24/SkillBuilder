@@ -1,7 +1,7 @@
 {% load static %}
 
 {% with request.resolver_match.url_name as url_name %}
-    <a href="#" class="side-bar-content-row {% if url_name == 'overview' %} active {% endif %}">
+    <a href="{% url 'course' pk=course.id %}" class="side-bar-content-row {% if url_name == 'course' %} active {% endif %}">
         <div class="link-icon">
             <img
                 src="{% static 'assets/overview.svg' %}"
@@ -69,7 +69,7 @@
         </div>
         <div class="side-bar-title">Chat Room</div>
     </a>
-    <a href="#" class="side-bar-content-row ">
+    <a href="{% url 'update-user' request.user.id %}" class="side-bar-content-row ">
         <div class="link-icon">
             <img
                 src="{% static 'assets/account.svg' %}"

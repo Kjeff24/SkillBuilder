@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'course.apps.CourseConfig',
     'quiz.apps.QuizConfig',
     'employerAdmin.apps.EmployeradminConfig',
+    'event.apps.EventConfig',
 ]
 
 AUTH_USER_MODEL  = 'myapp.User'

@@ -102,6 +102,12 @@ body {
     margin: auto;
 }
 
+.content-col-7 img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .title-1 {
     color: #00a7f8;
     margin-top: 10;
@@ -224,14 +230,14 @@ body {
     background-image: url("../assets/about-bg-2.jpg");
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
+    min-height: 50vh;
 }
 
 .contact-bg {
     /* background-color: rgba(249,140,137, 0.3); */
     background-color: rgba(81, 191, 255, 0.5);
     min-width: 100%;
-    min-height: 100vh;
+    min-height: 50vh;
     color: #72131e;
     display: flex;
     flex-direction: column;
@@ -255,9 +261,12 @@ body {
     border-radius: 30px;
 }
 
+.get-in-touch{
+    margin-top: 30px;
+}
+
 .get-in-touch a {
     /* width: 411px; */
-    margin-top: 50px;
     height: 82px;
     font-weight: 700px;
     font-size: 18px;
@@ -297,7 +306,7 @@ body {
 .contact-input,
 .contact-select {
     padding: 10px;
-    width: 540px;
+    max-width: 340px;
     height: 60px;
     border: 1px solid #ffffff;
     border-radius: 10px;
@@ -550,6 +559,18 @@ body {
         width: 250px;
         margin-top: 10px;
     }
+    .contact-info-heading {
+        font-size: 14px;
+        margin: 20px;
+    }
+    .get-in-touch{
+        height: 40px;
+        padding: 10px;
+    }
+    .get-in-touch a {
+        font-size: 14px;
+    }
+    
 }
 
 @media (max-width: 576px) {
@@ -564,6 +585,18 @@ body {
         width: 400px;
         height: 60px;
     }
+    .content-col-7 img{
+        max-width: 300px;
+    }
+    .content-title{
+        font-size: 20px;
+    }
+    .title-3 {
+        font-size: 20px;
+    }
+    .title-heading{
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 430px) {
@@ -574,5 +607,11 @@ body {
     .card-img {
         width: 200px;
         margin-top: 10px;
+    }
+    .content-col-7 img{
+        max-width: 200px;
+    }
+    .content-paragraph, .title-info-1{
+        font-size: 16px;
     }
 }

@@ -173,6 +173,10 @@ body {
     padding: 30px
 }
 
+.col-2-content h2, .col-2-content p {
+    text-align: center;
+}
+
 .content-page-row .col-1 .col-1-content h1 {
     font-weight: 700;
     font-size: 24px;
@@ -547,7 +551,7 @@ td {
 
 /* Announcement page end here */
 
-@media only screen and (max-device-width: 850px) {
+@media (max-width: 850px) {
     *,
     .time {
         font-size: 28px;
@@ -567,9 +571,12 @@ td {
     .outgoing-chats-msg p {
         font-size: 28px;
     }
+    .content-page-row {
+        flex-direction: column;
+    }
 }
 
-@media only screen and (max-device-width: 450px) {
+@media (max-width: 450px) {
     *,
     .time {
         font-size: 28px;
@@ -610,7 +617,7 @@ td {
 /* footer ends here  */
 
 /* Media Queries Starts here  */
-@media only screen and (max-width: 900px) {
+@media (max-width: 900px) {
     /* .header {
         position: absolute;
     } */
@@ -714,6 +721,35 @@ td {
 
     .nav-ico {
         margin-top: 20px;
+    }
+    .content-page-row {
+        flex-direction: column;
+    }
+    .content-page-row .col-1, .content-page-row .col-2{
+        width: 100%;
+    }
+    .col-1-content ul li span{
+        font-size: 14px;
+    }
+    .col-2-content h2 {
+        font-size: 18px;
+    }
+    .col-2-content p {
+        font-size: 14px;
+    }
+    .enroll-form-group label {
+        font-size: 18px;
+    }
+    .enroll-form-group #course-select, .enroll-btn{
+        width: 120px;
+        font-size: 14px;
+        padding-left: 5px;
+    }
+    .enroll-form-group #course-select option{
+        font-size: 12px;
+    }
+    .footer-content{
+        font-size: 15px;
     }
 }
 
