@@ -1,14 +1,15 @@
+const toolsBtn = document.querySelectorAll("a.tools-button");
+  const sideBarBig = document.querySelector(".side-bar-big");
+  const sideBarSmall = document.querySelector(".side-bar-small");
+  toolsBtn.forEach(function (link) {
+    link.addEventListener("click", function () {
+      sideBarBig.classList.toggle("active");
+      sideBarSmall.classList.toggle("active");
+    });
 
-const linkItem = document.querySelectorAll(".side-bar-content-row")
-const iconBtn = document.querySelector(".icon-btn")
-const navLinksAll = document.querySelector(".nav-links-all")
-const navLinks = document.querySelectorAll(".nav-links")
+  })
 
-
-iconBtn.addEventListener("click", function () {
-  navLinksAll.classList.toggle("active");
-  iconBtn.classList.toggle("active");
-});// Handle download increment
+// Handle download increment
 // Get all the download links
 var downloadLinks = document.querySelectorAll(".download-link");
 

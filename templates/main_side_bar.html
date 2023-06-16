@@ -1,82 +1,180 @@
 {% load static %}
+<div
+  class="side-bar side-bar-big flex-shrink-0 p-3 text-white bg-dark"
+  style="width: 280px"
+>
+  <a class="tools-button btn btn-dark text-white">Tools</a>
+  {% with request.resolver_match.url_name as url_name %}
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'course' pk=course.id %}"
+        class="nav-link py-3 border-bottom text-white {% if url_name == 'course' %} active {% endif %}"
+        aria-current="page"
+        title="Overview"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/overview.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-1"
+        />
+        Overview
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'announcement' course.id %}"
+        class="nav-link py-3 border-bottom text-white {% if url_name == 'announcement' %} active {% endif %}"
+        title="Announcement"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/bell.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-3"
+        />
+        Announcement
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'resource' course.id %}"
+        class="nav-link py-3 border-bottom text-white {% if url_name == 'resource' %} active {% endif %}"
+        title="Resources"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/archive.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-4"
+        />
+        Resource
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'quiz-page' pk=course.id %}"
+        class="nav-link py-3 border-bottom text-white {% if url_name == 'quiz-page' %} active {% endif %}"
+        title="Quiz"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/quiz.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-5"
+        />
+        Quiz
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'room-page' course.id %}"
+        class="nav-link py-3 border-bottom text-white {% if url_name == 'room-page' %} active {% endif %}"
+        title="Chat Room"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/message.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-6"
+        />
+        Chat
+      </a>
+    </li>
+  </ul>
+  {% endwith %}
+</div>
+<!-- other side bar  -->
+<div
+  class="side-bar side-bar-small flex-column flex-shrink-0 bg-dark"
+  style="width: 4.5rem"
+>
+  <a class="tools-button btn btn-dark text-white"> Tools </a>
+  {% with request.resolver_match.url_name as url_name %}
 
-{% with request.resolver_match.url_name as url_name %}
-    <a href="{% url 'course' pk=course.id %}" class="side-bar-content-row {% if url_name == 'course' %} active {% endif %}">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/overview.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-1"
-            />
-        </div>
-        <div class="side-bar-title">Overview</div>
-    </a>
-    <a href="" class="side-bar-content-row {% if url_name == 'progress' %} active {% endif %}">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/progress.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-2"
-            />
-        </div>
-        <div class="side-bar-title">Progress</div>
-    </a>
-    <a 
-        href="{% url 'announcement' course.id %} " 
-        class="side-bar-content-row {% if url_name == 'announcement' %} active {% endif %}">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/bell.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-3"
-            />
-        </div>
-        <div class="side-bar-title">Annoucement</div>
-    </a>
-    <a 
-        href="{% url 'resource' course.id %}" 
-        class="side-bar-content-row {% if url_name == 'resource' %} active {% endif %}">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/archive.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-4"
-            />
-        </div>
-        <div class="side-bar-title">Resources</div>
-    </a>
-    <a 
-        href="{% url 'quiz-page' pk=course.id %}" 
-        class="side-bar-content-row {% if url_name == 'quiz-page' %} active {% endif %}">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/quiz.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-5"
-            />
-        </div>
-        <div class="side-bar-title">Quiz</div>
-    </a>
-    <a 
-        href="{% url 'room-page' course.id %}" 
-        class="side-bar-content-row {% if url_name == 'room-page' %} active {% endif %}">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/message.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-6"
-            />
-        </div>
-        <div class="side-bar-title">Chat Room</div>
-    </a>
-    <a href="{% url 'update-user' request.user.id %}" class="side-bar-content-row ">
-        <div class="link-icon">
-            <img
-                src="{% static 'assets/account.svg' %}"
-                alt="Back"
-                class="feather-icon icon-bar-7"
-            />
-        </div>
-        <div class="side-bar-title">Account</div>
-    </a>
-{% endwith %}
+  <ul class="nav nav-pills nav-flush flex-column text-center">
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'course' pk=course.id %}"
+        class="nav-link py-3 border-bottom {% if url_name == 'course' %} active {% endif %}"
+        aria-current="page"
+        title="Overview"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/overview.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-1"
+        />
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'announcement' course.id %}"
+        class="nav-link py-3 border-bottom {% if url_name == 'announcement' %} active {% endif %}"
+        title="Announcement"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/bell.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-3"
+        />
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'resource' course.id %}"
+        class="nav-link py-3 border-bottom {% if url_name == 'resource' %} active {% endif %}"
+        title="Resources"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/archive.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-4"
+        />
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'quiz-page' pk=course.id %}"
+        class="nav-link py-3 border-bottom {% if url_name == 'quiz-page' %} active {% endif %}"
+        title="Quiz"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/quiz.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-5"
+        />
+      </a>
+    </li>
+    <li class="nav-item mb-5">
+      <a
+        href="{% url 'room-page' course.id %}"
+        class="nav-link py-3 border-bottom {% if url_name == 'room-page' %} active {% endif %}"
+        title="Chat Room"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+        <img
+          src="{% static 'assets/message.svg' %}"
+          alt="Back"
+          class="feather-icon icon-bar-6"
+        />
+      </a>
+    </li>
+  </ul>
+  {% endwith %}
+</div>
