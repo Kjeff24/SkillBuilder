@@ -19,20 +19,17 @@ body {
 .header {
     width: 100%;
     height: 80px;
-    background-color: rgb(255, 255, 255);
+    background-color: #3f4156;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 40px 40px;
-    /* position: fixed; */
-    border-top: 15px solid #72131e;
-    border-bottom: 2px solid #72131e;
 }
 
 .logo {
     font-size: 26px;
     font-weight: bold;
-    color: #72131e;
+    color: #71c6dd;
 }
 
 .icon-btn {
@@ -47,21 +44,22 @@ body {
 
 .nav-links-all ul li a {
     display: block;
-    color: #194866;
+    color: #e5e5e5;
     margin: 0 5px;
     padding: 10px 25px;
     border-radius: 50px;
     font-size: 14px;
     transition: all 0.6s ease-in-out;
+    text-decoration: none;
 }
 
 .nav-links-all ul li a:hover {
     text-decoration: underline;
-    color: #00a7f8;
+    color: #71c6dd;
 }
 
 .nav-links-all ul li a.active {
-    color: #00a7f8;
+    color: #71c6dd;
     font-weight: bold;
 }
 
@@ -74,7 +72,7 @@ body {
 /* home page starts here  */
 .home-content {
     padding-top: 20px;
-    background-color: white;
+    background-color: #2d2d39;
 }
 
 .size-5,
@@ -96,6 +94,13 @@ body {
     margin: auto;
 }
 
+.content-col-5  p:first-child{
+    color:  #71c6dd;
+}
+.content-col-5  p{
+    color:  #b2bdbd;
+}
+
 .content-col-7 {
     flex: 0 0 58.33333%; /* 7/12 of the width */
     max-width: 58.33333%;
@@ -109,7 +114,7 @@ body {
 }
 
 .title-1 {
-    color: #00a7f8;
+    color: #e5e5e5;
     margin-top: 10;
     margin-bottom: 10;
 }
@@ -129,17 +134,19 @@ body {
     color: white;
     max-width: 100%;
     /* height: 570px; */
-    background: #72131e;
+    background: #3f4156;
     padding: 20px;
 }
 
 .title-2 {
-    max-width: 900px;
+    text-align: center;
+    color: #e5e5e5;
 }
 
 .title-info-2 {
-    width: 400px;
+    text-align: center;
     line-height: 26px;
+    color: #b2bdbd;
 }
 
 .card-container {
@@ -163,7 +170,7 @@ body {
     margin-top: 30px;
     margin-bottom: 30px;
     line-height: 57px;
-    color: #72131e;
+    color: #e5e5e5;
     text-align: center;
 }
 
@@ -177,9 +184,13 @@ body {
 
 .about-card {
     color: white;
-    background: #72131e;
+    background: #3f4156;
     width: 450px;
     border-radius: 16px;
+}
+
+.about-title{
+    color: #71c6dd;
 }
 
 .about-title,
@@ -190,10 +201,11 @@ body {
     width: 90%;
     line-height: 26px;
     margin: auto;
+    color: #b2bdbd;
 }
 
 .footer {
-    background-color: #72131e;
+    background-color: #3f4156;
     align-items: center;
 }
 
@@ -207,11 +219,10 @@ body {
 /* About page starts here */
 .content-heading {
     margin: auto;
-    background-color: white;
 }
 .content-title {
     text-align: center;
-    color: #72131e;
+    color: #e5e5e5;
 }
 
 .about-content-1 {
@@ -219,11 +230,13 @@ body {
 }
 .content-paragraph {
     text-align: center;
+    color: #b2bdbd;
 }
 
 .title-heading {
     font-size: 20px;
     font-weight: 700px;
+    color: #71c6dd;
 }
 
 .content-4 {
@@ -235,10 +248,9 @@ body {
 
 .contact-bg {
     /* background-color: rgba(249,140,137, 0.3); */
-    background-color: rgba(81, 191, 255, 0.5);
+    background-color: #2d2d39;
     min-width: 100%;
     min-height: 50vh;
-    color: #72131e;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -248,6 +260,7 @@ body {
 .contact-info-heading {
     font-size: 24px;
     margin: 50px;
+    color: #e5e5e5;
 }
 
 .contact-btn {
@@ -256,7 +269,7 @@ body {
     height: 82px;
     font-weight: 700px;
     font-size: 18px;
-    background: #72131e;
+    background: #3f4156;
     color: white;
     border-radius: 30px;
 }
@@ -265,94 +278,24 @@ body {
     margin-top: 30px;
 }
 
+.get-in-touch a:hover{
+    background-color: #e5e5e5;
+    color: #3f4156;
+}
+
 .get-in-touch a {
     /* width: 411px; */
+    text-decoration: none;
     height: 82px;
     font-weight: 700px;
     font-size: 18px;
-    background: #72131e;
-    color: white;
+    background: #696d97;
+    color: #e5e5e5;
     border-radius: 40px;
     padding: 20px;
 }
 /* About page ends here  */
 
-/* Contact Starts here  */
-.contact-body {
-    background-color: #ffffff;
-    /* padding: 50px; */
-    user-select: none;
-}
-
-.contact-container {
-    background: linear-gradient(180deg, #9c1525 0%, #4b0c14 100%);
-    margin: 50px auto 50px auto;
-    width: 686px;
-    /* height: 608px; */
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 30px;
-}
-
-.contact-row {
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: auto;
-    width: 80%;
-    color: white;
-}
-
-.contact-input,
-.contact-select {
-    padding: 10px;
-    max-width: 340px;
-    height: 60px;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    color: #72131e;
-    font-size: 18px;
-}
-
-.contact-input:hover,
-.contact-select:hover,
-.message-area:hover {
-    background-color: #530e16;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-}
-
-.contact-input:focus {
-    background-color: #72131e;
-    color: white;
-    transition: background-color 0.5s ease;
-}
-
-.message-area {
-    border-radius: 10px;
-    color: #72131e;
-    padding: 10px;
-}
-
-.contact-submit {
-    display: flex;
-    justify-content: center;
-}
-
-.message-submit {
-    width: 231px;
-    height: 60px;
-    background: #72131e;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    color: white;
-    font-weight: 700px;
-    font-size: 18px;
-}
-
-/* Contact ends here  */
 /* Media Queries */
 
 @media screen and (max-width: 1276px) {
@@ -444,7 +387,7 @@ body {
     .icon-btn .line {
         width: 30px;
         height: 3px;
-        background-color: #72131e;
+        background-color: #71c6dd;
         margin: 4px 0;
         transition: all 0.4s ease-in;
     }
@@ -483,7 +426,7 @@ body {
     .nav-links-all {
         height: 0;
         position: absolute;
-        background-color: #72131e;
+        background-color: #2d2d39;
         top: 80px;
         left: 0;
         right: 0;

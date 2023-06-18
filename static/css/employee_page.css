@@ -11,10 +11,6 @@
   height: 100vh;
 }
 
-.navbar {
-  height: 10vh;
-}
-
 .main-content-container {
   height: 100%;
   display: flex;
@@ -30,14 +26,8 @@
   overflow-y: auto;
 }
 
-.side-bar::-webkit-scrollbar {
+.side-bar::-webkit-scrollbar, .side-bar::-webkit-scrollbar-thumb {
   background-color: transparent;
-  width: 10px;
-}
-
-.side-bar::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 6px;
 }
 
 .content-page {
@@ -84,10 +74,28 @@
     display: flex;
 }
 
-/* a.tools-button{
-    display: none;
-} */
+
 /* side bar ends */
+
+
+/* announcement starts  */
+.view {
+  cursor: pointer;
+}
+
+.view-details {
+  display: none;
+}
+
+.view-details.active {
+  display: block;
+}
+
+.view-details-header h4 {
+  margin-top: 10px;
+}
+/* announcement ends */
+
 
 @media (max-width: 900px) {
     .side-bar-big{

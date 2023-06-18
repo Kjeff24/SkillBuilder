@@ -48,12 +48,12 @@ def resourcePage(request, pk):
 # count the number of downloads
 def downloadFile(request, pk):
     file = Resource.objects.get(id=pk)
-    # Get or create UserActivities object for the logged-in user
-    user_activities = Participants.objects.get(user=request.user)
+    # Get the current user's participant object for the specific course
+    user_activities = Participants.objects.get(user=request.user, course=file.course)
     # Increase the download count for the user
     user_activities.download_count()
     # increase number of downloads of a particular
-    file.downloads_count()
+    file.download_count()
     messages.success(request, 'Download successfully.')
     return redirect('resource', pk=file.course.id)
 

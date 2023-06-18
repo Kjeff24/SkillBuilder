@@ -1,6 +1,6 @@
 #id_is_employer{
-    width: 40px;
-  height: 40px;
+    width: 30px;
+  height: 30px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -10,25 +10,25 @@
 }
 
 .signup-heading, .icon-logo{
-    color: #72131e;
+    color: #3f4156;
 }
 
 .btn-register{
-    background-color: #72131e;
+    background-color: #3f4156;
     color: white;
 }
 
 .btn-register:hover{
-    background-color: rgb(0, 0, 0);
+    background-color: #696d97;
     color: white;
 }
 
 .login-employer{
-    color: #72131e;
+    color: #3f4156;
     text-decoration: none;
 }
 
 .login-employer:hover{
-    color: black;
+    color: #696d97;
     text-decoration: underline;
 }

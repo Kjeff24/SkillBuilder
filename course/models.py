@@ -4,6 +4,8 @@ from event.models import Event
 from datetime import timedelta
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.utils import timezone
+import pytz
 
 # Create your models here.
 # Course model allows employers to create course
@@ -25,6 +27,7 @@ class Resource(models.Model):
         ('image', 'Image'),
         ('audio', 'Audio'),
         ('video', 'Video'),
+        ('link', 'link'),
     )
     
     name = models.CharField(max_length=30)
@@ -48,6 +51,32 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        # Call the parent class's save() method
+        super().save(*args, **kwargs)
+        
+        timezone_str = 'GMT0'  # Replace 'Your_Timezone' with your desired timezone
+        timezone_obj = pytz.timezone(timezone_str)
+
+        # Get the current time in the desired timezone
+        current_time = timezone.localtime(timezone.now(), timezone_obj)
+
+        # Create an event for the announcement
+        event = Event.objects.create(
+            name=self.name,
+            course=self.course,
+            start=current_time,
+            end=current_time + timezone.timedelta(hours=24)  # Adjust the end time as needed
+        )
+        event.save()
+        
+@receiver(post_delete, sender=Resource)
+def delete_associated_event(sender, instance, **kwargs):
+    event = Event.objects.filter(name=instance.name).first()
+    if event:
+        event.delete()
+        
 
 # Announcement model allows employers to add announcements based on course
 class Announcement(models.Model):

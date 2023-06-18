@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f4156;">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'employee-home' request.user %}"
       >SkillBuilder</a
@@ -25,6 +25,8 @@
             >Home</a
           >
         </li>
+        
+        {% with request.resolver_match.url_name as url_name %}
         {% if courses %}
         <li class="nav-item dropdown">
           <a
@@ -44,7 +46,7 @@
             {% for course in courses %}
             <li>
               <a
-                class="dropdown-item"
+                class="dropdown-item {% if course.id|stringformat:'s' == request.resolver_match.kwargs.pk %}active{% endif %}"
                 href="{% url 'course' course.id %}"
               >
                 {{course}}
@@ -54,6 +56,7 @@
           </ul>
         </li>
         {% endif %}
+        {% endwith %}
       </ul>
       {% endif %}
       <div>
