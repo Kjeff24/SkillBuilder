@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-21 20:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\SkillBuilder\settings.py:156
+msgid "English"
+msgstr ""
+
+#: .\SkillBuilder\settings.py:157
+msgid "French"
+msgstr ""
+
+#: .\myapp\templates\frontPage\about.html:12
+msgid ""
+"SkillBuilder is one of the world&#39;s largest employee training platform"
+msgstr ""
+
+#: .\myapp\templates\frontPage\about.html:16
+msgid ""
+"We leverage open-source software to deliver a highly effective, customized, "
+"and engaging learning experience."
+msgstr ""
+
+#: .\myapp\templates\frontPage\about.html:19
+msgid ""
+"With our extensive experience, we are confident that we can be your ideal "
+"eLearning partner."
+msgstr ""
+
+#: .\myapp\templates\frontPage\about.html:22
+#: .\myapp\templates\frontPage\home.html:17
+msgid ""
+"At Skillbuilder, we are on a mission to empower employers to improve our "
+"world with open source employee training software. With hundreds of millions "
+"of users around the globe and translated into over 5 languages, SkillBuilder "
+"gives you the freedom to create online teaching and training solutions that "
+"best meet your learners&#39; needs."
+msgstr ""
+
+#: .\myapp\templates\frontPage\about.html:39
+#: .\myapp\templates\frontPage\home.html:35
+msgid ""
+"Open LMS provides world-class LMS solutions that empower organizations to "
+"meet education and workplace learning needs. Get in touch to find out more."
+msgstr ""
+
+#: .\myapp\templates\frontPage\about.html:44
+#: .\myapp\templates\frontPage\home.html:40
+msgid "Get In Touch With Us"
+msgstr ""
+
+#: .\myapp\templates\frontPage\contact.html:10
+msgid "Welcome! Your online education experience begins here!"
+msgstr ""
+
+#: .\myapp\templates\frontPage\contact.html:13
+msgid ""
+"It's easy, just fill in the form; and we'll get in touch to know more about "
+"you and how can we assist you."
+msgstr ""
+
+#: .\myapp\templates\frontPage\home.html:12
+msgid "Why choose SkillBuilder?"
+msgstr ""
+
+#: .\myapp\templates\frontPage\home.html:14
+msgid "Empowering you to provide quality eLearning experiences"
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:6
+msgid "Making quality online education accessible for all"
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:9
+msgid ""
+"SkillBuilder is the employee training platform of choice for thousands of "
+"schools, universities, colleges, vocational trainers, and workplaces in "
+"every part of the world."
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:12
+msgid ""
+"SkillBuilder is more than just an employee training platform &#45; we are a "
+"global community of educators, trainers, developers, system administrators, "
+"and learners who are dedicated to building the world&#39;s most effective "
+"platform for online learning."
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:17
+msgid ""
+"From sharing educational resources and debating new ideas to fixing bugs and "
+"updating documentation, our community is here to support you throughout your "
+"online learning journey."
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:20
+msgid "Our History"
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:22
+msgid ""
+"SkillBuilder was born from a desire to give educators a way to create "
+"quality education experiences over the internet. From its humble beginnings "
+"in 2023, SkillBuilder has constantly evolved through our commitment to "
+"pedagogy, open source philosophy, and a collaborative global community of "
+"like-minded educators and technologists."
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:27
+msgid "Our Values"
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:29
+msgid ""
+" From sharing educational resources and debating new ideas to fixing bugs "
+"and updating documentation, our community is here to support you throughout "
+"your online learning journey.From sharing educational resources and debating "
+"new ideas to fixing bugs and updating documentation, our community is here "
+"to support you throughout your online learning journey."
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:32
+msgid "Our Awards"
+msgstr ""
+
+#: .\myapp\templates\frontPage\mini_about.html:34
+msgid ""
+"Our awards recognise the hard work and dedication of our team and the Moodle "
+"community in continually evolving and improving Moodle."
+msgstr ""
+
+#: .\myapp\templates\frontPage\people.html:4
+msgid "Building better learning experiences with SkillBuilder"
+msgstr ""
+
+#: .\myapp\templates\frontPage\people.html:7
+msgid ""
+"Read inspiring stories from around the world on how SkillBuilder is being "
+"used to manage online learning and improve learner outcomes."
+msgstr ""

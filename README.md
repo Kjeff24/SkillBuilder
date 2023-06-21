@@ -207,6 +207,15 @@ The project provides the following endpoints:
 ### Overview
 ![Alt text](static/assets/preview_images/overview.png)
 
+### Announcement
+![Alt text](static/assets/preview_images/announcement.png)
+
+### Resources
+![Alt text](static/assets/preview_images/resources.png)
+
+### Room
+![Alt text](static/assets/preview_images/rooms.png)
+
 ### Quiz Page
 ![Alt text](static/assets/preview_images/quizPage.png)
 

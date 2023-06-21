@@ -1,16 +1,19 @@
-{% extends 'front_page.html' %} {% load static %} 
+{% extends 'front_page.html' %} 
+{% load static %} 
+{% load i18n %} 
 {% block content %}
 <div class="home-content">
-    <div class="content-heading">
-        <h1 class="content-title">
-            Welcome! Your online education experience begins here!
-        </h1>
-        <p class="content-paragraph">
-            It&#39;s easy, just fill in the form &#8211; and we&#39;ll get in
-            touch to know more about you and how can we assist you.
-        </p>
-    </div>
-    <section class="p-4">
+    
+    <section class="p-3 rounded-3 m-3" style="background-color: #3f4156">
+        <div class=" color-light text-center">
+            <h1 class="fs-4 color-blue">
+            {% translate "Welcome! Your online education experience begins here!" %}
+            </h1>
+            <p class="content-paragraph">
+              {% translate "It's easy, just fill in the form; and we'll get in touch to know more about you and how can we assist you." %}
+                
+            </p>
+        </div>
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-5 ">
@@ -302,7 +305,7 @@
                                 <label for="floatingTextarea2">Message</label>
                               </div>
                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                            <button type="submit" class="btn btn-secondary btn-outline-dark btn-lg text-white">Send</button>
+                            <button type="submit" class="btn btn-secondary btn-lg text-white">Send</button>
                             </div>
         
                         </form>
@@ -315,59 +318,7 @@
         </div>
     </section>
 
-    <div class="content-2">
-        <div class="content-2-title ">
-            <h1 class="text-center">
-                Building better learning experiences with SkillBuilder
-            </h1>
-            <p class="text-center">
-                Read inspiring stories from around the world on how SkillBuilder
-                is being used to manage online learning and improve learner
-                outcomes.
-            </p>
-            <div class="card-container">
-                <div class="card-img">
-                    <img
-                        src="{% static 'assets/card-img-1.jpg' %}"
-                        alt="splash"
-                        class="card-img"
-                    />
-                </div>
-                <div class="card-img">
-                    <img
-                        src="{% static 'assets/card-img-2.jpg' %}"
-                        alt="splash"
-                        class="card-img"
-                    />
-                </div>
-                <div class="card-img">
-                    <img
-                        src="{% static 'assets/card-img-3.jpg' %}"
-                        alt="splash"
-                        class="card-img"
-                    />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="content-4">
-        <div class="contact-bg">
-            <div class="contact-info">
-                <div>
-                    <h1 class="contact-info-heading">
-                        Open LMS provides world-class LMS solutions that empower
-                        organizations to meet education and workplace learning
-                        needs. Get in touch to find out more.
-                    </h1>
-                </div>
-                <div class="get-in-touch">
-                    <a class="" href="{% url 'contact' %}">
-                        Get In Touch With Us
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'frontPage/people.html' %}
     {% include 'front_page_footer.html' %}
 </div>
 {% endblock %}
