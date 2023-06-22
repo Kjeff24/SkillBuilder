@@ -11,6 +11,7 @@ from employerAdmin.employer_admin import employer_admin_site
 
 
 urlpatterns = [
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path("admin/", admin.site.urls),
     path('employer_admin/', employer_admin_site.urls),
     path("", include("course.urls")),

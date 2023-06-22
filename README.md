@@ -138,6 +138,9 @@ The project contains the following models:
 ### quiz/views
 - quiz_list_view, quiz_view, quiz_data_view, save_quiz_view
 
+## UML Diagram of models
+![Alt text](static/assets/preview_images/model_uml.png)
+
 ## Endpoints
 
 The project provides the following endpoints:

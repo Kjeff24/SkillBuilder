@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'quiz.apps.QuizConfig',
     'employerAdmin.apps.EmployeradminConfig',
     'event.apps.EventConfig',
+    'django_extensions',
+    'django.contrib.admindocs',
 ]
 
 AUTH_USER_MODEL  = 'myapp.User'
@@ -46,6 +48,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     'django.middleware.locale.LocaleMiddleware',
+    "django.contrib.admindocs.middleware.XViewMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -161,3 +164,9 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
+
+# Create uml diagram 
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

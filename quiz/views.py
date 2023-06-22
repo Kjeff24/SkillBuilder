@@ -9,6 +9,7 @@ from django.db.models import Subquery
 
 
 def quiz_list_view(request, pk2):
+    """View All Quiz List"""
     employee = request.user
     course = Course.objects.get(id=pk2)
     courses = Course.objects.filter(participants__user=employee)
