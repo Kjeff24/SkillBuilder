@@ -24,6 +24,11 @@ def loginPage(request):
     Returns:
         A rendered HTML template for the login page.
     """
+    
+    if request.user.is_authenticated:
+        # User is already logged in
+        return redirect('employee-home', request.user)  # Redirect to the dashboard page or any other desired page
+    
     form = LoginForm(request.POST or None)
     
     if request.method == 'POST':
@@ -33,15 +38,15 @@ def loginPage(request):
             user = authenticate(username=username, password=password)
             
             if user is not None:
-                if user.is_employer and user.is_email_verified:
-                    login(request, user)
-                    return redirect('employer-home', pk=request.user)
-                elif user.is_employee and user.is_email_verified:
+                if user.is_employee and user.is_email_verified:
                     login(request, user)
                     return redirect('employee-home', pk=request.user)
-                else:
+                elif user.is_employee and not user.is_email_verified:
                     messages.add_message(request, messages.ERROR,
                                          'Your email is not verified.')
+                else:
+                    messages.add_message(request, messages.ERROR,
+                                         'You are not authorized.')
             else:
                 messages.add_message(request, messages.ERROR,
                                      'Invalid credentials, try again')

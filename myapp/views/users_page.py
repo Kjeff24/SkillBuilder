@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from myapp.models import User
@@ -20,44 +20,47 @@ def employeeHome(request, pk):
         and a list of available courses. If a course is selected for enrollment, the user is
         enrolled in the course and appropriate success messages are displayed.
     """
-    # Render the enrollment form with a list of available courses
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)
-    # print(employer)
     employer_courses = Course.objects.filter(instructor__username=employer).distinct()
     
-    # get all courses, enrolled by user
     participants = Participants.objects.filter(user=employee)
     courses = [participant.course for participant in participants]
 
-    context = {'courses': courses, 'employer_courses':employer_courses}
-
+    context = {'courses': courses, 'employer_courses': employer_courses}
 
     if request.method == 'POST':
         course_selected = request.POST.get('course')
 
-        course = Course.objects.get(name=course_selected)
+        course, created = Course.objects.get_or_create(name=course_selected)
         user = User.objects.get(username=request.user.username)
 
-        # Check if the course exists in the enrollment
-        enrollment = Participants.objects.filter(course=course).first()
+        enrollment= Participants.objects.filter(course=course)
+        print(enrollment)
 
-        if enrollment:
-            # Check if the user exists in the participants
-            participant = Participants.objects.filter(user=user).first()
-
-            if participant:
-                messages.success(request, 'You have already enrolled.')
-                return render(request, "usersPage/employee_home.html", context)
-            else:
-                # Create a new participant
-                participant = Participants.objects.create(user=user, course=course)
-                messages.success(request, 'Enrollment successfully.')
-                return render(request, "usersPage/employee_home.html", context)
+        if enrollment.filter(user=user).exists():
+            messages.success(request, 'You have already enrolled.')
+            return redirect('employee-home', pk=request.user)
         else:
             participant = Participants.objects.create(user=user, course=course)
-
-            messages.success(request, 'Enrollment successfully.')
-            return render(request, "usersPage/employee_home.html", context)
+            messages.success(request, 'Enrollment successful.')
+            return redirect('enrollment-success')
     
     return render(request, "usersPage/employee_home.html", context)
+
+
+def enrollmentSuccess(request):
+    """
+    View function for the enrollment success page.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML template for the enrollment success page.
+    """
+    if request.method == 'POST':
+        messages.success(request, 'You have already enrolled.')
+        return redirect('employee-home', pk=request.user)
+    
+    return render(request, "usersPage/enrollment_success.html")

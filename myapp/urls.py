@@ -14,6 +14,7 @@ urlpatterns = [
     path('employer_signup/', authentication_page.employerSignupPage, name='employer-signup'),
     path('activate-user/<uidb64>/<token>', authentication_page.activate_user, name='activate'),
     path('employee_home/<str:pk>/', users_page.employeeHome, name='employee-home'),
+    path('enrollment_success/', users_page.enrollmentSuccess, name='enrollment-success'),
     path('update_user/<str:pk>/', user_management.updateUser, name='update-user'),
     
     path(
