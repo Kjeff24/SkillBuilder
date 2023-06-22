@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>employerAdmin.admin &#8212; SkillBuilder 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for employerAdmin.admin</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.admin</span> <span class="kn">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">employerAdmin.employer_admin</span> <span class="kn">import</span> <span class="n">employer_admin_site</span>
+<span class="kn">from</span> <span class="nn">quiz.models</span> <span class="kn">import</span> <span class="n">Quiz</span><span class="p">,</span> <span class="n">Question</span><span class="p">,</span> <span class="n">Answer</span><span class="p">,</span> <span class="n">Result</span>
+<span class="kn">from</span> <span class="nn">course.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">event.models</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="ParticipantsInline"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ParticipantsInline">[docs]</a><span class="k">class</span> <span class="nc">ParticipantsInline</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">TabularInline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inline model admin for Participants.</span>
+
+<span class="sd">    Provides an inline editing interface for Participants model within QuestionAdmin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Participants</span></div>
+
+
+<div class="viewcode-block" id="CourseAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.CourseAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Course</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">CourseAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">ParticipantsInline</span><span class="p">]</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for courses</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;instructor&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;updated&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="CourseAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.CourseAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="ParticipantsAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ParticipantsAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Participants</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ParticipantsAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for participants</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;course&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ParticipantsAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ParticipantsAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="ResourceAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ResourceAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Resource</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ResourceAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for resources</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;course&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;updated&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ResourceAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ResourceAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="AnnouncementAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.AnnouncementAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Announcement</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">AnnouncementAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for announcements</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;course&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;updated&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="AnnouncementAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.AnnouncementAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="RoomAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.RoomAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Room</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">RoomAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for rooms</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;room_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;course&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;updated&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="RoomAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.RoomAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># Quiz </span>
+
+<div class="viewcode-block" id="QuizAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.QuizAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Quiz</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">QuizAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for quizzes</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;course&#39;</span><span class="p">,</span> <span class="s1">&#39;number_of_questions&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;required_score_to_pass&#39;</span><span class="p">,</span> <span class="s1">&#39;difficluty&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="QuizAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.QuizAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="AnswerInline"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.AnswerInline">[docs]</a><span class="k">class</span> <span class="nc">AnswerInline</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">TabularInline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inline model admin for Answer.</span>
+
+<span class="sd">    Provides an inline editing interface for Answer model within QuestionAdmin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Answer</span></div>
+
+<div class="viewcode-block" id="QuestionAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.QuestionAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">QuestionAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnswerInline</span><span class="p">]</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for questions</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;quiz&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="QuestionAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.QuestionAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="AnswerAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.AnswerAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Answer</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">AnswerAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for answers</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;question&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="AnswerAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.AnswerAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="ResultAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ResultAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Result</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ResultAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># Customize the fields displayed in the admin list view for results</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;quiz&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;completion_time&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;started&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ResultAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.ResultAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Filter queryset to show only the courses created by the logged-in employer</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="EventAdmin"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.EventAdmin">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">Event</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">employer_admin_site</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">EventAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;course&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="EventAdmin.get_queryset"><a class="viewcode-back" href="../../source/employerAdmin/employerAdmin.main.html#employerAdmin.admin.EventAdmin.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_employer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">qs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">instructor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">SkillBuilder</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/modules.html">SkillBuilder</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Jeffrey Kwei Afutu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

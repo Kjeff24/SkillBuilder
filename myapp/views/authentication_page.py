@@ -15,6 +15,15 @@ from myapp.forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm
 
 
 def loginPage(request):
+    """
+    View function to handle user login.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML template for the login page.
+    """
     form = LoginForm(request.POST or None)
     
     if request.method == 'POST':
@@ -47,12 +56,30 @@ def loginPage(request):
 
 # Logout User
 def logoutUser(request):
+    """
+    View function to handle user logout.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A redirection to the login page.
+    """
     logout(request)
     return redirect('login')
 
 
 # Employee signup
 def employeeSignupPage(request):
+    """
+    View function to handle employee signup.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML template for the employee signup page.
+    """
     if request.method == 'POST':
         form = EmployeeSignUpForm(request.POST)
         if form.is_valid():
@@ -75,6 +102,15 @@ def employeeSignupPage(request):
 
 # Employer Signup
 def employerSignupPage(request):
+    """
+    View function to handle employer signup.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML template for the employer signup page.
+    """
     if request.method == 'POST':
         form = EmployerSignUpForm(request.POST)
         if form.is_valid():
@@ -99,6 +135,16 @@ def employerSignupPage(request):
 
 # sends activation code to the email
 def send_activation_email(user, request):
+    """
+    Function to send activation email to the user.
+
+    Args:
+        user: The User object.
+        request: The HTTP request object.
+
+    Returns:
+        None.
+    """
     current_site = get_current_site(request)
     email_subject = 'Activate your account'
     
@@ -122,6 +168,17 @@ def send_activation_email(user, request):
 
 # activate user
 def activate_user(request, uidb64, token):
+    """
+    View function to activate user account.
+
+    Args:
+        request: The HTTP request object.
+        uidb64 (str): The encoded user ID.
+        token (str): The activation token.
+
+    Returns:
+        A rendered HTML template for successful account activation or activation failure.
+    """
 
     # decode uid64 back to the user id, and get the user
     try:

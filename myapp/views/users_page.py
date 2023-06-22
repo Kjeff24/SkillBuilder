@@ -8,6 +8,18 @@ from course.models import Course, Participants
 # Employee home
 @login_required(login_url='login')
 def employeeHome(request, pk):
+    """
+    View function for the employee home page.
+
+    Args:
+        request: The HTTP request object.
+        pk: The primary key of the user.
+
+    Returns:
+        A rendered HTML template for the employee home page, which includes the enrollment form
+        and a list of available courses. If a course is selected for enrollment, the user is
+        enrolled in the course and appropriate success messages are displayed.
+    """
     # Render the enrollment form with a list of available courses
     employee = request.user
     employer = User.objects.get(username=employee.my_employer)

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>myapp.views module &#8212; SkillBuilder 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="course package" href="../course/course.html" />
+    <link rel="prev" title="myapp.forms module" href="myapp.main.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="myapp-views-module">
+<h1>myapp.views module<a class="headerlink" href="#myapp-views-module" title="Permalink to this heading">¶</a></h1>
+<section id="module-myapp.views.authentication_page">
+<span id="myapp-views-authentication-page-module"></span><h2>myapp.views.authentication_page module<a class="headerlink" href="#module-myapp.views.authentication_page" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.authentication_page.activate_user">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.authentication_page.</span></span><span class="sig-name descname"><span class="pre">activate_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uidb64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/authentication_page.html#activate_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.authentication_page.activate_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to activate user account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>uidb64</strong> (<em>str</em>) – The encoded user ID.</p></li>
+<li><p><strong>token</strong> (<em>str</em>) – The activation token.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for successful account activation or activation failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.authentication_page.employeeSignupPage">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.authentication_page.</span></span><span class="sig-name descname"><span class="pre">employeeSignupPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/authentication_page.html#employeeSignupPage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.authentication_page.employeeSignupPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to handle employee signup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for the employee signup page.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.authentication_page.employerSignupPage">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.authentication_page.</span></span><span class="sig-name descname"><span class="pre">employerSignupPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/authentication_page.html#employerSignupPage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.authentication_page.employerSignupPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to handle employer signup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for the employer signup page.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.authentication_page.loginPage">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.authentication_page.</span></span><span class="sig-name descname"><span class="pre">loginPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/authentication_page.html#loginPage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.authentication_page.loginPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to handle user login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for the login page.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.authentication_page.logoutUser">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.authentication_page.</span></span><span class="sig-name descname"><span class="pre">logoutUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/authentication_page.html#logoutUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.authentication_page.logoutUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to handle user logout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirection to the login page.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.authentication_page.send_activation_email">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.authentication_page.</span></span><span class="sig-name descname"><span class="pre">send_activation_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/authentication_page.html#send_activation_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.authentication_page.send_activation_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to send activation email to the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> – The User object.</p></li>
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-myapp.views.front_page">
+<span id="myapp-views-front-page-module"></span><h2>myapp.views.front_page module<a class="headerlink" href="#module-myapp.views.front_page" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.front_page.about">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.front_page.</span></span><span class="sig-name descname"><span class="pre">about</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/front_page.html#about"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.front_page.about" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to render the about page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for the about page.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.front_page.contact">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.front_page.</span></span><span class="sig-name descname"><span class="pre">contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/front_page.html#contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.front_page.contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to handle the contact form submission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirection to the contact page after submitting the form,
+or a rendered HTML template for the contact page if it’s a GET request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.front_page.home">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.front_page.</span></span><span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/front_page.html#home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.front_page.home" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to render the home page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for the home page.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-myapp.views.user_management">
+<span id="myapp-views-user-management-page-module"></span><h2>myapp.views.user_management_page module<a class="headerlink" href="#module-myapp.views.user_management" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.user_management.updateUser">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.user_management.</span></span><span class="sig-name descname"><span class="pre">updateUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/user_management.html#updateUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.user_management.updateUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to update a user’s information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>pk</strong> – The primary key of the user to be updated.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirection to the update user page after successfully updating the user,
+or a rendered HTML template for the update user page if it’s a GET request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-myapp.views.users_page">
+<span id="myapp-views-users-page-module"></span><h2>myapp.views.users_page module<a class="headerlink" href="#module-myapp.views.users_page" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="myapp.views.users_page.employeeHome">
+<span class="sig-prename descclassname"><span class="pre">myapp.views.users_page.</span></span><span class="sig-name descname"><span class="pre">employeeHome</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/myapp/views/users_page.html#employeeHome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#myapp.views.users_page.employeeHome" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function for the employee home page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>pk</strong> – The primary key of the user.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rendered HTML template for the employee home page, which includes the enrollment form
+and a list of available courses. If a course is selected for enrollment, the user is
+enrolled in the course and appropriate success messages are displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">SkillBuilder</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">SkillBuilder</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../all-about-me.html">About me</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="myapp.html">myapp package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../course/course.html">course package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quiz/quiz.html">quiz package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../event/event.html">event package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../employerAdmin/employerAdmin.html">employerAdmin package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../modules.html">SkillBuilder</a><ul>
+  <li><a href="myapp.html">myapp package</a><ul>
+  <li><a href="myapp.main.html">myapp.forms module</a><ul>
+      <li>Previous: <a href="myapp.main.html" title="previous chapter">myapp.forms module</a></li>
+      <li>Next: <a href="../course/course.html" title="next chapter">course package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Jeffrey Kwei Afutu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="../../_sources/source/myapp/myapp.views.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

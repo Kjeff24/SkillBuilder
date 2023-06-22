@@ -4,12 +4,40 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 def home(request):
+    """
+    View function to render the home page.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML template for the home page.
+    """
     return render(request, "frontPage/home.html")
 
 def about(request):
+    """
+    View function to render the about page.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML template for the about page.
+    """
     return render(request, "frontPage/about.html")
 
 def contact(request):
+    """
+    View function to handle the contact form submission.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A redirection to the contact page after submitting the form,
+        or a rendered HTML template for the contact page if it's a GET request.
+    """
     if request.method == 'POST':
         first_name = request.POST.get('firstname')
         last_name = request.POST.get('lastname')

@@ -5,6 +5,11 @@ from .models import User
 
 # login form
 class LoginForm(forms.Form):
+    """
+    Form for user login.
+
+    Provides fields for username and password entry.
+    """
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -29,6 +34,12 @@ class LoginForm(forms.Form):
 
 # Employee signup
 class EmployeeSignUpForm(UserCreationForm):
+    """
+    Form for employee sign up.
+
+    Inherits from UserCreationForm and adds additional fields such as first name,
+    last name, email, and employer selection.
+    """
     # Create a modelchoicefield to display only employers
     employer_select = forms.ModelChoiceField(
         queryset=User.objects.filter(is_employer=True), widget=forms.Select(attrs={'class': 'form-select'}))
@@ -92,6 +103,19 @@ class EmployeeSignUpForm(UserCreationForm):
 
     # Based on the employer the user select, it it assigned to my_employer field in User model
     def save(self, commit=True):
+        """
+        Saves the form data and associates the selected employer with the user instance.
+
+        Args:
+            commit (bool, optional): Determines whether to save the user instance immediately to the database. 
+                                    Defaults to True.
+
+        Returns:
+            User: The saved user instance.
+
+        Raises:
+            None
+        """
         user = super().save(commit=False)
         user.my_employer = self.cleaned_data['employer_select']
         if commit:
@@ -101,6 +125,12 @@ class EmployeeSignUpForm(UserCreationForm):
 
 # Employer Signup
 class EmployerSignUpForm(UserCreationForm):
+    """
+    Form for employer sign up.
+
+    Inherits from UserCreationForm and adds additional fields such as first name,
+    last name, and email.
+    """
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -162,6 +192,11 @@ class EmployerSignUpForm(UserCreationForm):
 
 # User Form
 class UserForm(ModelForm):
+    """
+    Form for updating user information.
+
+    Provides fields for updating the user's first name, last name, username, bio, and avatar.
+    """
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={

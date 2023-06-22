@@ -2,6 +2,9 @@
 
 This is an employee training app to enable employers to perform CRUD and employees to read
 
+## SkillBuilder Documentation
+[SkillBuilder Documentation](<static/SkillBuilder Documentation.pdf>)
+
 ## Customer Requirements
 ### Your users should be able to:
 1. Signup & log in with an email and password with account verification. There should be a
@@ -230,3 +233,4 @@ The project provides the following endpoints:
 
 ### Quiz Start Page
 ![Alt text](static/assets/preview_images/quizStartPage.png)
+

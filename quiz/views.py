@@ -9,6 +9,16 @@ from django.db.models import Subquery
 
 
 def quiz_list_view(request, pk2):
+    """
+    View function to display all quizzes for a specific course.
+
+    Args:
+        request: The HTTP request object.
+        pk2 (str): The primary key of the course.
+
+    Returns:
+        A rendered HTML template displaying the quizzes for the course.
+    """
     """View All Quiz List"""
     employee = request.user
     course = Course.objects.get(id=pk2)
@@ -33,6 +43,17 @@ def quiz_list_view(request, pk2):
 
 
 def quiz_view(request, pk, pk2):
+    """
+    View function to display a specific quiz.
+
+    Args:
+        request: The HTTP request object.
+        pk (str): The primary key of the quiz.
+        pk2 (str): The primary key of the course.
+
+    Returns:
+        A rendered HTML template displaying the quiz.
+    """
     quiz = Quiz.objects.get(pk=pk)
     course = Course.objects.get(id=pk2)
     
@@ -44,6 +65,17 @@ def quiz_view(request, pk, pk2):
 
 
 def quiz_data_view(request, pk, pk2):
+    """
+    View function to retrieve quiz data (questions and answers) for AJAX requests.
+
+    Args:
+        request: The HTTP request object.
+        pk (str): The primary key of the quiz.
+        pk2 (str): The primary key of the course.
+
+    Returns:
+        A JsonResponse containing the quiz data.
+    """
     quiz = Quiz.objects.get(pk=pk)
     questions = []
     for q in quiz.get_questions():
@@ -58,6 +90,17 @@ def quiz_data_view(request, pk, pk2):
 
 
 def save_quiz_view(request, pk, pk2):
+    """
+    View function to save the quiz responses submitted by the user.
+
+    Args:
+        request: The HTTP request object.
+        pk (str): The primary key of the quiz.
+        pk2 (str): The primary key of the course.
+
+    Returns:
+        A JsonResponse indicating the quiz result.
+    """
     if request.method == 'POST' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         questions = []
         data = request.POST

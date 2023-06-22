@@ -7,6 +7,17 @@ from myapp.forms import UserForm
 # Update user
 @login_required(login_url='login')
 def updateUser(request, pk):
+    """
+    View function to update a user's information.
+
+    Args:
+        request: The HTTP request object.
+        pk: The primary key of the user to be updated.
+
+    Returns:
+        A redirection to the update user page after successfully updating the user,
+        or a rendered HTML template for the update user page if it's a GET request.
+    """
     employers = User.objects.filter(is_employer=True).distinct()
     user = request.user 
     form = UserForm(instance=user, user=request.user)

@@ -6,14 +6,19 @@ from event.models import Event
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
-DIFF_CHOICES = (
-    ('easy', 'easy'),
-    ('medium', 'medium'),
-    ('hard', 'hard'),
-)
+
 
 # Crate a quiz models
 class Quiz(models.Model):
+    """
+    Model representing a quiz.
+    """
+    DIFF_CHOICES = (
+        ('easy', 'easy'),
+        ('medium', 'medium'),
+        ('hard', 'hard'),
+    )
+    
     name = models.CharField(max_length=120)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     number_of_questions = models.IntegerField()
@@ -28,11 +33,18 @@ class Quiz(models.Model):
 
     # returns a list of questions associated with the quiz using reverse query
     def get_questions(self):
+        """
+        Returns a list of questions associated with the quiz.
+        Randomizes the order of questions.
+        """
         questions = list(self.question_set.all())
         random.shuffle(questions)
         return questions[:self.number_of_questions]
     
     def save(self, *args, **kwargs):
+        """
+        Overrides the save method to create an associated event for the quiz.
+        """
         # Call the parent class's save() method
         super().save(*args, **kwargs)
 
@@ -50,12 +62,18 @@ class Quiz(models.Model):
         
 @receiver(post_delete, sender=Quiz)
 def delete_associated_event(sender, instance, **kwargs):
+    """
+    Deletes the associated event when a quiz is deleted.
+    """
     event = Event.objects.filter(name=instance.title).first()
     if event:
         event.delete()
         
 # Create a question model
 class Question(models.Model):
+    """
+    Model representing a question in a quiz.
+    """
     text = models.CharField(max_length=200)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -64,10 +82,16 @@ class Question(models.Model):
         return str(self.text)
 
     def get_answers(self):
+        """
+        Returns a list of answers associated with the question.
+        """
         return self.answer_set.all()
 
 # create an answer model
 class Answer(models.Model):
+    """
+    Model representing an answer to a question.
+    """
     text = models.CharField(max_length=200)
     correct = models.BooleanField(default=False)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -78,6 +102,9 @@ class Answer(models.Model):
     
 # create a result model
 class Result(models.Model):
+    """
+    Model representing the result of a user in a quiz.
+    """
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.FloatField(null=True)

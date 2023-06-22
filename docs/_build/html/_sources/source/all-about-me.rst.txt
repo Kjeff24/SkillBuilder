@@ -1,0 +1,8 @@
+About me
+========
+
+############
+All about me
+############
+
+I am Jeffery Arthur Afutu, a Django developer.

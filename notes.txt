@@ -1,1 +1,1 @@
-Used custom admin page for employer's page
+Make sure you disable admin page during production

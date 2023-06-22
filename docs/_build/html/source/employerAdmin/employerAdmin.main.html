@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>employerAdmin.admin module &#8212; SkillBuilder 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="employerAdmin package" href="employerAdmin.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-employerAdmin.admin">
+<span id="employeradmin-admin-module"></span><h1>employerAdmin.admin module<a class="headerlink" href="#module-employerAdmin.admin" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnnouncementAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">AnnouncementAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#AnnouncementAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.AnnouncementAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnnouncementAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#AnnouncementAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.AnnouncementAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnnouncementAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('title',</span> <span class="pre">'course',</span> <span class="pre">'date',</span> <span class="pre">'created',</span> <span class="pre">'updated')</span></em><a class="headerlink" href="#employerAdmin.admin.AnnouncementAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnnouncementAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.AnnouncementAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">AnswerAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#AnswerAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.AnswerAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#AnswerAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.AnswerAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('text',</span> <span class="pre">'correct',</span> <span class="pre">'question',</span> <span class="pre">'created')</span></em><a class="headerlink" href="#employerAdmin.admin.AnswerAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.AnswerAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerInline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">AnswerInline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#AnswerInline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.AnswerInline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TabularInline</span></code></p>
+<p>Inline model admin for Answer.</p>
+<p>Provides an inline editing interface for Answer model within QuestionAdmin.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerInline.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.AnswerInline.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.AnswerInline.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#employerAdmin.admin.AnswerInline.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="../quiz/quiz.main.html#quiz.models.Answer" title="quiz.models.Answer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Answer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.CourseAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">CourseAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#CourseAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.CourseAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.CourseAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#CourseAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.CourseAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.CourseAdmin.inlines">
+<span class="sig-name descname"><span class="pre">inlines</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'employerAdmin.admin.ParticipantsInline'&gt;]</span></em><a class="headerlink" href="#employerAdmin.admin.CourseAdmin.inlines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.CourseAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('name',</span> <span class="pre">'instructor',</span> <span class="pre">'created',</span> <span class="pre">'updated')</span></em><a class="headerlink" href="#employerAdmin.admin.CourseAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.CourseAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.CourseAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.EventAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">EventAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#EventAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.EventAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.EventAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#EventAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.EventAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.EventAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('name',</span> <span class="pre">'course',</span> <span class="pre">'start',</span> <span class="pre">'end')</span></em><a class="headerlink" href="#employerAdmin.admin.EventAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.EventAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.EventAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">ParticipantsAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ParticipantsAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ParticipantsAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ParticipantsAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ParticipantsAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('user',</span> <span class="pre">'course')</span></em><a class="headerlink" href="#employerAdmin.admin.ParticipantsAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.ParticipantsAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsInline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">ParticipantsInline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ParticipantsInline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ParticipantsInline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TabularInline</span></code></p>
+<p>Inline model admin for Participants.</p>
+<p>Provides an inline editing interface for Participants model within QuestionAdmin.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsInline.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.ParticipantsInline.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.ParticipantsInline.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#employerAdmin.admin.ParticipantsInline.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="../course/course.main.html#course.models.Participants" title="course.models.Participants"><code class="xref py py-class docutils literal notranslate"><span class="pre">Participants</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuestionAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">QuestionAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#QuestionAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.QuestionAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuestionAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#QuestionAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.QuestionAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuestionAdmin.inlines">
+<span class="sig-name descname"><span class="pre">inlines</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'employerAdmin.admin.AnswerInline'&gt;]</span></em><a class="headerlink" href="#employerAdmin.admin.QuestionAdmin.inlines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuestionAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('text',</span> <span class="pre">'quiz',</span> <span class="pre">'created')</span></em><a class="headerlink" href="#employerAdmin.admin.QuestionAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuestionAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.QuestionAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuizAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">QuizAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#QuizAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.QuizAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuizAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#QuizAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.QuizAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuizAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('name',</span> <span class="pre">'course',</span> <span class="pre">'number_of_questions',</span> <span class="pre">'time',</span> <span class="pre">'required_score_to_pass',</span> <span class="pre">'difficluty')</span></em><a class="headerlink" href="#employerAdmin.admin.QuizAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.QuizAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.QuizAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResourceAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">ResourceAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ResourceAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ResourceAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResourceAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ResourceAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ResourceAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResourceAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('name',</span> <span class="pre">'course',</span> <span class="pre">'created',</span> <span class="pre">'updated')</span></em><a class="headerlink" href="#employerAdmin.admin.ResourceAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResourceAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.ResourceAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResultAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">ResultAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ResultAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ResultAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResultAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#ResultAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.ResultAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResultAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('quiz',</span> <span class="pre">'user',</span> <span class="pre">'score',</span> <span class="pre">'completion_time',</span> <span class="pre">'created',</span> <span class="pre">'started')</span></em><a class="headerlink" href="#employerAdmin.admin.ResultAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.ResultAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.ResultAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.admin.RoomAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.admin.</span></span><span class="sig-name descname"><span class="pre">RoomAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#RoomAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.RoomAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="employerAdmin.admin.RoomAdmin.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/admin.html#RoomAdmin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.admin.RoomAdmin.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a QuerySet of all model instances that can be edited by the
+admin site. This is used by changelist_view.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.admin.RoomAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('room_topic',</span> <span class="pre">'course',</span> <span class="pre">'created',</span> <span class="pre">'updated')</span></em><a class="headerlink" href="#employerAdmin.admin.RoomAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="employerAdmin.admin.RoomAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#employerAdmin.admin.RoomAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-employerAdmin.employer_admin">
+<span id="employeradmin-employer-admin-module"></span><h1>employerAdmin.employer_admin module<a class="headerlink" href="#module-employerAdmin.employer_admin" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="employerAdmin.employer_admin.MyAdminSite">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">employerAdmin.employer_admin.</span></span><span class="sig-name descname"><span class="pre">MyAdminSite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/employerAdmin/employer_admin.html#MyAdminSite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#employerAdmin.employer_admin.MyAdminSite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AdminSite</span></code></p>
+<p>Custom admin site for SkillBuilder employers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Site_header<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The header displayed on the admin site. :noindex:</p>
+</dd>
+<dt class="field-even">Site_title<span class="colon">:</span></dt>
+<dd class="field-even"><p>The title displayed on the admin site. :noindex:</p>
+</dd>
+<dt class="field-odd">Login_template<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The template used for the admin login page. :noindex:</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.employer_admin.MyAdminSite.login_template">
+<span class="sig-name descname"><span class="pre">login_template</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'admin/login.html'</span></em><a class="headerlink" href="#employerAdmin.employer_admin.MyAdminSite.login_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.employer_admin.MyAdminSite.site_header">
+<span class="sig-name descname"><span class="pre">site_header</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SkillBuilder</span> <span class="pre">Employer</span> <span class="pre">Administration'</span></em><a class="headerlink" href="#employerAdmin.employer_admin.MyAdminSite.site_header" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="employerAdmin.employer_admin.MyAdminSite.site_title">
+<span class="sig-name descname"><span class="pre">site_title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SkillBuilder</span> <span class="pre">Employer</span> <span class="pre">Administration'</span></em><a class="headerlink" href="#employerAdmin.employer_admin.MyAdminSite.site_title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">SkillBuilder</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">SkillBuilder</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../all-about-me.html">About me</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../myapp/myapp.html">myapp package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../course/course.html">course package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quiz/quiz.html">quiz package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../event/event.html">event package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="employerAdmin.html">employerAdmin package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../modules.html">SkillBuilder</a><ul>
+  <li><a href="employerAdmin.html">employerAdmin package</a><ul>
+      <li>Previous: <a href="employerAdmin.html" title="previous chapter">employerAdmin package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Jeffrey Kwei Afutu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="../../_sources/source/employerAdmin/employerAdmin.main.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

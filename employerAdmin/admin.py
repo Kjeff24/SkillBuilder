@@ -3,9 +3,14 @@ from django.contrib.admin import register
 from employerAdmin.employer_admin import employer_admin_site
 from quiz.models import Quiz, Question, Answer, Result
 from course.models import *
-
+from event.models import *
 
 class ParticipantsInline(admin.TabularInline):
+    """
+    Inline model admin for Participants.
+
+    Provides an inline editing interface for Participants model within QuestionAdmin.
+    """
     model = Participants
 
 
@@ -16,7 +21,6 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ('name', 'instructor', 'created', 'updated')
     
     def get_queryset(self, request):
-        # Filter queryset to show only the courses created by the logged-in employer
         qs = super().get_queryset(request)
         if request.user.is_employer:
             return qs
@@ -92,6 +96,11 @@ class QuizAdmin(admin.ModelAdmin):
             return qs.filter(instructor=request.user)
 
 class AnswerInline(admin.TabularInline):
+    """
+    Inline model admin for Answer.
+
+    Provides an inline editing interface for Answer model within QuestionAdmin.
+    """
     model = Answer
 
 @register(Question, site=employer_admin_site)
@@ -128,6 +137,17 @@ class ResultAdmin(admin.ModelAdmin):
     
     def get_queryset(self, request):
         # Filter queryset to show only the courses created by the logged-in employer
+        qs = super().get_queryset(request)
+        if request.user.is_employer:
+            return qs
+        else:
+            return qs.filter(instructor=request.user)
+
+@register(Event, site=employer_admin_site)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('name', 'course', 'start', 'end')
+    
+    def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.is_employer:
             return qs
