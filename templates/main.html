@@ -25,7 +25,14 @@
             media="screen"
             href="{% static 'css/employee_page.css' %}"
         />
-
+        {% if page == 'chat-room' %}
+        <link
+        rel="stylesheet"
+        type="text/css"
+        media="screen"
+        href="{% static 'css/chat.css' %}"
+        />
+        {% endif %}
         {% block script %}
         {% endblock %}
     </head>

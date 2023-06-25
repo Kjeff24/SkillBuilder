@@ -1,107 +1,94 @@
 {% extends 'main.html' %} {% load static %} | {% block content %}
-<div class="">
-    <div class="chat-container">
-        <!-- msg-header section starts -->
-        <div class="msg-header">
-            <h1 class="msg-course-title">{{course.name}} -- {{room}}</h1>
+<div class="chat-container">
+    <!-- msg-header section starts -->
+    <div class="msg-header">
+        <h1 class="msg-course-title">{{course.name}} -- {{room}}</h1>
+        <div class="video-stream">
+            <a href="{% url 'video-stream' room.id %}">
+                <img src="{% static 'assets/video.svg' %}" alt="video">
+            </a>
         </div>
-        <!-- msg-header section ends -->
+    </div>
+    <!-- msg-header section ends -->
 
-        <!-- Chat inbox  -->
-        <div class="chat-page">
-            <div class="msg-inbox">
-                <div class="chats">
-                    <!-- Message container -->
-                    <div class="msg-page">
-                        {% for message in room_messages reversed  %}
-                        <!-- Outgoing messages -->
-                        {% if request.user == message.user %}
-                        <div class="outgoing-chats">
-                            <div class="outgoing-chats-img">
-                                <a href="{% url 'profile' message.user.id %}">
-                                    <img src="{{request.user.avatar.url}}" style="width: 50px; border-radius: 50%; padding: 5px;"/>
-                                </a>
-                            </div>
-                            <div class="outgoing-msg">
-                                <div class="outgoing-chats-msg">
-                                    
-                                    <p class="multi-msg">
-                                        <span style="font-size: 12px;">{{message.user}}:</span>
-                                        <br>
-                                        {{message.body}}
-                                        <span class="time"
-                                            >{{message.created|timesince}}
-                                        </span>
-                                    </p>
-                                </div>
+    <!-- Chat inbox  -->
+    <div class="chat-page">
+        <div class="msg-inbox">
+            <div class="chats">
+                <!-- Message container -->
+                <div class="msg-page">
+                    {% for message in room_messages reversed  %}
+                    <!-- Outgoing messages -->
+                    {% if request.user == message.user %}
+                    <div class="outgoing-chats">
+                        <div class="outgoing-chats-img">
+                            <a href="{% url 'profile' message.user.id %}">
+                                <img src="{{request.user.avatar.url}}" style="width: 50px; border-radius: 50%; padding: 5px;"/>
+                            </a>
+                        </div>
+                        <div class="outgoing-msg">
+                            <div class="outgoing-chats-msg">
+                                
+                                <p class="multi-msg">
+                                    <span style="font-size: 12px;">{{message.user}}:</span>
+                                    <br>
+                                    {{message.body}}
+                                    <span class="time"
+                                        >{{message.created|timesince}}
+                                    </span>
+                                </p>
                             </div>
                         </div>
-                        {% else %}
-                        <!-- Incoming messages -->
-                        <div class="received-chats">
-                            <div class="received-chats-img">
-                                <a href="{% url 'profile' message.user.id %}">
-                                    <img  src="{{message.user.avatar.url}}" style="width: 50px; border-radius: 50%; padding: 5px;"/>  
-                                </a>
-                            </div>
-                            <div class="received-msg">
-                                <div class="received-msg-inbox">
-                                    <p class="single-msg">
-                                        <span style="font-size: 12px;">{{message.user}}:</span>
-                                        <br>
-                                        {{message.body}}
-                                        <span class="time"
-                                            >{{message.created|timesince}}
-                                        </span>
-                                    </p>
-                                </div>
+                    </div>
+                    {% else %}
+                    <!-- Incoming messages -->
+                    <div class="received-chats">
+                        <div class="received-chats-img">
+                            <a href="{% url 'profile' message.user.id %}">
+                                <img  src="{{message.user.avatar.url}}" style="width: 50px; border-radius: 50%; padding: 5px;"/>  
+                            </a>
+                        </div>
+                        <div class="received-msg">
+                            <div class="received-msg-inbox">
+                                <p class="single-msg">
+                                    <span style="font-size: 12px;">{{message.user}}:</span>
+                                    <br>
+                                    {{message.body}}
+                                    <span class="time"
+                                        >{{message.created|timesince}}
+                                    </span>
+                                </p>
                             </div>
                         </div>
-                        {% endif %}
-                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- msg-bottom section -->
+            <form action="" method="POST" id="message">
+                {% csrf_token %}
+                <div class="send-message-forms">
+                    <div>
+                        <textarea
+                            name="body"
+                            id="msg"
+                            cols="50"
+                            rows="1"
+                            placeholder="Write message..."
+                        ></textarea>
+                    </div>
+                    <div>
+                        <input
+                            type="image"
+                            src="{% static 'assets/send-icon.svg' %}"
+                            alt="Submit"
+                            class="image-button"
+                        />
                     </div>
                 </div>
-
-                <!-- msg-bottom section -->
-                <form action="" method="POST" id="message">
-                    {% csrf_token %}
-                    <div class="msg-bottom">
-                        <div class="input-group">
-                            <div class="form-control">
-                                <div class="input-text-icon">
-                                    <textarea
-                                        name="body"
-                                        id="msg"
-                                        cols="50"
-                                        rows="auto"
-                                        placeholder="Write message..."
-                                    ></textarea>
-                                    <!-- <input
-                                    type="text"
-                                    class="type-message"
-                                    placeholder="Write message..."
-                                /> -->
-                                    <input
-                                        type="hidden"
-                                        name="room_id"
-                                        value="{{ room.id }}"
-                                    />
-                                    <input
-                                        type="image"
-                                        src="{% static 'assets/send-icon.png' %}"
-                                        alt="Submit"
-                                        class="image-button"
-                                    />
-                                </div>
-                            </div>
-
-                            <!-- <span class="input-group-text send-icon"
-                            >
-                        </span> -->
-                        </div>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>

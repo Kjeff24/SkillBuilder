@@ -225,9 +225,9 @@ class UserForm(ModelForm):
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",
-                'rows': 2
             }
-        )
+        ),
+        required=False
     )
 
     avatar = forms.ImageField(widget=forms.ClearableFileInput(attrs={'accept': 'image/*'}))

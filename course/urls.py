@@ -13,5 +13,10 @@ urlpatterns = [
     path('course/<str:pk>/chat_room', room_page.roomPage, name='room-page'),
     path('course/<str:pk>/quiz_page', quiz_page.quizPage, name='quiz-page'),
     path('course/<str:pk2>/chat_room/<str:pk>/', chat_room.chatRoom, name='chat-room'),
-    path('profile/<str:pk>/', profile_page.profile, name='profile'),
+    path('course/chat_room/videoStream/<str:pk>', chat_room.videoStream, name='video-stream'),
+    path('course/chat_room/videoStream/get_token/', chat_room.getToken ),
+    path('course/chat_room/videoStream/create_member/', chat_room.createMember),
+    path('course/chat_room/videoStream/get_member/', chat_room.getMember),
+    path('course/chat_room/videoStream/delete_member/', chat_room.deleteMember),
+    path('course/chat_room/videoStream/profile/<str:pk>/', profile_page.profile, name='profile'),
 ]

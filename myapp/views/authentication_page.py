@@ -13,7 +13,6 @@ from myapp.tokens import account_activation_token
 from myapp.models import User
 from myapp.forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm
 
-
 def loginPage(request):
     """
     View function to handle user login.
@@ -43,16 +42,16 @@ def loginPage(request):
                     return redirect('employee-home', pk=request.user)
                 elif user.is_employee and not user.is_email_verified:
                     messages.add_message(request, messages.ERROR,
-                                         'Your email is not verified.')
+                                        'Your email is not verified.')
                 else:
                     messages.add_message(request, messages.ERROR,
-                                         'You are not authorized.')
+                                        'You are not authorized.')
             else:
                 messages.add_message(request, messages.ERROR,
-                                     'Invalid credentials, try again')
+                                    'Invalid credentials, try again')
         else:
             messages.add_message(request, messages.ERROR,
-                                 'Error validating, try again')
+                                'Error validating, try again')
 
     context = {'form': form}
 

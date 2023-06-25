@@ -46,14 +46,14 @@ def contact(request):
         from_message = request.POST.get('message')
         
         send_mail(
-            subject="New Message from Contact Form",
+            subject="Message from Contact Form",
             message=f'Name: {first_name} {last_name}\nEmail: {email}\nCountry: {country}\n\nMessage: {from_message}',
             from_email=settings.EMAIL_FROM_USER,
             recipient_list=[settings.EMAIL_FROM_USER],
             fail_silently=False,
         )
         messages.add_message(request, messages.SUCCESS,
-                                         'We sent you an email to verify your account')  
+                                         'Your email has been successfully sent')  
         return redirect('contact') 
             
     context = {

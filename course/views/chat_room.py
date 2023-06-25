@@ -1,5 +1,12 @@
 from django.shortcuts import render, redirect
-from course.models import Course, Room, Message
+from course.models import Course, Room, Message, VideoStreamMember
+from django.http import JsonResponse
+from agora_token_builder import RtcTokenBuilder
+from django.conf import settings
+import random
+import time
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 def chatRoom(request, pk2, pk):
     """
@@ -57,3 +64,60 @@ def chatRoom(request, pk2, pk):
 
     # Render the chat room template with the context data
     return render(request, "chat/chat_room.html", context)
+
+
+def videoStream(request, pk):
+    channel_name = Room.objects.get(id=pk)
+    context = {'channel_name':channel_name}
+    return render(request, "chat/video_stream.html", context)
+
+
+def getToken(request):
+    appId = settings.APP_ID
+    appCertificate = settings.APP_CERTIFICATE
+    channelName = request.GET.get('channel')
+    uid = random.randint(1, 230)
+    expirationTimeInSeconds = 3600
+    currentTimeStamp = int(time.time())
+    privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
+    role = 1
+
+    token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
+
+    return JsonResponse({'token': token, 'uid': uid}, safe=False)
+
+
+@csrf_exempt
+def createMember(request):
+    data = json.loads(request.body)
+    member, created = VideoStreamMember.objects.get_or_create(
+        name=data['name'],
+        uid=data['UID'],
+        room_name=data['room_name']
+    )
+
+    return JsonResponse({'name':data['name']}, safe=False)
+
+
+def getMember(request):
+    uid = request.GET.get('UID')
+    room_name = request.GET.get('room_name')
+
+    member = VideoStreamMember.objects.get(
+        uid=uid,
+        room_name=room_name,
+    )
+    name = member.name
+    return JsonResponse({'name':member.name}, safe=False)
+
+@csrf_exempt
+def deleteMember(request):
+    data = json.loads(request.body)
+    member = VideoStreamMember.objects.get(
+        name=data['name'],
+        uid=data['UID'],
+        room_name=data['room_name']
+    )
+    member.delete()
+    return JsonResponse('Member deleted', safe=False)
+

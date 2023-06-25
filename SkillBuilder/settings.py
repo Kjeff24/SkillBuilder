@@ -149,6 +149,10 @@ PASSWORD_RESET_TIMEOUT = 600
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# VIDEO STREAMING
+APP_ID = os.getenv('APP_ID')
+APP_CERTIFICATE = os.getenv('APP_CERTIFICATE')
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
