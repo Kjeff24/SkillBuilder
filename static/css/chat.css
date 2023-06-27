@@ -55,6 +55,7 @@
 .msg-page {
     height: 500px;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 .msg-page::-webkit-scrollbar {
@@ -177,3 +178,41 @@ p {
     float: right;
     margin-right: 1rem;
 }
+
+
+.scroll-to-bottom-widget{
+    position: fixed;
+    bottom: 15%;
+    right: 10%;
+  }
+  
+  .scroll-to-bottom-button, .scroll-to-top-button {
+    padding: 5px;
+    background-color: #3f41568e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .scroll-to-bottom-button:hover, .scroll-to-top-button:hover {
+    background-color: #0056b3;
+  }
+
+  .scroll-to-bottom-button:hover .button-hover-text, .scroll-to-top-button:hover .button-hover-text {
+    display: block;
+  }
+
+  .button-hover-text {
+    display: none;
+    position: absolute;
+    top: -20px;
+    left: -70px;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
