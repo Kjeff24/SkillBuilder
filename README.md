@@ -63,18 +63,18 @@ By default the development server will start at [http://127.0.0.1:8000/](http://
 The project contains the following models:
 | Models| Fields| Functions|
 | ----- | ------| ---------|
-| User | `is_employer, is_employee, is_email_verified, my_employer, first_name, last_name, bio, avatar` |
-| Course |`name, description, instructor, created, updated`|
-|Participants|`user, course`|
-|Enrollment|` course, date_enrolled, members `|
-|Resource|` name, course, description, youtubeLink, file, created, updated `|
-|Announcement|` title, content, course, date, created, updated `|
-|Room|` room_topic, course, room_description, created, updated `|
-|Message|` user, room, body, updated, created `|
-|Quiz|` name, course, number_of_questions, time, required_score_to_pass, difficluty `|`get_questions()`|
-|Question|` text, quiz, created `|`get_answers()` |
-|Answer|` text, correct, question, created `|
-|Result|`quiz, user, score, completion_time, created, started  `|
+| User |- is_employer<br>- is_employee<br>- is_email_verified<br>- my_employer<br>- first_name<br>- last_name<br>- bio<br>- avatar |
+| Course |- name<br>- description<br>- instructor<br>- created<br>- updated|
+|Participants|- user<br>- course|
+|Enrollment|- course<br>- date_enrolled<br>- members |
+|Resource|- name<br>- course<br>- description<br>- youtubeLink<br>- file<br>- created<br>- updated |
+|Announcement|- title<br>- content<br>- course<br>- date<br>- created<br>- updated|
+|Room|- room_topic<br>- course<br>- room_description<br>- created<br>- updated|
+|Message|- user<br>- room<br>- body<br>- updated<br>- created |
+|Quiz|- name<br>- course<br>- number_of_questions<br>- time<br>- required_score_to_pass<br>- difficluty |- get_questions|
+|Question|- text<br>- quiz<br>- created |- get_answers|
+|Answer|- text<br>- correct<br>- question<br>- created |
+|Result|- quiz<br>- user<br>- score<br>- completion_time<br>- created<br>- started  |
 
 ## Views
 
