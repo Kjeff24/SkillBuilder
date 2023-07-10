@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'quiz.apps.QuizConfig',
     'employerAdmin.apps.EmployeradminConfig',
     'event.apps.EventConfig',
+    'chatbot.apps.ChatbotConfig',
     'django_extensions',
 ]
 

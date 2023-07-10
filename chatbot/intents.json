@@ -1,0 +1,268 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day",
+        "Greetings",
+        "What's up?",
+        "Howdy",
+        "Nice to meet you"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, thanks for visiting",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?",
+        "Greetings!",
+        "I'm here. How can I assist you?",
+        "Good day! How may I assist you today?",
+        "Hello, nice to meet you!",
+        "Hey! How's it going?",
+        "Hi! How can I be of service?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye",
+        "Take care",
+        "Farewell",
+        "Until next time",
+        "Have a great day",
+        "Goodbye for now",
+        "Bye bye",
+        "Adios"
+      ],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon.",
+        "Take care and have a wonderful day!",
+        "Farewell! Have a great day ahead.",
+        "Until next time! Goodbye!",
+        "Wishing you a fantastic day ahead!",
+        "Goodbye for now! Feel free to return anytime.",
+        "Bye bye! Take care!",
+        "Adios! Have a great day!"
+      ]
+    },    
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Thank's a lot!",
+        "I appreciate it",
+        "Many thanks",
+        "You're the best",
+        "Greatly appreciated",
+        "Thank you so much",
+        "I'm grateful"
+      ],
+      "responses": [
+        "Happy to help!",
+        "Any time!",
+        "My pleasure",
+        "You're welcome!",
+        "Glad I could assist",
+        "No problem at all",
+        "It was my pleasure to assist you",
+        "You're very welcome",
+        "I'm here to help whenever you need",
+        "Thank you for your kind words"
+      ]
+    },    
+    {
+      "tag": "why_skillbuilder",
+      "patterns": [
+        "Why choose SkillBuilder?",
+        "What makes SkillBuilder special?",
+        "What are the advantages of SkillBuilder?",
+        "What is SkillBuilder?",
+        "Tell me about SkillBuilder",
+        "Why should I use SkillBuilder?",
+        "How can SkillBuilder benefit me?"
+      ],
+      "responses": [
+        "At SkillBuilder, we are on a mission to empower employers to improve our world with open source employee training software. With hundreds of millions of users around the globe and translated into 2 languages, SkillBuilder gives you the freedom to create online teaching and training solutions that best meet your learners' needs.",
+        "SkillBuilder empowers you to provide quality eLearning experiences. We offer a range of features and tools to build better learning experiences and improve learner outcomes. Discover inspiring stories from around the world on how SkillBuilder is being used to manage online learning and enhance learner outcomes.",
+        "SkillBuilder stands out with its commitment to innovation and user-centric design. We continuously strive to provide cutting-edge features and a seamless learning experience. With SkillBuilder, you have the flexibility to customize courses, track learner progress, and foster engagement.",
+        "What sets SkillBuilder apart is our vibrant community of educators and learners. Join our community to connect with like-minded professionals, share ideas, and learn from each other's experiences. SkillBuilder is not just a platform; it's a supportive and collaborative ecosystem for growth and success."
+      ]
+    },    
+    {
+      "tag": "learning_experiences",
+      "patterns": [
+        "How can SkillBuilder enhance learning experiences?",
+        "Tell me about the learning experience with SkillBuilder.",
+        "What features does SkillBuilder offer for better learning outcomes?",
+        "What can learners expect from SkillBuilder?",
+        "How does SkillBuilder make learning engaging?"
+      ],
+      "responses": [
+        "SkillBuilder provides a variety of features to enhance learning experiences. With interactive lessons, quizzes, and assessments, learners can actively engage with the content. SkillBuilder also offers progress tracking, feedback mechanisms, and personalized learning paths to improve outcomes and keep learners motivated.",
+        "SkillBuilder's features include gamification elements, multimedia integration, and collaborative learning tools. These functionalities contribute to a dynamic and interactive learning environment, enabling learners to have engaging and impactful experiences.",
+        "At SkillBuilder, we believe in creating immersive learning experiences. With our platform, learners can explore interactive multimedia content, participate in gamified activities, and collaborate with peers. Our goal is to make learning engaging, enjoyable, and effective.",
+        "Learners can expect a learner-centric experience with SkillBuilder. Our platform offers a seamless and intuitive interface, enabling learners to access a wide range of resources, engage with interactive content, and receive personalized feedback. SkillBuilder is designed to foster active learning and empower learners to achieve their goals."
+      ]
+    },    
+    {
+      "tag": "management",
+      "patterns": [
+        "Skillbuilder",
+        "management",
+        "How does SkillBuilder help in managing online learning?",
+        "Tell me about the management features of SkillBuilder.",
+        "What tools does SkillBuilder provide for online course management?",
+        "How can administrators manage courses on SkillBuilder?"
+      ],
+      "responses": [
+        "SkillBuilder offers comprehensive management features to facilitate online learning. It includes user management, content organization, and access control functionalities. Administrators can easily create and manage courses, track learner progress, and generate reports. SkillBuilder provides a user-friendly interface that simplifies the process of managing and monitoring online learning activities.",
+        "With SkillBuilder, administrators can efficiently organize and structure online courses. It offers content authoring tools, course scheduling, and learner enrollment management. Additionally, SkillBuilder provides analytics and reporting capabilities to track course performance and learner engagement.",
+        "SkillBuilder's management features empower administrators to effectively oversee online learning. They can create and manage user accounts, assign roles and permissions, and organize course materials. SkillBuilder's intuitive interface allows administrators to easily customize course settings, track learner progress, and generate insightful reports. Our goal is to provide administrators with the tools they need to streamline course management and ensure a seamless learning experience."
+      ]
+    },    
+    {
+      "tag": "accessibility",
+      "patterns": [
+        "accessibility",
+        "How does SkillBuilder make online education accessible?",
+        "Tell me about SkillBuilder's commitment to accessibility.",
+        "What does SkillBuilder do to ensure accessibility for all?",
+        "How is SkillBuilder accessible for users with disabilities?"
+      ],
+      "responses": [
+        "SkillBuilder is dedicated to making quality online education accessible for all. We provide a user-friendly platform that is designed with accessibility in mind. Our platform adheres to accessibility standards, such as providing alternative text for images, using proper headings for content structure, and ensuring compatibility with assistive technologies. We strive to remove barriers and provide equal learning opportunities for all learners.",
+        "Accessibility is a core focus at SkillBuilder. We prioritize inclusive design and follow WCAG (Web Content Accessibility Guidelines) standards to ensure our platform is accessible for users with disabilities. SkillBuilder incorporates features like keyboard navigation, screen reader compatibility, and adjustable text sizes to accommodate diverse learning needs. We are committed to providing a barrier-free learning environment for all users."
+      ]
+    },
+    {
+      "tag": "community",
+      "patterns": [
+        "community",
+        "Tell me about SkillBuilder's community.",
+        "How can I get involved in the SkillBuilder community?",
+        "What benefits does the SkillBuilder community offer?",
+        "Why should I join the SkillBuilder community?"
+      ],
+      "responses": [
+        "SkillBuilder is more than just an employee training platform - we are a global community of educators, trainers, developers, system administrators, and learners. Our community is dedicated to building the world's most effective platform for online learning. We share educational resources, exchange ideas, provide support, and collaborate on improving the platform. Joining the SkillBuilder community gives you access to a network of like-minded individuals and opportunities for professional growth and knowledge sharing.",
+        "The SkillBuilder community is a vibrant and supportive network of passionate educators and learners. By joining our community, you can connect with like-minded professionals, participate in discussions, and share insights. The community offers a wealth of educational resources, best practices, and inspiration. You can also contribute to the platform's development and help shape the future of online learning. Together, we create a dynamic and collaborative environment for continuous improvement and innovation."
+      ]
+    },    
+    {
+      "tag": "history",
+      "patterns": [
+        "history",
+        "Tell me about the history of SkillBuilder.",
+        "When was SkillBuilder founded?",
+        "How has SkillBuilder evolved over the years?",
+        "Who owns SkillBuilder?",
+        "What is the journey of SkillBuilder?"
+      ],
+      "responses": [
+        "SkillBuilder was founded in 2023 with the vision to provide educators with a way to create quality online education experiences. Since then, SkillBuilder has grown into a leading employee training platform used by thousands of schools, universities, colleges, vocational trainers, and workplaces worldwide. Our commitment to pedagogy, open source philosophy, and collaboration with educators and technologists has shaped the evolution of SkillBuilder, enabling us to continuously improve and meet the needs of online learners.",
+        "SkillBuilder's journey started in 2023 with a clear goal: to revolutionize online education. Over the years, we have evolved into a comprehensive employee training platform that empowers educators and trainers to create engaging and effective learning experiences. Our growth has been fueled by our dedicated team, close collaboration with educators, and our continuous focus on innovation. SkillBuilder is proud to be owned by a group of passionate individuals who believe in the power of education and technology to transform lives."
+      ]
+    },
+    {
+      "tag": "values",
+      "patterns": [
+        "values",
+        "What are SkillBuilder's values?",
+        "Tell me about SkillBuilder's core principles.",
+        "What guides SkillBuilder's work and decisions?",
+        "What principles does SkillBuilder uphold?"
+      ],
+      "responses": [
+        "At SkillBuilder, we value collaboration, openness, and dedication to quality education. Our community is committed to sharing resources, discussing new ideas, fixing issues, and improving documentation. We believe in providing support and fostering a supportive environment throughout your online learning journey. These values drive us to build a platform that empowers educators, trainers, and learners worldwide.",
+        "SkillBuilder's core principles revolve around collaboration, innovation, and learner-centricity. We believe in the power of collective knowledge, which is why we foster a strong community of educators, trainers, and learners. We encourage collaboration, open dialogue, and continuous improvement. Our decisions are guided by our commitment to delivering quality education, enhancing learning outcomes, and providing a platform that meets the evolving needs of our users."
+      ]
+    },    
+    {
+      "tag": "awards",
+      "patterns": [
+        "awards",
+        "Has SkillBuilder received any awards?",
+        "Tell me about SkillBuilder's awards and recognition.",
+        "What achievements has SkillBuilder been recognized for?",
+        "What awards has SkillBuilder won?"
+      ],
+      "responses": [
+        "SkillBuilder and the Moodle community have received numerous awards and recognition for their contributions to online education. These awards acknowledge the hard work and dedication of our team and community in continually evolving and improving the platform. SkillBuilder takes pride in being part of Open LMS, which provides world-class LMS solutions empowering organizations to meet their education and workplace learning needs.",
+        "SkillBuilder has been recognized with prestigious awards in the field of online education. These awards highlight our commitment to innovation, user experience, and the positive impact our platform has on learners and educators worldwide. We are proud of our achievements and grateful for the recognition we have received within the education community."
+      ]
+    },    
+    {
+      "tag": "pricing",
+      "patterns": [
+        "pricing",
+        "What are SkillBuilder's pricing options?",
+        "Tell me about the cost of SkillBuilder.",
+        "Is SkillBuilder free to use?",
+        "How much does SkillBuilder cost?"
+      ],
+      "responses": [
+        "SkillBuilder offers flexible pricing options to suit different needs. We have both free and paid plans available. The free plan provides basic features, while our paid plans offer additional functionalities, enhanced support, and advanced customization options. Pricing details may vary based on your specific requirements and the scale of usage. For more information on our pricing plans, please visit our website or contact our sales team. They will be happy to provide you with detailed pricing information and help you choose the plan that best fits your needs."
+      ]
+    },
+    {
+      "tag": "integration",
+      "patterns": [
+        "integration",
+        "Does SkillBuilder integrate with other systems or tools?",
+        "What integrations are available for SkillBuilder?",
+        "Can SkillBuilder work with my existing systems?",
+        "Is there support for integrating SkillBuilder with external tools?"
+      ],
+      "responses": [
+        "SkillBuilder provides integrations with various systems and tools to enhance your learning experience. We offer seamless integrations with popular learning management systems (LMS), content authoring tools, video conferencing platforms, and more. Our goal is to ensure that SkillBuilder works harmoniously with your existing systems and tools, creating a cohesive and efficient learning ecosystem. Whether you need to integrate with an LMS, import content from external sources, or connect with video conferencing tools, SkillBuilder has you covered. Visit our website or contact our support team to learn more about the specific integrations available and how SkillBuilder can work with your existing systems."
+      ]
+    },    
+    {
+      "tag": "support",
+      "patterns": [
+        "support",
+        "How can I get support from SkillBuilder?",
+        "What support options does SkillBuilder provide?",
+        "Is there a support team available to assist me?"
+      ],
+      "responses": [
+        "SkillBuilder offers comprehensive support options to assist you. Our support team is available to answer your questions and provide guidance. You can reach out to us through our support portal, email, or live chat. Additionally, we provide extensive documentation, knowledge bases, and community forums where you can find helpful resources and engage with other users."
+      ]
+    },
+    {
+      "tag": "security",
+      "patterns": [
+        "How does SkillBuilder ensure the security of user data?",
+        "What measures does SkillBuilder take to protect user information?",
+        "Is my data safe with SkillBuilder?",
+        "What security protocols are in place to safeguard user data?"
+      ],
+      "responses": [
+        "At SkillBuilder, we prioritize the security and privacy of user data. We implement robust security measures, including data encryption, access controls, and regular system audits. Our platform complies with industry standards and regulations to ensure the protection of user information. We have dedicated teams focused on maintaining the security and integrity of our systems, providing you with a safe and reliable learning environment."
+      ]
+    },
+    {
+      "tag": "customization",
+      "patterns": [
+        "Can I customize the look and feel of SkillBuilder?",
+        "What customization options are available in SkillBuilder?",
+        "Is it possible to brand SkillBuilder with my organization's logo and colors?"
+      ],
+      "responses": [
+        "SkillBuilder offers extensive customization options to match your organization's branding and style. You can personalize the platform's appearance by adding your organization's logo, choosing color schemes, and customizing the user interface. This allows you to create a consistent and branded learning experience for your users, reinforcing your organization's identity."
+      ]
+    }    
+    
+  ]
+}

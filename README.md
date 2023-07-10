@@ -20,14 +20,24 @@ reset password feature to recover lost passwords password.
 
 To install the project, you need to have Python 3 and pip installed on your system. Then, follow these steps:
 
-- Clone this repository: `https://github.com/Kjeff24/SkillBuilder.git`
-- Create a virtual environment: `python -m venv venv`
-- Activate the virtual environment: `source venv/bin/activate` (on Linux/Mac) or `venv\Scripts\activate` (on Windows)
-- Install the required dependencies: `pip install -r requirements.txt`
+- Clone this repository: 
+[SkillBuilder](https://github.com/Kjeff24/SkillBuilder.git)
+- Create a virtual environment: 
+```
+python -m venv venv
+```
+- Activate the virtual environment: 
+```
+`source venv/bin/activate` (on Linux/Mac) or `venv\Scripts\activate` (on Windows)
+```
+- Install the required dependencies: 
+```
+pip install -r requirements.txt
+```
 
 ## Usage
 
-To run the project, you need to set your email and password. You can use a `.env` file to store them. For example:
+- To run the project, you can set your email and password to handle email being sent. You can use a `.env` file to store them or change them from `settings.py`. For example:
 
 ```
 EMAIL_FROM_USER = 'your email'
@@ -35,114 +45,51 @@ EMAIL_HOST_USER = 'your email'
 EMAIL_HOST_PASSWORD = 'your email password'
 ```
 
-Then, you can run the following commands:
+- Train the chatbot Directory:chatbot
+Run
+```
+python train.py
+```
 
-- Run the app: `python manage.py runserver`
+- Then, you can run the following commands:
+``` 
+python manage.py runserver
+```
 
-By default the development server will start at http://127.0.0.1:8000/
+By default the development server will start at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 
 ## Models
 The project contains the following models:
-### User
-
-#### Fields
-- is_employer, is_employee, is_email_verified, my_employer, first_name, last_name, bio, avatar 
-
-### Course
-
-#### Fields
-- name, description, instructor, created, updated
-
-### Participants
-
-#### Fields
-- user, course
-
-### Enrollment
-
-#### Fields
-- course, date_enrolled, members
-
-### Resource
-
-#### Fields
-- name, course, description, youtubeLink, file, created, updated
-
-### Announcement
-
-#### Fields
-- title, content, course, date, created, updated
-
-### Room
-
-#### Fields
-- room_topic, course, room_description, created, updated
-
-### Message
-
-#### Fields
-- user, room, body, updated, created
-
-### Quiz
-
-#### Fields
-- name, course, number_of_questions, time, required_score_to_pass, difficluty
-
-#### Functions
-- get_questions()
-
-### Question
-
-#### Fields
-- text, quiz, created
-
-#### Functions
-- get_answers()
-
-### Answer
-
-#### Fields
-- text, correct, question, created
-
-### Result
-
-#### Fields
-- quiz, user, score, completion_time, created, started
+| Models| Fields| Functions|
+| ----- | ------| ---------|
+| User | `is_employer, is_employee, is_email_verified, my_employer, first_name, last_name, bio, avatar` |
+| Course |`name, description, instructor, created, updated`|
+|Participants|`user, course`|
+|Enrollment|` course, date_enrolled, members `|
+|Resource|` name, course, description, youtubeLink, file, created, updated `|
+|Announcement|` title, content, course, date, created, updated `|
+|Room|` room_topic, course, room_description, created, updated `|
+|Message|` user, room, body, updated, created `|
+|Quiz|` name, course, number_of_questions, time, required_score_to_pass, difficluty `|`get_questions()`|
+|Question|` text, quiz, created `|`get_answers()` |
+|Answer|` text, correct, question, created `|
+|Result|`quiz, user, score, completion_time, created, started  `|
 
 ## Views
-### myapp/views - authentication.py
-- loginPage, logoutUser, employeeSignupPage, employerSignupPage, send_activation_email, activate_user
 
-### myapp/views - front_page.py
-- home, about, contact
-
-### myapp/views - user_management.py
-- updateUser
-
-### myapp/views - users_page.py
-- employeeHome
-
-### course/views - announcement_page.py
-- announcementPage
-
-### course/views - chat_room.py
-- chatRoom
-
-### course/views - profile_page.py
-- profile
-
-### course/views - quiz_page.py
-- quizPage
-
-### course/views - resource_page.py
-- resourcePage
-
-### quiz/views
-- quiz_list_view, quiz_view, quiz_data_view, save_quiz_view
-
-## UML Diagram of models
-![Alt text](static/assets/preview_images/model_uml.png)
+| View| Functions|
+| ----- | ---------|
+|myapp/views - authentication.py|- loginPage <br>- logoutUser<br>- employeeSignupPage<br>- employerSignupPage<br>- send_activation_email<br>- activate_user|
+|myapp/views - front_page.py|- home<br>- about<br>- contact |
+|myapp/views - user_management.py |- updateUser |
+|myapp/views - users_page.py |- employeeHome |
+|course/views - announcement_page.py|- announcementPage |
+|course/views - chat_room.py |- chatRoom  |
+|course/views - profile_page.py|- profile|
+|course/views - quiz_page.py |- quizPage  |
+|course/views - resource_page.py |- resourcePage |
+|quiz/views |- quiz_list_view<br>- quiz_view<br>- quiz_data_view<br>- save_quiz_view |
 
 ## Endpoints
 
@@ -179,6 +126,9 @@ The project provides the following endpoints:
 
 
 ## Preview
+
+### UML Diagram of models
+![Alt text](static/assets/preview_images/model_uml.png)
 
 ### Front Page
 ![Alt text](static/assets/preview_images/frontPage.png)

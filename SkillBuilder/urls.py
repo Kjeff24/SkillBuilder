@@ -15,6 +15,7 @@ urlpatterns = [
     path('employer_admin/', employer_admin_site.urls),
     path("", include("course.urls")),
     path("", include("quiz.urls")),
+    path("", include("chatbot.urls")),
     # re_path(r'^.*/$', custom_404),
 ]
 
