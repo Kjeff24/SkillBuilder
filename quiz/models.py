@@ -1,8 +1,7 @@
 from django.db import models
-from course.models import Course
+from course.models import Course, Announcement
 from myapp.models import User
 import random
-from event.models import Event
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
@@ -43,31 +42,33 @@ class Quiz(models.Model):
     
     def save(self, *args, **kwargs):
         """
-        Overrides the save method to create an associated event for the quiz.
+        Overrides the save method to create an associated announcement for the quiz.
         """
         # Call the parent class's save() method
         super().save(*args, **kwargs)
-
-        # Create an event for the quiz
-        event = Event.objects.create(
-            name=self.name,
-            start=self.start_date,
-            course=self.course,
-            end=self.end_date
-            )
-        event.save()
+        
+        # Create an announcement for the quiz
+        announcement = Announcement.objects.create(
+            title=f"New Quiz: {self.name}",
+            content=f"A new quiz '{self.name}' has been scheduled for the course '{self.course}'."
+                    f" It will start on {self.start_date} and end on {self.end_date}.",
+            course=self.course
+        )
+        announcement.save()
 
     class Meta:
         verbose_name_plural = 'Quizes'
         
 @receiver(post_delete, sender=Quiz)
-def delete_associated_event(sender, instance, **kwargs):
+def delete_related_announcement(sender, instance, **kwargs):
     """
-    Deletes the associated event when a quiz is deleted.
+    Signal handler to delete the associated announcement when a quiz is deleted.
     """
-    event = Event.objects.filter(name=instance.title).first()
-    if event:
-        event.delete()
+    try:
+        announcement = Announcement.objects.get(course=instance.course, title=f"New Quiz: {instance.name}")
+        announcement.delete()
+    except Announcement.DoesNotExist:
+        pass
         
 # Create a question model
 class Question(models.Model):

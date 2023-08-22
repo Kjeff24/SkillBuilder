@@ -5,32 +5,17 @@
     --secondaryGradient: linear-gradient(268.91deg, #5a5b68 -2.14%, #3f4156 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-    --primary: #581B98;
+    --primary: #2d2d39;
 }
 
 /* CHATBOX
 =============== */
-.chatbox {
-    /* position: -webkit-sticky; */
-    position: fixed;
-    bottom: 10px;
-    right: 20px;
+
+.chatbox { 
+    margin: 50px;
 }
 
 /* CONTENT IS CLOSE */
-.chatbox__support {
-    display: flex;
-    flex-direction: column;
-    background: #eee;
-    width: 490px;
-    height: 570px;
-    z-index: -123456;
-    opacity: 0;
-    transition: all .5s ease-in-out;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
 
 /* CONTENT ISOPEN */
 .chatbox--active {
@@ -55,11 +40,6 @@
 
 
 /* HEADER */
-.chatbox__header {
-    position: sticky;
-    top: 0;
-    background: orange;
-}
 
 /* MESSAGES */
 .chatbox__messages {
@@ -68,6 +48,16 @@
     overflow-y: scroll;
     flex-direction: column-reverse;
 }
+
+.chatbox__messages::-webkit-scrollbar {
+    background: var(--secondaryGradient);
+    width: 10px;
+  }
+  
+.chatbox__messages::-webkit-scrollbar-thumb {
+    background: var(--secondaryGradient);
+    border-radius: 6px;
+  }
 
 .messages__item {
     background: orange;
@@ -84,9 +74,19 @@
 }
 
 /* FOOTER */
-.chatbox__footer {
-    position: sticky;
-    bottom: 0;
+
+
+.chatbox__support {
+    /* margin: 50px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    background: #f9f9f9;
+    height: 700px;
+    width: 650px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    /* border-top-right-radius: 20px; */
 }
 
 /* HEADER */
@@ -154,7 +154,7 @@
     box-shadow: var(--secondaryBoxShadow);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .chatbox__footer input {
@@ -183,14 +183,16 @@
     cursor: pointer;
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 900px) {
     .chatbox__support {
+        height: 450px;
         width: 400px;
-        /* height: 450px; */
     }
 }
+
 @media (max-width: 500px) {
     .chatbox__support {
-        width: 320px;
+        height: 550px;
+        width: 400px;
     }
-}
+} */

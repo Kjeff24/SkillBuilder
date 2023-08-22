@@ -47,8 +47,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDarkDropdownMenuLink"
+            id="navbarDropdownSignup"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -57,7 +56,7 @@
 
           <ul
             class="dropdown-menu"
-            aria-labelledby="navbarDarkDropdownMenuLink"
+            aria-labelledby="navbarDropdownSignup"
           >
             <li>
               <a href="{% url 'employee-signup' %}" class="dropdown-item">
@@ -74,8 +73,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDarkDropdownMenuLink"
+            id="navbarDropdownLogin"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -83,7 +81,7 @@
           </a>
           <ul
             class="dropdown-menu"
-            aria-labelledby="navbarDarkDropdownMenuLink"
+            aria-labelledby="navbarDropdownLogin"
           >
             <li>
               <a href="{% url 'login' %}" class="dropdown-item">
@@ -97,6 +95,7 @@
             </li>
           </ul>
         </li>
+        
         {% endwith %}
       </ul>
       <div>
@@ -109,7 +108,7 @@
             <a
               class="nav-link dropdown-toggle"
               href="#"
-              id="navbarDarkDropdownMenuLink"
+              id="navbarDarkDropdownMenuLinkLang"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -117,7 +116,7 @@
             </a>
             <ul
               class="dropdown-menu"
-              aria-labelledby="navbarDarkDropdownMenuLink"
+              aria-labelledby="navbarDarkDropdownMenuLinkLang"
             >
               <li>
                 {% for lang in languages %}

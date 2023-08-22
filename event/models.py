@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-# Create your models here.
 class Event(models.Model):
     """
     Model representing an event.
