@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from course.models import Course
+from quiz.models import Result
 
 # room page
 def quizPage(request, pk):
@@ -21,9 +22,14 @@ def quizPage(request, pk):
 
     courses = Course.objects.filter(participants__user=employee)
     course = Course.objects.get(id=pk)
+    
+    # Filter results based on the user and course
+    user_results = Result.objects.filter(user=employee, quiz__course=course)
+    
     context = {
         "course":course, 
-        'courses':courses
+        'courses':courses,
+        'user_results':user_results
     }
 
     return render(request, "page/quiz_page.html", context)

@@ -20,6 +20,7 @@ class Quiz(models.Model):
     
     name = models.CharField(max_length=120)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    quiz_chances = models.PositiveIntegerField(default=1)
     number_of_questions = models.IntegerField()
     time = models.IntegerField(help_text="duration of the quiz in minutes")
     required_score_to_pass = models.IntegerField(help_text="required score in %")
@@ -106,12 +107,15 @@ class Result(models.Model):
     """
     Model representing the result of a user in a quiz.
     """
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='result')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.FloatField(null=True)
     completion_time = models.FloatField(null=True)
     created = models.DateTimeField(auto_now_add=True)
-    started = models.BooleanField(default=False)  # Track whether the quiz has started
+    # started = models.BooleanField(default=False)
     
+    # chances_taken = models.PositiveIntegerField(default=0)
+
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} - result {self.quiz} - result {self.score}"
+    

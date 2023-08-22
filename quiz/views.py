@@ -6,6 +6,7 @@ from course.models import Course, Participants
 from django.contrib import messages
 from django.http import Http404
 from django.db.models import Subquery
+from django.db.models import F, Q, Count
 
 
 def quiz_list_view(request, pk2):
@@ -19,15 +20,18 @@ def quiz_list_view(request, pk2):
     Returns:
         A rendered HTML template displaying the quizzes for the course.
     """
-    """View All Quiz List"""
     employee = request.user
     course = Course.objects.get(id=pk2)
     courses = Course.objects.filter(participants__user=employee)
-    quizzes = Quiz.objects.filter(course__in=courses)
     
-    # Exclude quizzes that already exist in the Result model for the current user
-    user_results = Result.objects.filter(user=request.user)
-    quizzes = Quiz.objects.filter(course=course).exclude(id__in=Subquery(user_results.values('quiz_id')))
+    # Filter quizzes that the user has not attempted more than quiz_chances times
+    quizzes = Quiz.objects.filter(
+        course=course
+    ).annotate(
+        result_count=Count('result', filter=Q(result__user=request.user))
+    ).filter(
+        result_count__lt=F('quiz_chances')
+    )
     
     filtered_quizzes = []
     for quiz in quizzes:
@@ -56,8 +60,6 @@ def quiz_view(request, pk, pk2):
     """
     quiz = Quiz.objects.get(pk=pk)
     course = Course.objects.get(id=pk2)
-    
-    Result.objects.create(quiz=quiz, user=request.user, started=True)
     
     context = {'obj': quiz, 'course': course, 'page':'quiz_page' }
     return render(request, 'quiz/quiz.html', context)
@@ -148,10 +150,7 @@ def save_quiz_view(request, pk, pk2):
                 results.append({str(q): 'not answered'})
             
         score_ = score * multiplier
-        
-        save_result = Result.objects.get(user=user)
-        save_result.score=score_
-        save_result.completion_time=completionTime
+        save_result = Result.objects.create(quiz=quiz, user=user, score=score_, completion_time=completionTime)
         save_result.save()
 
         if score_ >= quiz.required_score_to_pass:

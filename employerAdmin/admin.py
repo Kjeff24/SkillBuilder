@@ -133,7 +133,7 @@ class AnswerAdmin(admin.ModelAdmin):
 @register(Result, site=employer_admin_site)
 class ResultAdmin(admin.ModelAdmin):
     # Customize the fields displayed in the admin list view for results
-    list_display = ('quiz', 'user', 'score', 'completion_time', 'created', 'started')
+    list_display = ('quiz', 'user', 'score', 'completion_time', 'created')
     
     def get_queryset(self, request):
         # Filter queryset to show only the courses created by the logged-in employer
