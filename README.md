@@ -34,6 +34,27 @@ python -m venv venv
 ```
 pip install -r requirements.txt
 ```
+```
+python -m spacy download en_core_web_md
+```
+
+## TRAINING THE CHATBOT
+1. Activate virtual enviroment
+--- myvenv\Scripts\activate
+
+2. Navigate into your main project folder that cotains the "manage.py"
+
+3. Navigate into the chatbot folder that contains train.py
+
+4. Type the following NB: Skip this process if you have already downloaded punkt
+```
+--- python
+--- >>> import nltk
+--- >>> nltk.download('punkt')
+```
+
+5. Train the chatbot 
+--- python train.py
 
 ## Usage
 

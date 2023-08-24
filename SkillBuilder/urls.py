@@ -16,6 +16,7 @@ urlpatterns = [
     path("", include("course.urls")),
     path("", include("quiz.urls")),
     path("", include("chatbot.urls")),
+    path("", include("mcqGenerator.urls")),
     # re_path(r'^.*/$', custom_404),
 ]
 

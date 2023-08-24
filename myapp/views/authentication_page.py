@@ -13,6 +13,7 @@ from myapp.tokens import account_activation_token
 from myapp.models import User
 from myapp.forms import LoginForm, EmployerSignUpForm, EmployeeSignUpForm
 
+
 def loginPage(request):
     """
     View function to handle user login.

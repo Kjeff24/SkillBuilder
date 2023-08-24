@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from course.models import Course, Participants
 from event.models import Event
 
+from django.http import HttpResponse
+
 # Course page for employees
 def coursePage(request, pk):
     """
@@ -22,20 +24,23 @@ def coursePage(request, pk):
     """
     
     # Get course by id and display resources, announcements, rooms based on the course
-    employee = request.user
-    
-    participants = Participants.objects.filter(user=employee)
-    courses = [participant.course for participant in participants]
-    
-    course = Course.objects.get(pk=pk)
-    
-    context = {
-        'course':course, 
-        'courses':courses,
-        'page': 'course_overview',
-        }
+    if request.user.is_authenticated:
+        employee = request.user
+        
+        participants = Participants.objects.filter(user=employee)
+        courses = [participant.course for participant in participants]
+        
+        course = Course.objects.get(pk=pk)
+        
+        context = {
+            'course':course, 
+            'courses':courses,
+            'page': 'course_overview',
+            }
 
-    return render(request, "page/course_page.html", context)
+        return render(request, "page/course_page.html", context)
+    else:
+        return HttpResponse("Login Required")
 
 # show all events in course page
 def all_events(request, pk): 

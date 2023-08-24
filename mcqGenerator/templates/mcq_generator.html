@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mcq_generator.css' %}" />
+  <link rel="shortcut icon" href="https://avatars0.githubusercontent.com/u/65834464?s=200&amp;v=4" type="image/x-icon">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+  <script src="https://kit.fontawesome.com/22be60108b.js" crossorigin="anonymous"></script>
+  <title>MLH Quizzet</title>
+</head>
+
+<body>
+  <style type="text/css">
+    @font-face {
+      font-family: helvetica;
+      src: "{% static 'fonts/helvetica.ttf' %}"
+    }
+  </style>
+    <main role="main">
+          <div class="hero">
+            <p class="is-size-3 has-text-black has-text-weight-bold has-text-centered">Upload any Document to get an instant Multiple Choice Questions</p>
+            <p class="is-size-4 has-text-weight-bold has-text-centered">You Know 📖, You Grow 🚀</p>
+            <p class="is-size-5 has-text-black has-text-weight-medium has-text-centered"> Practice More • Learn More </p>
+            <p class="is-size-5 has-text-black has-text-weight-medium has-text-centered"> Wait while page loads to generates pdf file </p>
+          </div>
+      <div class="card has-text-centered">
+        <img src="https://cdn4.iconfinder.com/data/icons/files-and-folders-thinline-icons-set/144/File_PDF-512.png"
+          alt="upload"/>
+        <form action="{% url 'quizGenPage' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div id="file-js-example" class="file has-name is-fullwidth">
+            <label class="file-label">
+              <input class="file-input" type="file" name="file" accept=".txt, application/pdf" />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Choose a file… </span>
+              </span>
+            <span class="file-name"> No file uploaded </span>
+          </label>
+        </div>
+        
+        <script>
+          const fileInput = document.querySelector(
+            "#file-js-example input[type=file]"
+          );
+          fileInput.onchange = () => {
+            if (fileInput.files.length > 0) {
+              const fileName = document.querySelector(
+                "#file-js-example .file-name"
+              );
+              fileName.textContent = fileInput.files[0].name;
+            }
+          };
+        </script>
+        <input type="number" name="numPages" placeholder="Enter number of pages" id="numPages">
+        <button class="button has-text-centered is-large is-fullwidth is-dark">
+          <span class="submit has-text-centered" type="submit" name="upload file">Submit</span>
+          <span class="loading"><i class="fa fa-refresh"></i></span>
+          <span class="check"><i class="fa fa-check"></i></span>
+        </button>
+        
+      </form>
+    </div>
+  </main>
+  <script>const button = document.querySelector('.button');
+    const submit = document.querySelector('.submit');
+
+    function toggleClass() {
+      this.classList.toggle('active');
+    }
+
+    function addClass() {
+      this.classList.add('finished');
+    }
+
+    button.addEventListener('click', toggleClass);
+    button.addEventListener('transitionend', toggleClass);
+    button.addEventListener('transitionend', addClass);
+  </script>
+</body>
+
+</html>

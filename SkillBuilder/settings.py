@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'employerAdmin.apps.EmployeradminConfig',
     'event.apps.EventConfig',
     'chatbot.apps.ChatbotConfig',
+    'mcqGenerator.apps.McqgeneratorConfig',
     'django_extensions',
 ]
 
