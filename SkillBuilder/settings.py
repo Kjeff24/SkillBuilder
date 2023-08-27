@@ -22,7 +22,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = False
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ["https://web-production-88ef.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://skillbuilder-production.up.railway.app"]
 
 # Application definition
 
