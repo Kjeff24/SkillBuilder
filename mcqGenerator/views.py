@@ -27,9 +27,10 @@ def quizGenPage(request):
 
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
-        numPages = int(request.POST.get("numPages"))
-        if not numPages:
+        if not request.POST.get("numPages"):
             numPages = 5
+        else:
+            numPages = int(request.POST.get("numPages"))
         file_path = os.path.join(
             settings.MEDIA_ROOT,
             'pdf',

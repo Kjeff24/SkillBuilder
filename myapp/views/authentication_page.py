@@ -163,7 +163,7 @@ def send_activation_email(user, request):
 
     # create an email from using EmailMessage()
     email = EmailMessage(subject=email_subject, body=email_body,
-                         from_email=settings.EMAIL_FROM_USER,
+                         from_email=settings.EMAIL_HOST_USER,
                          to=[user.email]
                          )
 

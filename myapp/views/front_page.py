@@ -48,8 +48,8 @@ def contact(request):
         send_mail(
             subject="Message from Contact Form",
             message=f'Name: {first_name} {last_name}\nEmail: {email}\nCountry: {country}\n\nMessage: {from_message}',
-            from_email=settings.EMAIL_FROM_USER,
-            recipient_list=[settings.EMAIL_FROM_USER],
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[settings.EMAIL_HOST_USER],
             fail_silently=False,
         )
         messages.add_message(request, messages.SUCCESS,

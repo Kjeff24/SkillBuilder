@@ -1,0 +1,1 @@
+web: gunicorn SkillBuilder.wsgi --log-file -
