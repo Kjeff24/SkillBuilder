@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import sys
 from django.utils.translation import gettext_lazy as _
+import nltk
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -169,6 +170,11 @@ LANGUAGES = (
     ('fr', _('French')),
 )
 
+# Define the NLTK data directory path within your project
+NLTK_DATA_DIR = os.path.join(BASE_DIR, 'corpora')
+
+# Define the NLTK data directory path within your project
+nltk.data.path.append(NLTK_DATA_DIR)
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),

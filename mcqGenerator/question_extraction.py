@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+nltk.data.path.append('path/to/nltk_data_in_deployment_package')
 
 class QuestionExtractor:
     ''' This class contains all the methods
