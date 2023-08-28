@@ -106,22 +106,18 @@ def save_quiz_view(request, pk, pk2):
     if request.method == 'POST' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         questions = []
         data = request.POST
-        print(request.POST)
         data_ = dict(data.lists())
         
         # save completion time from response data
         completionTime = float(data_["completionTime"][0])
-        print(f" Time take to complete {completionTime}")
 
         # remove csrfmiddlewaretoken and completionTime, and returns the list of questions
         data_.pop('csrfmiddlewaretoken')
         data_.pop('completionTime')
 
         for k in data_.keys():
-            print('key: ', k)
             question = Question.objects.get(text=k)
             questions.append(question)
-        print(questions)
 
         user = request.user
         quiz = Quiz.objects.get(pk=pk)

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.db.models import Max
 from django.utils.safestring import mark_safe
 from random import randint
+from collections import OrderedDict
 from .models import Question, Answer, Quiz, Result
 
 
@@ -57,7 +58,12 @@ class ResultAdmin(admin.ModelAdmin):
         quiz_tables = []
         for quiz in quizzes:
             results = qs.filter(quiz=quiz)
-            if results:
+            
+            # Filter results based on required score to pass
+            required_score_to_pass = quiz.required_score_to_pass
+            passed_results = [result for result in results if result.score >= required_score_to_pass]
+
+            if passed_results:
                 table = f'<hr/><br/><h2>{quiz.name}</h2>'
                 table += '<table>'
                 table += '<tr><th>User</th><th>Score</th><th>Highest Score</th><th>Passed</th><th>Completion Time</th><th>Created</th></tr>'
@@ -70,11 +76,21 @@ class ResultAdmin(admin.ModelAdmin):
                 quiz_tables.append(table)
                 
                 # Generate random colors for each bar
-                bar_colors = [generate_random_color() for _ in results]
+                bar_colors = [generate_random_color() for _ in passed_results]
                 
                 # Create bar chart using chart.js
-                users = [str(result.user) for result in results]
-                scores = [result.score for result in results]
+                user_scores = {}
+
+                for result in passed_results:
+                    user = str(result.user)
+                    score = result.score
+                    if user not in user_scores:
+                        user_scores[user] = score
+
+                # Now user_scores contains unique scores for each user
+
+                users = list(user_scores.keys())
+                scores = list(user_scores.values())
                 chart_data = {
                     'labels': users,
                     'datasets': [{

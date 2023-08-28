@@ -15,6 +15,7 @@
             <th>Time taken(mins)</th>
             <th>Required Score To Pass(%)</th>
             <th>Score(%)</th>
+            <th>Date Completed</th>
         </tr>
         {% for result in user_results %}
         <tr class="{% if result.score >= result.quiz.required_score_to_pass %} bg-primary {% else %} bg-danger{% endif %} text-white" >
@@ -29,6 +30,9 @@
             </td>
             <td class="fw-bold">
                 {{result.score}}
+            </td>
+            <td class="fw-bold">
+                {{result.created}}
             </td>
         </tr>
         {% endfor %}

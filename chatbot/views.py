@@ -11,5 +11,4 @@ def predict(request, pk):
     # TODO: Check if text is valid
     response = get_response(text)
     message = {"answer":response}
-    print(message)
     return JsonResponse(message)

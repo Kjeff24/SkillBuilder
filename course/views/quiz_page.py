@@ -24,7 +24,7 @@ def quizPage(request, pk):
     course = Course.objects.get(id=pk)
     
     # Filter results based on the user and course
-    user_results = Result.objects.filter(user=employee, quiz__course=course)
+    user_results = Result.objects.filter(user=employee, quiz__course=course).order_by('-created')
     
     context = {
         "course":course, 

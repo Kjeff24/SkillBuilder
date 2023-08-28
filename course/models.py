@@ -149,7 +149,6 @@ class Announcement(models.Model):
             end=self.date + timedelta(hours=36)  # Adjust the end time as needed
         )
         event.save()
-        print("Event created")
         
 @receiver(post_delete, sender=Announcement)
 def delete_associated_event(sender, instance, **kwargs):
