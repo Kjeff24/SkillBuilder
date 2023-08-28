@@ -123,7 +123,7 @@ def employerSignupPage(request):
             user.is_staff = True  # Assign staff status
             user.is_superuser = True  # Assign superuser status
             user.save()
-            send_activation_email(user, request)
+            # send_activation_email(user, request)
             messages.add_message(request, messages.SUCCESS,
                                          'We sent you an email to verify your account')
             return redirect('employer_admin:login')
