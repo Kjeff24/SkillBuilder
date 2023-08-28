@@ -1,9 +1,6 @@
 from django.contrib import admin
 from django.db.models import Max
 from django.utils.safestring import mark_safe
-import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
 from .models import Question, Answer, Quiz, Result
 
 
@@ -66,23 +63,6 @@ class ResultAdmin(admin.ModelAdmin):
                     table += f'<tr><td>{result.user}</td><td>{result.score}</td><td>{highest_score}</td><td>{passed_icon}</td><td>{result.completion_time}</td><td>{result.created}</td></tr>'
                 table += '</table>'
                 quiz_tables.append(table)
-                
-                # Create bar chart
-                fig, ax = plt.subplots()
-                users = [str(result.user) for result in results]
-                scores = [result.score for result in results]
-                ax.bar(users, scores)
-                ax.set_ylabel('Score')
-                ax.set_title(f'{quiz.name} Scores')
-                
-                # Convert plot to PNG image
-                buf = BytesIO()
-                fig.savefig(buf, format='png')
-                buf.seek(0)
-                img_str = base64.b64encode(buf.read())
-                
-                # Add image to quiz tables
-                quiz_tables.append(f'<img src="data:image/png;base64,{img_str.decode()}" />')
         
         response.context_data['quiz_tables'] = mark_safe(''.join(quiz_tables))
         return response
