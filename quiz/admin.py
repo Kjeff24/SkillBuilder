@@ -1,9 +1,7 @@
 from django.contrib import admin
 from django.db.models import Max
 from django.utils.safestring import mark_safe
-import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
+from random import randint
 from .models import Question, Answer, Quiz, Result
 
 
@@ -21,6 +19,8 @@ class QuestionAdmin(admin.ModelAdmin):
     """
     inlines = [AnswerInline]
 
+def generate_random_color():
+        return f'rgba({randint(0, 255)}, {randint(0, 255)}, {randint(0, 255)})'
 
 class ResultAdmin(admin.ModelAdmin):
     list_display = ('user', 'quiz', 'score', 'quiz_highest_score', 'passed', 'completion_time', 'created')
@@ -43,6 +43,8 @@ class ResultAdmin(admin.ModelAdmin):
             return False
     passed.boolean = True
     passed.short_description = 'Passed'
+    
+    
     
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(request, extra_context=extra_context)
@@ -67,22 +69,42 @@ class ResultAdmin(admin.ModelAdmin):
                 table += '</table>'
                 quiz_tables.append(table)
                 
-                # Create bar chart
-                fig, ax = plt.subplots()
+                # Generate random colors for each bar
+                bar_colors = [generate_random_color() for _ in results]
+                
+                # Create bar chart using chart.js
                 users = [str(result.user) for result in results]
                 scores = [result.score for result in results]
-                ax.bar(users, scores)
-                ax.set_ylabel('Score')
-                ax.set_title(f'{quiz.name} Scores')
-                
-                # Convert plot to PNG image
-                buf = BytesIO()
-                fig.savefig(buf, format='png')
-                buf.seek(0)
-                img_str = base64.b64encode(buf.read())
-                
-                # Add image to quiz tables
-                quiz_tables.append(f'<img src="data:image/png;base64,{img_str.decode()}" />')
+                chart_data = {
+                    'labels': users,
+                    'datasets': [{
+                        'label': f'{quiz.name} Scores',
+                        'data': scores,
+                        'backgroundColor': bar_colors,
+                        'hoverBackgroundColor': '#4e73df',
+                        'borderColor': '#fffff',
+                    }]
+                }
+                chart_options = {
+                    'maintainAspectRatio': 'true',
+                    'scales': {
+                        'y': {
+                            'beginAtZero': 'true'
+                        }
+                    }
+                }
+                chart_html = f'''
+                    <canvas id="{quiz.pk}-chart" style="padding-top: 30px;"></canvas>
+                    <script>
+                        var ctx = document.getElementById("{quiz.pk}-chart");
+                        var myChart = new Chart(ctx, {{
+                            type: "bar",
+                            data: {chart_data},
+                            options: {chart_options}
+                        }});
+                    </script>
+                '''
+                quiz_tables.append(chart_html)
         
         response.context_data['quiz_tables'] = mark_safe(''.join(quiz_tables))
         return response
