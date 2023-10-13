@@ -183,6 +183,8 @@ class QuestionAdmin(admin.ModelAdmin):
     # Customize the fields displayed in the admin list view for questions
     list_display = ('text', 'quiz', 'created')
     
+    change_list_template = 'admin/question_change_list.html'
+    
     def get_queryset(self, request):
         # Filter queryset to show only the courses created by the logged-in employer
         qs = super().get_queryset(request)
@@ -195,6 +197,15 @@ class QuestionAdmin(admin.ModelAdmin):
         if db_field.name == "quiz":
             kwargs["queryset"] = Quiz.objects.filter(course__instructor=request.user)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    
+    def changelist_view(self, request, extra_context=None):
+        response = super().changelist_view(request, extra_context=extra_context)
+        try:
+            qs = response.context_data['cl'].queryset
+        except (AttributeError, KeyError):
+            return response
+        
+        return response
 
 
 @register(Result, site=employer_admin_site)

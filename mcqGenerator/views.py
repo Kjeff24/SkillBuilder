@@ -28,7 +28,7 @@ def quizGenPage(request):
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
         if not request.POST.get("numPages"):
-            numPages = 5
+            numPages = 10
         else:
             numPages = int(request.POST.get("numPages"))
         file_path = os.path.join(
@@ -43,7 +43,6 @@ def quizGenPage(request):
         # Get contents of file
         uploaded_content = pdf2text(file_path, file_exten)
         quiz_data = txt2questions(uploaded_content, numPages)
-        
         # File upload + convert success
         if uploaded_content is not None:
             pdf_path = os.path.join(

@@ -18,7 +18,19 @@ class QuestionAdmin(admin.ModelAdmin):
     """
     Admin model class for configuring the display of Question model in the admin interface.
     """
+    change_list_template = 'admin/question_change_list.html'
+    
     inlines = [AnswerInline]
+    
+    def changelist_view(self, request, extra_context=None):
+        response = super().changelist_view(request, extra_context=extra_context)
+        try:
+            qs = response.context_data['cl'].queryset
+        except (AttributeError, KeyError):
+            return response
+        
+        return response
+        
 
 def generate_random_color():
         return f'rgba({randint(0, 255)}, {randint(0, 255)}, {randint(0, 255)})'

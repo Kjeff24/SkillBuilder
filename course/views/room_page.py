@@ -19,15 +19,17 @@ def roomPage(request, pk):
 
     """
     employee = request.user
-
+    
     participants = Participants.objects.filter(user=employee)
     courses = [participant.course for participant in participants]
+    
+    myCourse = Course.objects.filter(pk=pk)
     
     # Retrieve the course based on the provided pk
     course = Course.objects.get(id=pk)
 
     # Retrieve the announcements associated with the course
-    rooms = Room.objects.filter(course__in=courses)
+    rooms = Room.objects.filter(course__in=myCourse)
 
     context = {
         'course': course,

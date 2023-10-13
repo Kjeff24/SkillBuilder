@@ -127,6 +127,12 @@ class QuestionExtractor:
 
             # average score for each word
             self.word_score[word] = tot / num_sentences
+            
+        self.keyword_to_sentence = {}
+        for word, sentence in self.sentence_for_max_word_score.items():
+            for w in word_tokenize(sentence):
+                if w not in self.keyword_to_sentence:
+                    self.keyword_to_sentence[w] = sentence
 
     def get_keyword_score(self, keyword):
         ''' Returns the score for a keyword
@@ -142,24 +148,10 @@ class QuestionExtractor:
         return score
 
     def get_corresponding_sentence_for_keyword(self, keyword):
-        ''' Finds and returns a sentence containing
-        the keywords
-        '''
         words = word_tokenize(keyword)
-        for word in words:
-
-            if word not in self.sentence_for_max_word_score:
-                continue
-
-            sentence = self.sentence_for_max_word_score[word]
-
-            all_present = True
-            for w in words:
-                if w not in sentence:
-                    all_present = False
-
-            if all_present:
-                return sentence
+        sentences = [self.keyword_to_sentence.get(w, "") for w in words]
+        if all(sentences):
+            return sentences[0]  # Return the first sentence
         return ""
 
     def rank_keywords(self):

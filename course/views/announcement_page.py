@@ -25,6 +25,7 @@ def announcementPage(request, pk):
     # Get all courses enrolled by the user
     participants = Participants.objects.filter(user=employee)
     courses = [participant.course for participant in participants]
+    
 
     # Retrieve the course based on the provided primary key
     course = Course.objects.get(pk=pk)

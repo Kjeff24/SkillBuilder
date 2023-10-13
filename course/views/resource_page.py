@@ -26,7 +26,9 @@ def resourcePage(request, pk):
     
     participants = Participants.objects.filter(user=employee)
     courses = [participant.course for participant in participants]
-
+    
+    myCourse = Course.objects.filter(pk=pk)
+    
     q = request.GET.get('q', '')
 
     files_by_type = {
@@ -48,7 +50,7 @@ def resourcePage(request, pk):
             Q(youtubeLink__icontains=q) |
             Q(file_type__icontains=q),
             file_type=file_type,
-            course__in=courses
+            course__in=myCourse
         ).order_by('-updated')
 
     context = {
